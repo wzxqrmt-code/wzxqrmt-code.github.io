@@ -11,6 +11,7 @@
     <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#9d4dff">
     <meta name="google-site-verification" content="kWlHz5gTr3yadT-_q1BT6mZ3CtfTDT6kHwOzG9GmOuI">
+    <link rel="canonical" href="https://wzxqrmt-code.github.io/">
     <meta property="og:title" content="Alireza Apex | توسعه‌دهنده اندروید">
     <meta property="og:description" content="صفحه رسمی Alireza Apex. توسعه‌دهنده اپلیکیشن‌های اندروید و ناشر در مایکت.">
     <meta property="og:image" content="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%231a1a2e' stroke='%239d4dff' stroke-width='4'/><text x='50' y='68' font-size='50' fill='white' text-anchor='middle' font-family='Arial' font-weight='bold'>A</text></svg>">
@@ -53,67 +54,73 @@
 
         <section class="hero reveal">
             <div class="hero-card">
-                <h2>Alireza Apex</h2>
-                <p>صفحه رسمی <strong>Alireza Apex</strong>، <strong>توسعه‌دهنده و ناشر اپلیکیشن‌های اندروید</strong> در مایکت. برای دریافت برنامه‌ها و ارتباط با من از لینک زیر استفاده کنید.</p>
-                <a class="myket-btn" href="https://myket.ir/developer/dev-99625/apps?lang=fa" target="_blank">🚀 ورود به صفحه توسعه‌دهنده در مایکت</a>
+                <h2 data-i18n="hero_title">Alireza Apex</h2>
+                <p data-i18n="hero_desc">به صفحه رسمی <strong>Alireza Apex</strong>، <strong>توسعه‌دهنده اندروید</strong> خوش آمدید. برای مشاهده و دانلود تمامی اپلیکیشن‌های منتشر شده توسط Alireza Apex، از لینک زیر وارد صفحه توسعه‌دهنده در مایکت شوید.</p>
+                <a class="myket-btn" data-i18n="myket_btn" href="https://myket.ir/developer/dev-99625/apps?lang=fa" target="_blank">🚀 ورود به مایکت</a>
             </div>
         </section>
 
         <section class="section reveal">
             <div class="card">
-                <div class="title">📬 ارتباط با Alireza Apex</div>
+                <div class="title" data-i18n="contact_title">📬 ارتباط با Alireza Apex</div>
                 <div class="contact-grid">
                     <div class="info-box">
-                        <div class="label">آیدی تمامی پیام‌رسان‌ها</div>
+                        <div class="label" data-i18n="id_label">آیدی تمامی پیام‌رسان‌ها</div>
                         <div class="value">@WZXQRMT</div>
-                        <button class="copy-btn" id="copyIdBtn">📋 کپی آیدی</button>
+                        <button class="copy-btn" id="copyIdBtn" data-i18n="copy_btn">📋 کپی آیدی</button>
                     </div>
                     <div class="info-box">
-                        <div class="label">ایمیل</div>
+                        <div class="label" data-i18n="email_label">ایمیل</div>
                         <div class="value">developeralireza.sh@gmail.com</div>
                     </div>
                 </div>
                 <form id="contactForm">
-                    <input type="text" id="nameInput" placeholder="نام شما" required>
-                    <input type="email" id="emailInput" placeholder="ایمیل شما" required>
-                    <textarea id="messageInput" placeholder="پیام شما..."></textarea>
-                    <button class="submit-btn" type="submit">ارسال پیام</button>
+                    <input type="text" id="nameInput" data-i18n-placeholder="name_placeholder" placeholder="نام شما" required>
+                    <input type="email" id="emailInput" data-i18n-placeholder="email_placeholder" placeholder="ایمیل شما" required>
+                    <textarea id="messageInput" data-i18n-placeholder="message_placeholder" placeholder="پیام شما..."></textarea>
+                    <button class="submit-btn" type="submit" data-i18n="submit_btn">ارسال پیام</button>
                 </form>
             </div>
         </section>
 
         <section class="section reveal">
             <div class="card info-card">
-                <div class="title">اطلاعات Alireza Apex</div>
+                <div class="title" data-i18n="site_info_title">اطلاعات Alireza Apex</div>
                 <div class="info-grid">
-                    <div class="info-row latest-changes-row">
-                        <span class="info-label">آخرین تغییرات</span>
-                        <span class="info-value">📅 ۱۲ خرداد ۱۴۰۵<br>• بهینه‌سازی سئو و سرعت سایت<br>• اضافه شدن حالت تاریک/روشن<br>• دکمه اشتراک‌گذاری و کپی آیدی<br>• بهبود کامل رابط کاربری</span>
+                    <div class="info-row latest-changes-row fade-in-section">
+                        <span class="info-label" data-i18n="latest_changes_label">آخرین تغییرات</span>
+                        <span class="info-value" data-i18n-html="latest_changes_value">
+                            📅 ۱۸ خرداد ۱۴۰۵<br>
+                            • پیاده‌سازی Schema Markup جهت بهبود شناسایی برند شخصی در گوگل<br>
+                            • ارتقای ساختار سئو (SEO) برای ایندکس سریع‌تر در موتورهای جستجو<br>
+                            • اصلاح کدهای اسکریپت برای افزایش پایداری و سرعت لود سایت<br>
+                            • بهبود تجربه کاربری در تمامی دستگاه‌ها
+                        </span>
                     </div>
                     <div class="info-row">
-                        <span class="info-label">وضعیت</span>
-                        <span class="info-value"><span class="status-indicator"></span> آنلاین</span>
+                        <span class="info-label" data-i18n="status_label">وضعیت</span>
+                        <span class="info-value"><span class="status-indicator"></span> <span data-i18n="status_online">آنلاین</span></span>
                     </div>
                     <div class="info-row">
-                        <span class="info-label">ساعت فعلی</span>
+                        <span class="info-label" data-i18n="current_time_label">ساعت فعلی</span>
                         <span class="info-value" id="liveClock">00:00:00</span>
                     </div>
                 </div>
             </div>
         </section>
 
-        <footer>© 2026 Alireza Apex — تمامی حقوق محفوظ است</footer>
+        <footer data-i18n="footer">© 2026 Alireza Apex — تمامی حقوق محفوظ است</footer>
     </div>
 
     <div class="mobile-menu" id="mobileMenu">
         <button id="mobileThemeBtn">🌙 تغییر تم</button>
         <button id="mobileLangBtn">FA / EN</button>
-        <a href="https://myket.ir/developer/dev-99625/apps?lang=fa" target="_blank" style="width:80%;text-decoration:none;"><button style="width:100%;">🚀 ورود به مایکت</button></a>
-        <button id="mobileShareBtn">📤 اشتراک‌گذاری</button>
-        <button id="mobileCloseBtn">❌ بستن</button>
+        <a href="https://myket.ir/developer/dev-99625/apps?lang=fa" target="_blank" style="width:80%;text-decoration:none;"><button style="width:100%;" data-i18n="myket_menu">🚀 ورود به مایکت</button></a>
+        <button id="mobileShareBtn" data-i18n="share_menu">📤 اشتراک‌گذاری</button>
+        <button id="mobileCloseBtn" data-i18n="close_menu">❌ بستن</button>
     </div>
 
-    <div class="toast" id="toast">آیدی کپی شد</div>
+    <div class="toast" id="toast" data-i18n="toast_msg">آیدی کپی شد</div>
 
     <button class="top-btn" id="topBtn">
         <svg class="progress-ring" width="65" height="65"><circle cx="32.5" cy="32.5" r="30" id="progressCircle"/></svg>
@@ -123,4 +130,4 @@
 
     <script src="script.js"></script>
 </body>
-                    </html>
+                        </html>
