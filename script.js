@@ -25,11 +25,11 @@
         // مخفی‌سازی revealها فقط اگر JS فعال است
         document.querySelectorAll('.reveal').forEach(el => el.classList.add('js-hidden'));
 
-        // ترجمه‌ها
+        // ترجمه‌ها (بدون هیچ تگ HTML اضافی)
         const translations = {
             fa: {
                 hero_title: "Alireza Apex",
-                hero_desc: "به صفحه رسمی <strong>Alireza Apex</strong>، <strong>توسعه‌دهنده اندروید</strong> خوش آمدید. برای مشاهده و دانلود تمامی اپلیکیشن‌های منتشر شده توسط Alireza Apex، از لینک زیر وارد صفحه توسعه‌دهنده در مایکت شوید.",
+                hero_desc: "به صفحه رسمی Alireza Apex، توسعه‌دهنده اندروید خوش آمدید. برای مشاهده و دانلود تمامی اپلیکیشن‌های منتشر شده توسط Alireza Apex، از لینک زیر وارد صفحه توسعه‌دهنده در مایکت شوید.",
                 myket_btn: "🚀 ورود به مایکت",
                 contact_title: "📬 ارتباط با Alireza Apex",
                 id_label: "آیدی تمامی پیام‌رسان‌ها",
@@ -58,7 +58,7 @@
             },
             en: {
                 hero_title: "Alireza Apex",
-                hero_desc: "Welcome to the official page of <strong>Alireza Apex</strong>, <strong>Android Developer</strong>. To view and download all published applications by Alireza Apex, visit the developer page on Myket from the link below.",
+                hero_desc: "Welcome to the official page of Alireza Apex, an Android Developer. To view and download all published applications by Alireza Apex, visit the developer page on Myket from the link below.",
                 myket_btn: "🚀 Visit Myket",
                 contact_title: "📬 Contact Alireza Apex",
                 id_label: "All Messenger IDs",
