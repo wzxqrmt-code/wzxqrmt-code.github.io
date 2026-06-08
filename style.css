@@ -54,7 +54,6 @@ body::before {
 
 .container { width:min(1100px,92%); margin:auto; }
 
-/* Reveal animations */
 .reveal {
     opacity: 1;
     transform: translateY(0);
@@ -69,7 +68,6 @@ body::before {
     transform: translateY(0);
 }
 
-/* انیمیشن Fade-in برای بخش آخرین تغییرات */
 .fade-in-section {
     animation: fadeIn 0.8s ease forwards;
 }
@@ -250,4 +248,4 @@ footer { text-align:center; padding:50px 0 30px; color:var(--muted); font-size:.
 @media(max-width:768px) {
     .hero-card { padding:35px 20px; }
     .logo-box h1 { font-size:1rem; }
-        }
+    }
