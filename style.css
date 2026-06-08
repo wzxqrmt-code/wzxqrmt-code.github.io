@@ -162,6 +162,16 @@ body.light-theme .hero h2 {
 }
 .hero p { max-width:700px; margin:auto; color:var(--muted); line-height:2; font-size:1.1rem; }
 
+/* استایل بنر افقی */
+.hero-banner {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 20px auto;
+    border-radius: 16px;
+    box-shadow: 0 0 20px rgba(157, 77, 255, 0.3);
+}
+
 .myket-btn {
     display:inline-block; margin-top:30px; padding:14px 30px; border-radius:999px;
     text-decoration:none; color:white; font-weight:700;
