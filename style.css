@@ -54,6 +54,7 @@ body::before {
 
 .container { width:min(1100px,92%); margin:auto; }
 
+/* Reveal animations */
 .reveal {
     opacity: 1;
     transform: translateY(0);
@@ -66,6 +67,15 @@ body::before {
 .reveal.visible {
     opacity: 1;
     transform: translateY(0);
+}
+
+/* انیمیشن Fade-in برای بخش آخرین تغییرات */
+.fade-in-section {
+    animation: fadeIn 0.8s ease forwards;
+}
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 .loading-screen {
