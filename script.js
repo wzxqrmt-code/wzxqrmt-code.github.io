@@ -3,7 +3,6 @@
     'use strict';
     const SHARE_URL = 'https://wzxqrmt-code.github.io/';
 
-    // تضمین حذف لودینگ
     function hideLoadingScreen() {
         const loader = document.getElementById('loadingScreen');
         if (loader && loader.style.display !== 'none') {
@@ -22,10 +21,8 @@
     }
 
     onReady(function() {
-        // مخفی‌سازی revealها فقط اگر JS فعال است
         document.querySelectorAll('.reveal').forEach(el => el.classList.add('js-hidden'));
 
-        // ترجمه‌ها (بدون هیچ تگ HTML اضافی)
         const translations = {
             fa: {
                 hero_title: "Alireza Apex",
@@ -90,7 +87,6 @@
         let currentLang = localStorage.getItem('lang') || 'fa';
         let currentTheme = localStorage.getItem('theme');
 
-        // تشخیص خودکار تم سیستم اگر کاربر قبلاً دستی انتخاب نکرده بود
         if (!currentTheme) {
             if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
                 currentTheme = 'light';
@@ -108,15 +104,21 @@
         function translatePage(lang) {
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.dataset.i18n;
-                if (translations[lang] && translations[lang][key]) el.textContent = translations[lang][key];
+                if (translations[lang] && translations[lang][key]) {
+                    el.textContent = translations[lang][key];
+                }
             });
             document.querySelectorAll('[data-i18n-html]').forEach(el => {
                 const key = el.dataset.i18nHtml;
-                if (translations[lang] && translations[lang][key]) el.innerHTML = translations[lang][key];
+                if (translations[lang] && translations[lang][key]) {
+                    el.innerHTML = translations[lang][key];
+                }
             });
             document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
                 const key = el.dataset.i18nPlaceholder;
-                if (translations[lang] && translations[lang][key]) el.placeholder = translations[lang][key];
+                if (translations[lang] && translations[lang][key]) {
+                    el.placeholder = translations[lang][key];
+                }
             });
 
             const langToggle = safeGet('langToggle');
@@ -291,11 +293,9 @@
             setTimeout(() => toast.classList.remove('show'), 3000);
         }
 
-        // اجرای اولیه
         translatePage(currentLang);
         applyTheme(currentTheme);
 
-        // بررسی اولیه reveal
         document.querySelectorAll('.reveal.js-hidden').forEach(el => {
             const rect = el.getBoundingClientRect();
             if (rect.top < window.innerHeight - 100) {
