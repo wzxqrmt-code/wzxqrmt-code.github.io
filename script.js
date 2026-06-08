@@ -43,7 +43,7 @@
                 status_online: "آنلاین",
                 current_time_label: "ساعت فعلی",
                 footer: "© 2026 Alireza Apex — تمامی حقوق محفوظ است",
-                toast_msg: "آیدی کپی شد",
+                toast_copy: "آیدی کپی شد",
                 welcome_msg: "به سایت Alireza Apex خوش آمدی! 👋",
                 lang_btn_en: "EN",
                 lang_btn_fa: "FA",
@@ -72,7 +72,7 @@
                 status_online: "Online",
                 current_time_label: "Current Time",
                 footer: "© 2026 Alireza Apex — All Rights Reserved",
-                toast_msg: "ID Copied",
+                toast_copy: "ID Copied",
                 welcome_msg: "Welcome to Alireza Apex! 👋",
                 lang_btn_en: "EN",
                 lang_btn_fa: "FA",
@@ -163,17 +163,20 @@
             if (menu) menu.classList.remove('active');
         });
 
+        function showToast(message) {
+            const toast = safeGet('toast');
+            if (!toast) return;
+            toast.textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+
         function shareSite() {
             if (navigator.share) {
                 navigator.share({ title: 'Alireza Apex | توسعه‌دهنده اندروید', url: SHARE_URL });
             } else {
                 navigator.clipboard.writeText(SHARE_URL).then(() => {
-                    const toast = safeGet('toast');
-                    if (toast) {
-                        toast.textContent = 'لینک کپی شد!';
-                        toast.classList.add('show');
-                        setTimeout(() => toast.classList.remove('show'), 2000);
-                    }
+                    showToast('لینک کپی شد!');
                 });
             }
         }
@@ -187,12 +190,7 @@
 
         safeAddEvent('copyIdBtn', 'click', () => {
             navigator.clipboard.writeText("@WZXQRMT").then(() => {
-                const toast = safeGet('toast');
-                if (toast && translations[currentLang]) {
-                    toast.textContent = translations[currentLang].toast_msg;
-                    toast.classList.add('show');
-                    setTimeout(() => toast.classList.remove('show'), 2200);
-                }
+                showToast(translations[currentLang]?.toast_copy || 'آیدی کپی شد');
             });
         });
 
@@ -286,16 +284,16 @@
         setInterval(updateClock, 1000);
         updateClock();
 
-        const toast = safeGet('toast');
-        if (toast && translations[currentLang]) {
-            toast.textContent = translations[currentLang].welcome_msg;
-            toast.classList.add('show');
-            setTimeout(() => toast.classList.remove('show'), 3000);
-        }
-
+        // راه‌اندازی اولیه
         translatePage(currentLang);
         applyTheme(currentTheme);
 
+        // نمایش پیام خوش‌آمد با تأخیر کم (مطمئن می‌شویم DOM کاملاً آماده است)
+        setTimeout(() => {
+            showToast(translations[currentLang]?.welcome_msg || 'به سایت Alireza Apex خوش آمدید');
+        }, 100);
+
+        // Reveal اولیه
         document.querySelectorAll('.reveal.js-hidden').forEach(el => {
             const rect = el.getBoundingClientRect();
             if (rect.top < window.innerHeight - 100) {
