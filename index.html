@@ -3,20 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Alireza Apex | توسعه‌دهنده اندروید</title>
-    <meta name="description" content="صفحه رسمی Alireza Apex، توسعه‌دهنده اپلیکیشن‌های اندروید.">
-    <meta name="keywords" content="Alireza Apex, توسعه‌دهنده اندروید, برنامه‌های اندروید, مایکت">
+    <meta name="description" content="صفحه رسمی Alireza Apex، توسعه‌دهنده اپلیکیشن‌های اندروید و ناشر در مایکت.">
+    <meta name="keywords" content="Alireza Apex, توسعه‌دهنده اندروید, برنامه‌های اندروید, مایکت, Android Developer">
     <meta name="author" content="Alireza Apex">
     <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#9d4dff">
     <meta name="google-site-verification" content="kWlHz5gTr3yadT-_q1BT6mZ3CtfTDT6kHwOzG9GmOuI">
     <link rel="canonical" href="https://wzxqrmt-code.github.io/">
+    
+    <!-- Open Graph -->
     <meta property="og:title" content="Alireza Apex | توسعه‌دهنده اندروید">
-    <meta property="og:description" content="صفحه رسمی Alireza Apex. توسعه‌دهنده اپلیکیشن‌های اندروید و ناشر در مایکت.">
+    <meta property="og:description" content="صفحه رسمی Alireza Apex - توسعه‌دهنده اپلیکیشن‌های اندروید و ناشر در مایکت.">
     <meta property="og:image" content="https://wzxqrmt-code.github.io/1780913134571.webp">
     <meta property="og:url" content="https://wzxqrmt-code.github.io/">
     <meta property="og:type" content="website">
+    <meta property="og:locale" content="fa_IR">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Alireza Apex | توسعه‌دهنده اندروید">
+    <meta name="twitter:description" content="صفحه رسمی Alireza Apex - توسعه‌دهنده اندروید">
+    
     <link rel="icon" href="https://wzxqrmt-code.github.io/1780913134571.webp" type="image/webp">
+    <link rel="apple-touch-icon" href="https://wzxqrmt-code.github.io/1780913134571.webp">
+    
     <style>
         * {
             margin: 0;
@@ -567,8 +579,9 @@
           "alternateName": "Alireza Apex Developer",
           "description": "توسعه‌دهنده اندروید و ناشر اپلیکیشن در مایکت",
           "url": "https://wzxqrmt-code.github.io/",
+          "image": "https://wzxqrmt-code.github.io/1780913134571.webp",
           "sameAs": ["https://myket.ir/developer/dev-99625/apps?lang=fa"],
-          "knowsAbout": ["Android Development", "Mobile Applications"]
+          "knowsAbout": ["Android Development", "Mobile Applications", "اندروید"]
         }
     </script>
 </head>
@@ -580,9 +593,9 @@
 
     <div class="container">
         <div class="top-bar">
-            <button class="hamburger-btn" id="hamburgerBtn">☰</button>
-            <button class="theme-btn" id="themeToggle">🌙</button>
-            <button class="lang-btn" id="langToggle">EN</button>
+            <button class="hamburger-btn" id="hamburgerBtn" aria-label="منو">☰</button>
+            <button class="theme-btn" id="themeToggle" aria-label="تغییر تم">🌙</button>
+            <button class="lang-btn" id="langToggle" aria-label="تغییر زبان">EN</button>
         </div>
 
         <header>
@@ -597,9 +610,9 @@
         <section class="hero reveal">
             <div class="hero-card">
                 <h2 data-i18n="hero_title">Alireza Apex</h2>
-                <img src="https://wzxqrmt-code.github.io/1780913134571.webp" alt="Alireza Apex App Developer" width="752" height="1280" loading="lazy" class="hero-banner" style="max-width:100%;height:auto">
-                <p data-i18n="hero_desc">به صفحه رسمی Alireza Apex، توسعه‌دهنده اندروید خوش آمدید. برای مشاهده و دانلود تمامی اپلیکیشن‌های منتشر شده توسط Alireza Apex، از لینک زیر وارد صفحه توسعه‌دهنده در مایکت شوید.</p>
-                <a class="myket-btn" data-i18n="myket_btn" href="https://myket.ir/developer/dev-99625/apps?lang=fa" target="_blank">🚀 ورود به مایکت</a>
+                <img src="https://wzxqrmt-code.github.io/1780913134571.webp" alt="Alireza Apex - توسعه‌دهنده اندروید" width="752" height="1280" loading="lazy" class="hero-banner">
+                <p data-i18n="hero_desc">به صفحه رسمی Alireza Apex، توسعه‌دهنده اندروید خوش آمدید. برای مشاهده و دانلود تمامی اپلیکیشن‌های منتشر شده به مایکت مراجعه کنید.</p>
+                <a class="myket-btn" data-i18n="myket_btn" href="https://myket.ir/developer/dev-99625/apps?lang=fa" target="_blank" rel="noopener noreferrer">🚀 ورود به مایکت</a>
             </div>
         </section>
 
@@ -615,6 +628,7 @@
                     <div class="info-box">
                         <div class="label" data-i18n="email_label">ایمیل</div>
                         <div class="value">developeralireza.sh@gmail.com</div>
+                        <button class="copy-btn" onclick="navigator.clipboard.writeText('developeralireza.sh@gmail.com')">📋 کپی ایمیل</button>
                     </div>
                     <div class="info-box">
                         <div class="label">کانال رسمی در پیام‌رسان بله</div>
@@ -626,9 +640,9 @@
                     </div>
                 </div>
                 <form id="contactForm">
-                    <input type="text" id="nameInput" data-i18n-placeholder="name_placeholder" placeholder="نام شما" required>
-                    <input type="email" id="emailInput" data-i18n-placeholder="email_placeholder" placeholder="ایمیل شما" required>
-                    <textarea id="messageInput" data-i18n-placeholder="message_placeholder" placeholder="پیام شما..."></textarea>
+                    <input type="text" id="nameInput" data-i18n-placeholder="name_placeholder" placeholder="نام شما" required aria-label="نام">
+                    <input type="email" id="emailInput" data-i18n-placeholder="email_placeholder" placeholder="ایمیل شما" required aria-label="ایمیل">
+                    <textarea id="messageInput" data-i18n-placeholder="message_placeholder" placeholder="پیام شما..." aria-label="پیام"></textarea>
                     <button class="submit-btn" type="submit" data-i18n="submit_btn">ارسال پیام</button>
                 </form>
             </div>
@@ -640,7 +654,7 @@
                 <div class="info-grid">
                     <div class="info-row latest-changes-row fade-in-section">
                         <span class="info-label" data-i18n="latest_changes_label">آخرین تغییرات</span>
-                        <span class="info-value" data-i18n-html="latest_changes_value">📅 ۱۸ خرداد ۱۴۰۵<br>• پیاده‌سازی Schema Markup جهت بهبود شناسایی برند شخصی در گوگل<br>• ارتقای ساختار سئو (SEO) برای ایندکس سریع‌تر در موتورهای جستجو<br>• اصلاح کدهای اسکریپت برای افزایش پایداری و سرعت لود سایت<br>• بهبود تجربه کاربری در تمامی دستگاه‌ها</span>
+                        <span class="info-value" data-i18n-html="latest_changes_value">📅 ۱۸ خرداد ۱۴۰۵<br>• بهبود SEO و Schema Markup<br>• بهتری‌سازی Accessibility<br>• افزایش سرعت بارگذاری</span>
                     </div>
                     <div class="info-row">
                         <span class="info-label" data-i18n="status_label">وضعیت</span>
@@ -660,7 +674,7 @@
     <div class="mobile-menu" id="mobileMenu">
         <button id="mobileThemeBtn">🌙 تغییر تم</button>
         <button id="mobileLangBtn">FA / EN</button>
-        <a href="https://myket.ir/developer/dev-99625/apps?lang=fa" target="_blank" style="width:80%;text-decoration:none">
+        <a href="https://myket.ir/developer/dev-99625/apps?lang=fa" target="_blank" rel="noopener noreferrer" style="width:80%;text-decoration:none">
             <button style="width:100%">🚀 ورود به مایکت</button>
         </a>
         <button id="mobileShareBtn">📤 اشتراک‌گذاری</button>
@@ -669,13 +683,13 @@
 
     <div class="toast" id="toast">آیدی کپی شد</div>
 
-    <button class="top-btn" id="topBtn">
+    <button class="top-btn" id="topBtn" aria-label="برگشت به بالا">
         <svg class="progress-ring" width="65" height="65">
             <circle cx="32.5" cy="32.5" r="30" id="progressCircle"/>
         </svg>
         ↑
     </button>
-    <button class="share-btn" id="shareBtn">📤</button>
+    <button class="share-btn" id="shareBtn" aria-label="اشتراک‌گذاری">📤</button>
 
     <script>
         (function() {
@@ -710,7 +724,7 @@
                 var t = {
                     fa: {
                         hero_title: "Alireza Apex",
-                        hero_desc: "به صفحه رسمی Alireza Apex، توسعه‌دهنده اندروید خوش آمدید. برای مشاهده و دانلود تمامی اپلیکیشن‌های منتشر شده توسط Alireza Apex، از لینک زیر وارد صفحه توسعه‌دهنده در مایکت شوید.",
+                        hero_desc: "به صفحه رسمی Alireza Apex، توسعه‌دهنده اندروید خوش آمدید. برای مشاهده و دانلود تمامی اپلیکیشن‌های منتشر شده به مایکت مراجعه کنید.",
                         myket_btn: "🚀 ورود به مایکت",
                         contact_title: "📬 ارتباط با Alireza Apex",
                         id_label: "آیدی تمامی پیام‌رسان‌ها",
@@ -722,7 +736,7 @@
                         submit_btn: "ارسال پیام",
                         site_info_title: "اطلاعات Alireza Apex",
                         latest_changes_label: "آخرین تغییرات",
-                        latest_changes_value: "📅 ۱۸ خرداد ۱۴۰۵<br>• پیاده‌سازی Schema Markup جهت بهبود شناسایی برند شخصی در گوگل<br>• ارتقای ساختار سئو (SEO) برای ایندکس سریع‌تر در موتورهای جستجو<br>• اصلاح کدهای اسکریپت برای افزایش پایداری و سرعت لود سایت<br>• بهبود تجربه کاربری در تمامی دستگاه‌ها",
+                        latest_changes_value: "📅 ۱۸ خرداد ۱۴۰۵<br>• بهبود SEO و Schema Markup<br>• بهتری‌سازی Accessibility<br>• افزایش سرعت بارگذاری",
                         status_label: "وضعیت",
                         status_online: "آنلاین",
                         current_time_label: "ساعت فعلی",
@@ -739,8 +753,8 @@
                     },
                     en: {
                         hero_title: "Alireza Apex",
-                        hero_desc: "Welcome to the official page of Alireza Apex, an Android Developer. To view and download all published applications by Alireza Apex, visit the developer page on Myket from the link below.",
-                        myket_btn: "🚀 Visit Myket",
+                        hero_desc: "Welcome to the official page of Alireza Apex, an Android Developer. To view and download all published applications, visit the MyKet store.",
+                        myket_btn: "🚀 Visit MyKet",
                         contact_title: "📬 Contact Alireza Apex",
                         id_label: "All Messenger IDs",
                         copy_btn: "📋 Copy ID",
@@ -751,7 +765,7 @@
                         submit_btn: "Send Message",
                         site_info_title: "Alireza Apex Info",
                         latest_changes_label: "Latest Changes",
-                        latest_changes_value: "📅 June 8, 2026<br>• Implemented Schema Markup for improved personal brand recognition in Google<br>• Enhanced SEO structure for faster indexing in search engines<br>• Refined scripts for increased stability and loading speed<br>• Improved user experience across all devices",
+                        latest_changes_value: "📅 June 8, 2026<br>• SEO & Schema Markup Improvements<br>• Accessibility Enhancements<br>• Faster Loading Speed",
                         status_label: "Status",
                         status_online: "Online",
                         current_time_label: "Current Time",
@@ -760,7 +774,7 @@
                         welcome_msg: "Welcome to Alireza Apex! 👋",
                         lang_btn_en: "EN",
                         lang_btn_fa: "FA",
-                        myket_menu: "🚀 Visit Myket",
+                        myket_menu: "🚀 Visit MyKet",
                         share_menu: "📤 Share",
                         close_menu: "❌ Close",
                         theme_toggle_dark: "🌙 Change Theme",
@@ -998,15 +1012,10 @@
 
                 var revs = document.querySelectorAll('.reveal.js-hidden');
                 for (var i = 0; i < revs.length; i++) {
-                    var el = revs[i];
-                    var rect = el.getBoundingClientRect();
-                    if (rect.top < window.innerHeight - 100) {
-                        el.classList.remove('js-hidden');
-                        el.classList.add('visible');
-                    }
+                    revs[i].classList.add('visible');
                 }
             });
         })();
     </script>
 </body>
-                </html>
+</html>
