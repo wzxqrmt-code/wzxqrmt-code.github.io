@@ -548,29 +548,24 @@
                 return n + (s[(v - 20) % 10] || s[v] || s[0]);
             }
 
-            function getPersianDate() {
-                try {
-                    return new Intl.DateTimeFormat('fa-IR-u-ca-persian', { year: 'numeric', month: 'long', day: 'numeric' }).format(new Date());
-                } catch (e) {
-                    return new Date().toLocaleDateString('fa-IR', { year: 'numeric', month: 'long', day: 'numeric' });
-                }
-            }
             function getEnglishDate() {
-                return new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+                return 'June 13, 2026';
+            }
+
+            function getPersianDate() {
+                return '۲۳ خرداد ۱۴۰۵';
             }
 
             function buildTranslatedStrings() {
-                const persianDate = getPersianDate();
-                const englishDate = getEnglishDate();
                 const ordinal = getOrdinal(APP_COUNT);
                 return {
                     fa: {
                         brand_name: "Alireza Apex",
                         hero_title: "Alireza Apex",
-                        hero_desc: `${APP_COUNT} اپلیکیشن واقعی، منتشر شده و در دسترس کاربران. هر اپلیکیشن یک قدم به سمت تبدیل ایده به تجربه کاربری حرفه‌ای بوده. نتیجه را ببینید، نه توضیحات را.`,
+                        hero_desc: `${APP_COUNT} اپلیکیشن منتشر شده در مایکت، حاصل تلاش مستمر در توسعه‌ی اندروید. برای مشاهده‌ی پروژه‌ها و دانلود برنامه‌ها، از طریق لینک زیر اقدام کنید.`,
                         myket_btn: `🚀 ${APP_COUNT} اپلیکیشن منتشر شده — مشاهده در مایکت`,
                         about_title: "👤 درباره Alireza Apex",
-                        about_text: `از اولین خط کد تا بیست و سومین اپلیکیشن منتشر شده. Alireza Apex یک توسعه‌دهنده‌ی واقعی اندروید است که اپلیکیشن‌ها را از صفر می‌سازد، منتشر می‌کند و به کاربران واقعی می‌رساند. خبری از عناوین توخالی نیست؛ اینجا فقط خروجی واقعی اهمیت دارد.`,
+                        about_text: `توسعه‌دهنده‌ی اندروید با ${APP_COUNT} اپلیکیشن منتشر شده در پلتفرم مایکت. تمرکز اصلی بر ارائه‌ی راهکارهای کاربردی و باکیفیت برای کاربران فارسی‌زبان است.`,
                         contact_title: "📬 ارتباط با Alireza Apex",
                         id_label: "آیدی تمامی پیام‌رسان‌ها",
                         copy_btn: "📋 کپی آیدی",
@@ -585,7 +580,7 @@
                         submit_btn: "ارسال پیام",
                         site_info_title: "اطلاعات Alireza Apex",
                         latest_changes_label: "آخرین تغییرات",
-                        latest_changes_value: `📅 ${persianDate}<br>• پیاده‌سازی Schema Markup<br>• ارتقای سئو و ساختار ایندکس<br>• بهینه‌سازی اسکریپت‌ها<br>• بهبود تجربه کاربری`,
+                        latest_changes_value: `📅 ${getPersianDate()}<br>• بهبود نگارش متون فارسی و انگلیسی سایت<br>• رفع مشکلات راست‌چین در منوی موبایل<br>• بهینه‌سازی نمایش اعداد ترتیبی انگلیسی<br>• بهبود ایمنی لینک‌های خروجی`,
                         status_label: "وضعیت",
                         status_online: "آنلاین",
                         current_time_label: "ساعت فعلی",
@@ -593,7 +588,7 @@
                         toast_copy: "آیدی کپی شد",
                         toast_email_copied: "ایمیل کپی شد",
                         toast_success: "پیام شما آماده ارسال شد",
-                        toast_welcome: "به سایت Alireza Apex خوش آمدی! 👋",
+                        toast_welcome: "به وب‌سایت Alireza Apex خوش آمدید! 👋",
                         toast_name_required: "نام خود را وارد کنید",
                         toast_email_invalid: "ایمیل معتبر وارد کنید",
                         toast_message_required: "پیام خود را بنویسید",
@@ -615,10 +610,10 @@
                     en: {
                         brand_name: "Alireza Apex",
                         hero_title: "Alireza Apex",
-                        hero_desc: `${APP_COUNT} real apps, live and in users' hands. Each one was built from scratch—from idea to a professional user experience. See the results, not just the claims.`,
+                        hero_desc: `${APP_COUNT} applications published on Myket, built through continuous Android development. Explore the projects and download apps using the link below.`,
                         myket_btn: `🚀 ${APP_COUNT} Published Apps — Explore on Myket`,
                         about_title: "👤 About Alireza Apex",
-                        about_text: `From the first line of code to the ${ordinal} published app. Alireza Apex is a hands-on Android developer who builds, publishes, and delivers real apps to real users. No empty titles—just real output that matters.`,
+                        about_text: `An Android developer with ${APP_COUNT} applications published on the Myket platform. Focused on delivering practical and high-quality solutions for Persian-speaking users.`,
                         contact_title: "📬 Contact Alireza Apex",
                         id_label: "All Messenger IDs",
                         copy_btn: "📋 Copy ID",
@@ -633,7 +628,7 @@
                         submit_btn: "Send Message",
                         site_info_title: "Alireza Apex Info",
                         latest_changes_label: "Latest Changes",
-                        latest_changes_value: `📅 ${englishDate}<br>• Schema Markup implemented<br>• SEO structure upgraded<br>• Scripts optimized for stability<br>• Improved user experience`,
+                        latest_changes_value: `📅 ${getEnglishDate()}<br>• Improved Persian and English copywriting<br>• Fixed RTL layout issues in mobile menu<br>• Optimized English ordinal number display<br>• Enhanced external link safety`,
                         status_label: "Status",
                         status_online: "Online",
                         current_time_label: "Current Time",
