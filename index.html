@@ -1,92 +1,449 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Alireza Apex | Android Developer</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="description" content="Android Developer with published apps" />
-    <meta name="theme-color" content="#9d4dff" />
+<title>Alireza Apex | Android Developer</title>
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="styles.css" />
+<meta name="description" content="Alireza Apex Android Developer portfolio with published applications.">
+<meta name="keywords" content="Alireza Apex, Android Developer, Myket apps">
+<meta name="author" content="Alireza Apex">
+<meta name="robots" content="index, follow">
 
-    <!-- Font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700;800&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#9d4dff">
+
+<link rel="canonical" href="https://wzxqrmt-code.github.io/">
+
+<meta property="og:title" content="Alireza Apex | Android Developer">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://wzxqrmt-code.github.io/">
+
+<link rel="icon" href="1780913134571.webp">
+
+<link rel="stylesheet" href="styles.css">
+
+<link rel="preload"
+href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700;800&display=swap"
+as="style"
+onload="this.onload=null;this.rel='stylesheet'">
+
+<noscript>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700;800&display=swap" rel="stylesheet">
+</noscript>
+
+<script type="application/ld+json">
+{
+ "@context":"https://schema.org",
+ "@type":"Person",
+ "name":"Alireza Apex",
+ "description":"Android Developer",
+ "url":"https://wzxqrmt-code.github.io/"
+}
+</script>
+
 </head>
+
 
 <body>
 
-<!-- LOADING -->
+
 <div class="loading-screen" id="loadingScreen">
     <div class="loader"></div>
 </div>
 
+
+<canvas id="particles"></canvas>
+
+
+
 <div class="container">
 
-    <!-- TOP BAR -->
-    <div class="top-bar">
-        <button class="hamburger-btn" onclick="alert('menu')">☰</button>
-        <button class="theme-btn" onclick="toggleTheme()">🌙</button>
-        <button class="lang-btn" onclick="toggleLang()">EN</button>
-    </div>
 
-    <!-- HEADER -->
-    <header class="hero">
-        <div class="hero-card">
-            <h1>Alireza Apex</h1>
-            <p>Android Developer</p>
+<div class="top-bar">
 
-            <a class="myket-btn" href="https://myket.ir/developer/dev-99625/apps?lang=fa" target="_blank">
-                View Myket Apps
-            </a>
-        </div>
-    </header>
+<button class="hamburger-btn"
+id="hamburgerBtn">
+☰
+</button>
 
-    <!-- ABOUT -->
-    <section class="card">
-        <h2>About</h2>
-        <p>Developer with published Android applications.</p>
-    </section>
 
-    <!-- CONTACT -->
-    <section class="card">
-        <h2>Contact</h2>
+<button class="theme-btn"
+id="themeToggle">
+🌙
+</button>
 
-        <div class="info-box">
-            <p>@WZXQRMT</p>
-            <button onclick="copyText('@WZXQRMT')">Copy ID</button>
-        </div>
 
-        <div class="info-box">
-            <p>developeralireza.sh@gmail.com</p>
-            <button onclick="copyText('developeralireza.sh@gmail.com')">Copy Email</button>
-        </div>
-
-        <form id="contactForm">
-            <input id="nameInput" placeholder="Name" />
-            <input id="emailInput" placeholder="Email" />
-            <textarea id="messageInput" placeholder="Message"></textarea>
-
-            <button type="submit">Send</button>
-        </form>
-    </section>
-
-    <!-- INFO -->
-    <section class="card">
-        <h2>Site Info</h2>
-        <p>Status: Online</p>
-        <p id="liveClock">00:00:00</p>
-    </section>
+<button class="lang-btn"
+id="langToggle">
+EN
+</button>
 
 </div>
 
-<!-- TOAST -->
-<div class="toast" id="toast"></div>
 
-<!-- JS -->
+
+<header>
+
+<div class="nav">
+
+<div class="logo-box"
+id="logoBox">
+
+<div class="logo-icon">
+A
+</div>
+
+
+<h1 data-i18n="brand_name">
+Alireza Apex
+</h1>
+
+
+</div>
+
+</div>
+
+</header>
+
+
+
+
+
+<section class="hero reveal">
+
+
+<div class="hero-card">
+
+
+<h2 data-i18n="hero_title">
+Alireza Apex
+</h2>
+
+
+
+<img
+src="1780913134571.webp"
+alt="Alireza Apex Developer"
+class="hero-banner">
+
+
+
+<p data-i18n="hero_desc">
+23 real apps, live and in users hands.
+</p>
+
+
+
+<a
+class="myket-btn"
+href="https://myket.ir/developer/dev-99625/apps?lang=fa"
+target="_blank">
+
+View on Myket
+
+</a>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+<section class="section reveal">
+
+
+<div class="card">
+
+
+<h2 class="title">
+About Alireza Apex
+</h2>
+
+
+<p id="aboutText">
+Android Developer with published apps.
+</p>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+<section class="section reveal">
+
+
+<div class="card">
+
+
+<h2 class="title">
+Contact
+</h2>
+
+
+
+<div class="contact-grid">
+
+
+<div class="info-box">
+
+<div>
+Messenger ID
+</div>
+
+<strong>
+@WZXQRMT
+</strong>
+
+<button
+id="copyIdBtn">
+Copy
+</button>
+
+</div>
+
+
+
+
+<div class="info-box">
+
+<div>
+Email
+</div>
+
+<strong>
+developeralireza.sh@gmail.com
+</strong>
+
+
+<button
+id="copyEmailBtn">
+
+Copy
+
+</button>
+
+
+</div>
+
+
+
+
+
+<div class="info-box">
+
+<button id="bleBtn">
+Bale Channel
+</button>
+
+</div>
+
+
+
+<div class="info-box">
+
+<button id="telegramBtn">
+Telegram Channel
+</button>
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+<form id="contactForm">
+
+
+<input
+id="nameInput"
+placeholder="Your Name">
+
+
+<input
+id="emailInput"
+placeholder="Your Email">
+
+
+
+<textarea
+id="messageInput"
+placeholder="Your Message">
+
+</textarea>
+
+
+
+<button type="submit">
+Send Message
+</button>
+
+
+
+</form>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+
+<section class="section reveal">
+
+
+<div class="card info-card">
+
+
+<h2 class="title">
+Site Information
+</h2>
+
+
+
+<div class="info-row">
+
+<span>
+Status
+</span>
+
+
+<span>
+🟢 Online
+</span>
+
+
+</div>
+
+
+
+
+
+<div class="info-row">
+
+
+<span>
+Current Time
+</span>
+
+
+<span id="liveClock">
+00:00:00
+</span>
+
+
+</div>
+
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+<footer>
+
+© 2026 Alireza Apex — All Rights Reserved
+
+</footer>
+
+
+
+</div>
+
+
+
+
+
+
+<div class="mobile-menu"
+id="mobileMenu">
+
+
+<button id="mobileThemeBtn">
+Theme
+</button>
+
+
+<button id="mobileLangBtn">
+FA / EN
+</button>
+
+
+<button id="mobileCloseBtn">
+Close
+</button>
+
+
+</div>
+
+
+
+
+
+<div class="toast"
+id="toast">
+
+</div>
+
+
+
+
+
+
+<button class="top-btn"
+id="topBtn">
+
+↑
+
+</button>
+
+
+
+<button class="share-btn"
+id="shareBtn">
+
+📤
+
+</button>
+
+
+
+
+
+
 <script src="script.js"></script>
 
+
 </body>
+
 </html>
