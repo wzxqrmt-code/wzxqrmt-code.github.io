@@ -54,28 +54,34 @@
             --gradient-end: #c9a6ff;
             --particle-color: rgba(157, 77, 255, 0.45);
             --focus-ring: 0 0 0 3px rgba(157, 77, 255, 0.5);
+            --blob-1: rgba(157, 77, 255, 0.15);
+            --blob-2: rgba(122, 44, 255, 0.15);
+            --card-shadow: 0 0 40px rgba(157, 77, 255, .15);
         }
         body.light-theme {
-            --bg: #f5f0ff;
-            --card: rgba(255, 255, 255, .8);
-            --border: rgba(157, 77, 255, .2);
-            --text: #1a1a2e;
-            --muted: #4a4a6a;
-            --accent-text: #3d0099;
+            --bg: #faf7ff;
+            --card: rgba(255, 255, 255, .95);
+            --border: rgba(122, 44, 255, .18);
+            --text: #1a0b2e;
+            --muted: #4a3a6a;
+            --accent-text: #4a00b3;
             --primary: #7a2cff;
-            --primary2: #6a1bff;
-            --surface: rgba(157, 77, 255, .06);
-            --hover-glow: rgba(157, 77, 255, .35);
+            --primary2: #5a1bff;
+            --surface: rgba(122, 44, 255, .05);
+            --hover-glow: rgba(122, 44, 255, .25);
             --input-bg: #ffffff;
             --logo-shadow: #6c2bd9;
             --scrollbar-thumb: #7a2cff;
-            --scrollbar-track: #e0d4ff;
-            --menu-bg: rgba(255, 245, 255, .96);
-            --toast-bg: #6c2bd9;
+            --scrollbar-track: #e8dcff;
+            --menu-bg: rgba(255, 250, 255, .98);
+            --toast-bg: #5a1bff;
             --gradient-start: #2d004d;
             --gradient-end: #7a2cff;
-            --particle-color: rgba(100, 30, 200, 0.35);
-            --focus-ring: 0 0 0 3px rgba(122, 44, 255, 0.5);
+            --particle-color: rgba(100, 30, 200, 0.25);
+            --focus-ring: 0 0 0 3px rgba(122, 44, 255, 0.4);
+            --blob-1: rgba(157, 77, 255, 0.12);
+            --blob-2: rgba(122, 44, 255, 0.1);
+            --card-shadow: 0 8px 32px rgba(122, 44, 255, .12), 0 0 0 1px rgba(122, 44, 255, .08);
         }
         * {
             margin: 0;
@@ -90,6 +96,7 @@
             overflow-x: hidden;
             min-height: 100vh;
             transition: background .4s, color .4s;
+            position: relative;
         }
         body::before {
             content: "";
@@ -99,6 +106,55 @@
             z-index: -2;
             transition: background .4s;
         }
+        
+        /* Animated Background Blobs */
+        .bg-blobs {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.5;
+            animation: blobFloat 20s ease-in-out infinite;
+        }
+        .blob-1 {
+            width: 400px;
+            height: 400px;
+            background: var(--blob-1);
+            top: -100px;
+            right: -100px;
+            animation-delay: 0s;
+        }
+        .blob-2 {
+            width: 350px;
+            height: 350px;
+            background: var(--blob-2);
+            bottom: -80px;
+            left: -80px;
+            animation-delay: -7s;
+        }
+        .blob-3 {
+            width: 300px;
+            height: 300px;
+            background: var(--blob-1);
+            top: 50%;
+            left: 50%;
+            animation-delay: -14s;
+        }
+        @keyframes blobFloat {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(50px, -50px) scale(1.1); }
+            66% { transform: translate(-30px, 40px) scale(0.9); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .blob { animation: none; }
+        }
+        
         #particles {
             position: fixed;
             inset: 0;
@@ -122,7 +178,7 @@
             z-index: 9999;
             transition: opacity .6s, visibility .6s;
         }
-        body.light-theme .loading-screen { background: #f5f0ff; }
+        body.light-theme .loading-screen { background: #faf7ff; }
         .loader {
             width: 60px;
             height: 60px;
@@ -150,8 +206,19 @@
             gap: 5px;
             box-shadow: 0 0 8px #9d4dff44;
         }
+        body.light-theme .hamburger-btn, body.light-theme .theme-btn, body.light-theme .lang-btn {
+            color: #4a00b3;
+            background: rgba(122, 44, 255, .1);
+            border-color: rgba(122, 44, 255, .3);
+        }
         .hamburger-btn:hover, .theme-btn:hover, .lang-btn:hover { background: rgba(157, 77, 255, .3); box-shadow: 0 0 20px #9d4dff; }
+        body.light-theme .hamburger-btn:hover, body.light-theme .theme-btn:hover, body.light-theme .lang-btn:hover {
+            background: rgba(122, 44, 255, .2);
+            box-shadow: 0 0 20px rgba(122, 44, 255, .4);
+        }
         .hamburger-btn { display: none; font-size: 1.3rem; padding: 6px 14px; }
+        .theme-btn { transition: transform .4s, background .3s, box-shadow .3s; }
+        .theme-btn.rotating { transform: rotate(360deg); }
         @media(max-width:768px) {
             .hamburger-btn { display: flex; }
             .top-bar .lang-btn, .top-bar .theme-btn { display: none; }
@@ -186,6 +253,11 @@
             cursor: pointer;
             width: 80%;
         }
+        body.light-theme .mobile-menu button {
+            color: #1a0b2e;
+            background: rgba(122, 44, 255, .15);
+            border-color: rgba(122, 44, 255, .3);
+        }
         header { padding: 35px 0; }
         .nav { display: flex; justify-content: center; }
         .logo-box {
@@ -199,6 +271,10 @@
             backdrop-filter: blur(18px);
             box-shadow: 0 0 30px rgba(157, 77, 255, .2);
             position: relative;
+        }
+        body.light-theme .logo-box {
+            box-shadow: 0 4px 20px rgba(122, 44, 255, .15);
+            background: rgba(255, 255, 255, .7);
         }
         .logo-icon {
             width: 58px;
@@ -215,6 +291,10 @@
             color: #fff;
             text-shadow: 0 0 15px #fff, 0 0 30px #9d4dff;
             position: relative;
+        }
+        body.light-theme .logo-icon {
+            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, .5), rgba(122, 44, 255, .2));
+            color: #fff;
         }
         .logo-icon::before {
             content: "";
@@ -237,20 +317,51 @@
             border-radius: 35px;
             padding: 40px 25px;
             backdrop-filter: blur(25px);
-            box-shadow: 0 0 40px rgba(157, 77, 255, .15);
+            box-shadow: var(--card-shadow);
             transition: transform .3s, box-shadow .3s;
+            position: relative;
+            overflow: hidden;
         }
-        .hero-card:hover, .card:hover { transform: scale(1.01); box-shadow: 0 0 60px var(--hover-glow); }
+        /* Shine effect on hover */
+        .hero-card::before, .card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+            transition: left .8s;
+            pointer-events: none;
+        }
+        .hero-card:hover::before, .card:hover::before {
+            left: 100%;
+        }
+        body.light-theme .hero-card::before, body.light-theme .card::before {
+            background: linear-gradient(90deg, transparent, rgba(122, 44, 255, 0.08), transparent);
+        }
+        .hero-card:hover, .card:hover { transform: translateY(-4px); box-shadow: 0 0 60px var(--hover-glow); }
+        body.light-theme .hero-card:hover, body.light-theme .card:hover {
+            box-shadow: 0 12px 40px rgba(122, 44, 255, .2);
+        }
         .hero h2 {
             font-size: clamp(2rem, 5vw, 4rem);
             font-weight: 800;
-            background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+            background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end), var(--gradient-start));
+            background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 15px;
+            animation: gradientShift 4s ease-in-out infinite;
+        }
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% center; }
+            50% { background-position: 100% center; }
         }
         .hero p { max-width: 700px; margin: auto; color: var(--muted); line-height: 2; font-size: 1.1rem; }
         .hero-banner { display: block; max-width: 100%; height: auto; margin: 20px auto; border-radius: 16px; box-shadow: 0 0 20px rgba(157, 77, 255, .3); }
+        body.light-theme .hero-banner { box-shadow: 0 8px 30px rgba(122, 44, 255, .25); }
         .myket-btn {
             display: inline-block;
             margin-top: 30px;
@@ -262,11 +373,17 @@
             background: linear-gradient(135deg, var(--primary), var(--primary2));
             box-shadow: 0 0 25px #9d4dff88;
             transition: transform .3s, box-shadow .3s;
+            position: relative;
+            overflow: hidden;
         }
         .myket-btn:hover { transform: translateY(-4px); box-shadow: 0 0 40px #9d4dff; }
         .section { margin-top: 40px; }
         .card { border-radius: 30px; padding: 30px; }
         .info-card { border-color: rgba(157, 77, 255, .4); box-shadow: 0 0 30px rgba(157, 77, 255, .25); }
+        body.light-theme .info-card {
+            border-color: rgba(122, 44, 255, .25);
+            box-shadow: 0 8px 30px rgba(122, 44, 255, .15);
+        }
         .info-grid { display: flex; flex-direction: column; gap: 15px; margin-top: 15px; }
         .info-row {
             display: flex;
@@ -279,14 +396,19 @@
         }
         .info-label { color: var(--muted); font-size: .95rem; }
         .info-value { font-weight: 700; color: var(--accent-text); display: flex; align-items: center; gap: 8px; }
-        .status-indicator { width: 10px; height: 10px; border-radius: 50%; background: #00ff88; box-shadow: 0 0 10px #00ff88; }
+        .status-indicator { width: 10px; height: 10px; border-radius: 50%; background: #00ff88; box-shadow: 0 0 10px #00ff88; animation: pulse 2s infinite; }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: .6; transform: scale(1.2); }
+        }
         .latest-changes-row { flex-direction: column; align-items: flex-start; gap: 10px; }
         .latest-changes-row .info-value { width: 100%; line-height: 1.9; flex-direction: column; align-items: flex-start; }
         .title { font-size: 1.5rem; font-weight: 800; margin-bottom: 20px; color: var(--accent-text); }
         .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; margin-top: 15px; }
-        .info-box { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 20px; }
+        .info-box { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 20px; transition: transform .3s, box-shadow .3s; }
+        .info-box:hover { transform: translateY(-3px); box-shadow: 0 8px 25px var(--hover-glow); }
         .label { font-size: .9rem; color: var(--muted); margin-bottom: 8px; }
-        .value { font-size: 1.05rem; font-weight: 700; word-break: break-word; }
+        .value { font-size: 1.05rem; font-weight: 700; word-break: break-word; color: var(--text); }
         .copy-btn, .submit-btn {
             margin-top: 12px;
             padding: 10px 18px;
@@ -298,8 +420,24 @@
             font-weight: 700;
             box-shadow: 0 0 15px #9d4dff66;
             transition: box-shadow .3s, transform .3s;
+            position: relative;
+            overflow: hidden;
         }
         .copy-btn:hover, .submit-btn:hover { box-shadow: 0 0 30px #9d4dff; transform: translateY(-2px); }
+        
+        /* Ripple effect */
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            transform: scale(0);
+            animation: rippleAnim 0.6s ease-out;
+            pointer-events: none;
+        }
+        @keyframes rippleAnim {
+            to { transform: scale(4); opacity: 0; }
+        }
+        
         form { margin-top: 20px; }
         input, textarea {
             width: 100%;
@@ -311,10 +449,20 @@
             margin-bottom: 12px;
             outline: none;
             font-family: inherit;
+            transition: border-color .3s, box-shadow .3s;
+        }
+        body.light-theme input, body.light-theme textarea {
+            background: #ffffff;
+            border-color: rgba(122, 44, 255, .2);
+            color: #1a0b2e;
         }
         input::placeholder, textarea::placeholder { color: #6b6b80; }
-        body.light-theme input::placeholder, body.light-theme textarea::placeholder { color: #7a7a9a; }
+        body.light-theme input::placeholder, body.light-theme textarea::placeholder { color: #8a7aaa; }
         input:focus, textarea:focus { border-color: #9d4dff; box-shadow: 0 0 0 3px rgba(157, 77, 255, 0.2); }
+        body.light-theme input:focus, body.light-theme textarea:focus {
+            border-color: #7a2cff;
+            box-shadow: 0 0 0 3px rgba(122, 44, 255, 0.15);
+        }
         :focus-visible { outline: 2px solid #9d4dff; outline-offset: 2px; }
         textarea { resize: none; min-height: 130px; }
         footer { text-align: center; padding: 50px 0 30px; color: var(--muted); font-size: .9rem; }
@@ -322,7 +470,7 @@
             position: fixed;
             bottom: 25px;
             left: 50%;
-            transform: translateX(-50%);
+            transform: translateX(-50%) translateY(100px);
             background: var(--toast-bg);
             padding: 12px 25px;
             border-radius: 999px;
@@ -330,10 +478,11 @@
             font-weight: 700;
             opacity: 0;
             pointer-events: none;
-            transition: opacity .35s;
+            transition: opacity .35s, transform .35s;
             z-index: 9999;
+            box-shadow: 0 8px 30px rgba(157, 77, 255, .4);
         }
-        .toast.show { opacity: 1; }
+        .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
         .top-btn {
             position: fixed;
             left: 20px;
@@ -351,7 +500,9 @@
             justify-content: center;
             box-shadow: 0 0 25px #9d4dff88;
             z-index: 50;
+            transition: transform .3s;
         }
+        .top-btn:hover { transform: translateY(-4px); }
         .progress-ring { position: absolute; top: -5px; left: -5px; width: 65px; height: 65px; pointer-events: none; }
         .progress-ring circle { fill: none; stroke: #9d4dff88; stroke-width: 4; stroke-linecap: round; stroke-dasharray: 188.5; stroke-dashoffset: 188.5; }
         .share-btn {
@@ -372,6 +523,13 @@
             z-index: 50;
             align-items: center;
             justify-content: center;
+            transition: transform .3s;
+        }
+        .share-btn:hover { transform: translateY(-3px); }
+        body.light-theme .share-btn {
+            background: rgba(122, 44, 255, .2);
+            border-color: rgba(122, 44, 255, .4);
+            color: #4a00b3;
         }
         @media(min-width:769px) { .share-btn { display: flex; } }
         @media(max-width:768px) { .hero-card, .card { padding: 30px 20px; } .logo-box h1 { font-size: 1rem; } }
@@ -392,6 +550,7 @@
             .reveal.visible { transition: none; }
             .loader { animation: none; }
             .logo-icon::before { animation: none; opacity: 0; }
+            .hero h2 { animation: none; }
         }
         
         /* PWA Install Banner */
@@ -452,6 +611,66 @@
             .install-text span { display: none; }
             .install-banner { padding: 12px 15px; }
         }
+        
+        /* Update Banner */
+        .update-banner {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%) translateY(-200%);
+            background: linear-gradient(135deg, #00c853, #009624);
+            border-radius: 20px;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 10px 40px rgba(0, 200, 83, 0.4);
+            z-index: 9997;
+            max-width: min(500px, 92%);
+            width: 100%;
+            transition: transform .5s cubic-bezier(.34,1.56,.64,1);
+            color: white;
+        }
+        .update-banner.visible { transform: translateX(-50%) translateY(0); }
+        .update-banner-icon { font-size: 1.5rem; animation: bounce 1s infinite; }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        .update-banner-text { flex: 1; font-weight: 700; font-size: .95rem; }
+        .update-banner-btn {
+            background: white;
+            color: #009624;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 999px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: .85rem;
+            transition: transform .3s;
+        }
+        .update-banner-btn:hover { transform: scale(1.05); }
+        .update-banner-dismiss {
+            background: rgba(255,255,255,.2);
+            border: none;
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: .9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* 3D Tilt Effect for cards */
+        @media (hover: hover) {
+            .tilt-card {
+                transform-style: preserve-3d;
+                transition: transform .2s ease-out;
+            }
+        }
     </style>
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700;800&display=swap" rel="stylesheet"></noscript>
@@ -470,13 +689,18 @@
     </script>
 </head>
 <body>
+    <div class="bg-blobs" aria-hidden="true">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
     <div class="loading-screen" id="loadingScreen"><div class="loader"></div></div>
     <canvas id="particles"></canvas>
 
     <div class="container">
         <div class="top-bar">
             <button class="hamburger-btn" id="hamburgerBtn" aria-label="باز کردن منو" aria-expanded="false" aria-controls="mobileMenu">☰</button>
-            <button class="theme-btn" id="themeToggle" aria-label="تغییر تم">🌙</button>
+            <button class="theme-btn" id="themeToggle" aria-label="تغییر تم">🌓</button>
             <button class="lang-btn" id="langToggle" aria-label="تغییر زبان">EN</button>
         </div>
 
@@ -490,7 +714,7 @@
         </header>
 
         <section class="hero reveal">
-            <div class="hero-card">
+            <div class="hero-card tilt-card">
                 <h2 data-i18n="hero_title">Alireza Apex</h2>
                 <img src="https://wzxqrmt-code.github.io/1780913134571.webp" alt="Alireza Apex App Developer" width="752" height="1280" loading="lazy" class="hero-banner" style="max-width:100%;height:auto">
                 <p data-i18n="hero_desc">23 real apps, live and in users' hands.</p>
@@ -499,14 +723,14 @@
         </section>
 
         <section class="section reveal">
-            <div class="card">
+            <div class="card tilt-card">
                 <div class="title" data-i18n="about_title">About Alireza Apex</div>
                 <p data-i18n="about_text" style="color:var(--muted);line-height:2.2;font-size:1.05rem">Android Developer with 23 published apps.</p>
             </div>
         </section>
 
         <section class="section reveal">
-            <div class="card">
+            <div class="card tilt-card">
                 <div class="title" data-i18n="contact_title">Contact Alireza Apex</div>
                 <div class="contact-grid">
                     <div class="info-box">
@@ -541,7 +765,7 @@
         </section>
 
         <section class="section reveal">
-            <div class="card info-card">
+            <div class="card info-card tilt-card">
                 <div class="title" data-i18n="site_info_title">Site Information</div>
                 <div class="info-grid">
                     <div class="info-row latest-changes-row">
@@ -590,6 +814,14 @@
         </div>
     </div>
 
+    <!-- Update Banner -->
+    <div class="update-banner" id="updateBanner" role="alert" aria-live="polite">
+        <div class="update-banner-icon">✨</div>
+        <div class="update-banner-text" data-i18n="update_text">نسخه جدید آماده است!</div>
+        <button class="update-banner-btn" id="updateBtn" data-i18n="update_btn">به‌روزرسانی</button>
+        <button class="update-banner-dismiss" id="updateDismissBtn" aria-label="Dismiss">✕</button>
+    </div>
+
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
     <button class="top-btn" id="topBtn" aria-label="بازگشت به بالا">
@@ -618,12 +850,15 @@
             // ====== STATE ======
             const state = {
                 lang: localStorage.getItem('lang') || 'fa',
-                theme: localStorage.getItem('theme') || (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'),
+                theme: localStorage.getItem('theme') || 'auto',
                 menuOpen: false,
                 loading: true,
                 clockInterval: null,
                 scrollTicking: false,
-                particleColor: null
+                particleColor: null,
+                newWorker: null,
+                themeModes: ['auto', 'light', 'dark'],
+                currentThemeIndex: 0
             };
 
             function getOrdinal(n) {
@@ -642,7 +877,6 @@
             }
 
             function buildTranslatedStrings() {
-                const ordinal = getOrdinal(APP_COUNT);
                 return {
                     fa: {
                         brand_name: "Alireza Apex",
@@ -665,7 +899,7 @@
                         submit_btn: "ارسال پیام",
                         site_info_title: "اطلاعات Alireza Apex",
                         latest_changes_label: "آخرین تغییرات",
-                        latest_changes_value: `📅 ${getPersianDate()}<br>• بهبود نگارش متون فارسی و انگلیسی سایت<br>• رفع مشکلات راست‌چین در منوی موبایل<br>• بهینه‌سازی نمایش اعداد ترتیبی انگلیسی<br>• بهبود ایمنی لینک‌های خروجی`,
+                        latest_changes_value: `📅 ${getPersianDate()}<br>• افزودن حالت خودکار تشخیص تم سیستم<br>• اطلاع‌رسانی آپدیت‌های جدید سایت<br>• افکت‌های بصری حرفه‌ای (3D Tilt، Ripple، Shine)<br>• بهبود کامل رنگ‌ها و خوانایی در تم روشن`,
                         status_label: "وضعیت",
                         status_online: "آنلاین",
                         current_time_label: "ساعت فعلی",
@@ -688,14 +922,20 @@
                         ble_btn: "ورود به کانال",
                         telegram_channel: "کانال رسمی در تلگرام",
                         telegram_btn: "ورود به کانال",
-                        theme_toggle_dark: "🌙 تغییر تم",
-                        theme_toggle_light: "☀️ تغییر تم",
+                        theme_toggle_auto: "🌓 خودکار",
+                        theme_toggle_light: "☀️ روشن",
+                        theme_toggle_dark: "🌙 تاریک",
                         seo_text: `Alireza Apex | Android Developer Iran | Myket developer apps | Android app creator | mobile developer portfolio | ${APP_COUNT} اپلیکیشن منتشر شده`,
                         install_title: "نصب Alireza Apex",
                         install_desc: "مانند یک اپلیکیشن واقعی — آفلاین و سریع",
                         install_button: "📥 نصب",
                         toast_installed: "اپلیکیشن با موفقیت نصب شد! 🎉",
-                        toast_install_error: "خطا در نصب اپلیکیشن"
+                        toast_install_error: "خطا در نصب اپلیکیشن",
+                        update_text: "✨ نسخه جدید سایت آماده است!",
+                        update_btn: "به‌روزرسانی",
+                        toast_theme_auto: "تم خودکار فعال شد",
+                        toast_theme_light: "تم روشن فعال شد",
+                        toast_theme_dark: "تم تاریک فعال شد"
                     },
                     en: {
                         brand_name: "Alireza Apex",
@@ -718,7 +958,7 @@
                         submit_btn: "Send Message",
                         site_info_title: "Alireza Apex Info",
                         latest_changes_label: "Latest Changes",
-                        latest_changes_value: `📅 ${getEnglishDate()}<br>• Improved Persian and English copywriting<br>• Fixed RTL layout issues in mobile menu<br>• Optimized English ordinal number display<br>• Enhanced external link safety`,
+                        latest_changes_value: `📅 ${getEnglishDate()}<br>• Added auto system theme detection<br>• New update notifications for site<br>• Professional visual effects (3D Tilt, Ripple, Shine)<br>• Complete light theme color improvements`,
                         status_label: "Status",
                         status_online: "Online",
                         current_time_label: "Current Time",
@@ -741,14 +981,20 @@
                         ble_btn: "Open Channel",
                         telegram_channel: "Official Telegram Channel",
                         telegram_btn: "Open Channel",
-                        theme_toggle_dark: "🌙 Change Theme",
-                        theme_toggle_light: "☀️ Change Theme",
+                        theme_toggle_auto: "🌓 Auto",
+                        theme_toggle_light: "☀️ Light",
+                        theme_toggle_dark: "🌙 Dark",
                         seo_text: `Alireza Apex | Android Developer Iran | Myket developer apps | Android app creator | mobile developer portfolio | ${APP_COUNT} apps published`,
                         install_title: "Install Alireza Apex",
                         install_desc: "Use it like a real app — offline & fast",
                         install_button: "📥 Install",
                         toast_installed: "App installed successfully! 🎉",
-                        toast_install_error: "Error installing app"
+                        toast_install_error: "Error installing app",
+                        update_text: "✨ A new version is available!",
+                        update_btn: "Update",
+                        toast_theme_auto: "Auto theme enabled",
+                        toast_theme_light: "Light theme enabled",
+                        toast_theme_dark: "Dark theme enabled"
                     }
                 };
             }
@@ -772,7 +1018,8 @@
                     'logoBox', 'mobileMenu', 'mobileThemeBtn', 'mobileLangBtn', 'mobileShareBtn',
                     'mobileCloseBtn', 'shareBtn', 'copyIdBtn', 'copyEmailBtn', 'bleBtn', 'telegramBtn',
                     'contactForm', 'nameInput', 'emailInput', 'messageInput', 'toast', 'topBtn',
-                    'progressCircle', 'liveClock', 'installBanner', 'installBtn', 'installDismissBtn'
+                    'progressCircle', 'liveClock', 'installBanner', 'installBtn', 'installDismissBtn',
+                    'updateBanner', 'updateBtn', 'updateDismissBtn'
                 ];
                 ids.forEach(id => {
                     D[id] = document.getElementById(id);
@@ -782,6 +1029,7 @@
                 D.i18nEls = document.querySelectorAll('[data-i18n]');
                 D.i18nHtmlEls = document.querySelectorAll('[data-i18n-html]');
                 D.i18nPlaceEls = document.querySelectorAll('[data-i18n-placeholder]');
+                D.tiltCards = document.querySelectorAll('.tilt-card');
             }
 
             // ====== SAFE EVENT ======
@@ -819,30 +1067,90 @@
                 document.documentElement.lang = state.lang;
             }
 
+            // ====== THEME SYSTEM (Auto/Light/Dark) ======
+            function getSystemTheme() {
+                return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            }
+
+            function getEffectiveTheme() {
+                if (state.theme === 'auto') {
+                    return getSystemTheme();
+                }
+                return state.theme;
+            }
+
             function updateThemeUI() {
-                const isLight = state.theme === 'light';
-                const icon = isLight ? '☀️' : '🌙';
-                if (D.themeToggle) D.themeToggle.textContent = icon;
-                const tk = isLight ? 'theme_toggle_light' : 'theme_toggle_dark';
-                if (D.mobileThemeBtn) D.mobileThemeBtn.textContent = t(tk);
+                const effectiveTheme = getEffectiveTheme();
+                let icon, key;
+                
+                if (state.theme === 'auto') {
+                    icon = '🌓';
+                    key = 'theme_toggle_auto';
+                } else if (state.theme === 'light') {
+                    icon = '☀️';
+                    key = 'theme_toggle_light';
+                } else {
+                    icon = '🌙';
+                    key = 'theme_toggle_dark';
+                }
+                
+                if (D.themeToggle) {
+                    D.themeToggle.textContent = icon;
+                    D.themeToggle.setAttribute('aria-label', t(key));
+                }
+                if (D.mobileThemeBtn) D.mobileThemeBtn.textContent = t(key);
             }
 
             function applyTheme() {
-                document.body.classList.toggle('light-theme', state.theme === 'light');
+                const effectiveTheme = getEffectiveTheme();
+                document.body.classList.toggle('light-theme', effectiveTheme === 'light');
                 localStorage.setItem('theme', state.theme);
                 updateThemeUI();
                 updateParticleColor();
+            }
+
+            function cycleTheme() {
+                state.currentThemeIndex = (state.currentThemeIndex + 1) % state.themeModes.length;
+                state.theme = state.themeModes[state.currentThemeIndex];
+                
+                // انیمیشن چرخش دکمه
+                if (D.themeToggle) {
+                    D.themeToggle.classList.add('rotating');
+                    setTimeout(() => D.themeToggle.classList.remove('rotating'), 400);
+                }
+                
+                applyTheme();
+                
+                // نمایش toast
+                const toastKey = state.theme === 'auto' ? 'toast_theme_auto' : 
+                                 state.theme === 'light' ? 'toast_theme_light' : 'toast_theme_dark';
+                showToast(t(toastKey));
+            }
+
+            function initThemeIndex() {
+                state.currentThemeIndex = state.themeModes.indexOf(state.theme);
+                if (state.currentThemeIndex === -1) state.currentThemeIndex = 0;
+            }
+
+            function setupSystemThemeListener() {
+                const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+                const handleChange = () => {
+                    if (state.theme === 'auto') {
+                        applyTheme();
+                    }
+                };
+                
+                if (mediaQuery.addEventListener) {
+                    mediaQuery.addEventListener('change', handleChange);
+                } else if (mediaQuery.addListener) {
+                    mediaQuery.addListener(handleChange);
+                }
             }
 
             function toggleLang() {
                 state.lang = state.lang === 'fa' ? 'en' : 'fa';
                 localStorage.setItem('lang', state.lang);
                 render();
-            }
-
-            function toggleTheme() {
-                state.theme = state.theme === 'dark' ? 'light' : 'dark';
-                applyTheme();
             }
 
             function openMenu() {
@@ -914,7 +1222,7 @@
                 }
             }
 
-            // ====== FORM HANDLING (mailto with payload) ======
+            // ====== FORM HANDLING ======
             function buildFormPayload() {
                 const nameEl = D.nameInput, emailEl = D.emailInput, msgEl = D.messageInput;
                 if (!nameEl || !emailEl || !msgEl) return null;
@@ -953,12 +1261,64 @@
                 }, 600);
             }
 
+            // ====== RIPPLE EFFECT ======
+            function createRipple(e) {
+                const button = e.currentTarget;
+                const rect = button.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                const ripple = document.createElement('span');
+                ripple.className = 'ripple';
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = x + 'px';
+                ripple.style.top = y + 'px';
+                
+                button.appendChild(ripple);
+                setTimeout(() => ripple.remove(), 600);
+            }
+
+            function setupRippleEffect() {
+                const buttons = document.querySelectorAll('.copy-btn, .submit-btn, .myket-btn, .install-btn, .update-banner-btn');
+                buttons.forEach(btn => {
+                    btn.addEventListener('click', createRipple);
+                });
+            }
+
+            // ====== 3D TILT EFFECT ======
+            function setupTiltEffect() {
+                if (!D.tiltCards || D.tiltCards.length === 0) return;
+                if (!window.matchMedia('(hover: hover)').matches) return;
+                
+                const maxTilt = 5;
+                
+                D.tiltCards.forEach(card => {
+                    card.addEventListener('mousemove', (e) => {
+                        const rect = card.getBoundingClientRect();
+                        const x = e.clientX - rect.left;
+                        const y = e.clientY - rect.top;
+                        const centerX = rect.width / 2;
+                        const centerY = rect.height / 2;
+                        
+                        const rotateX = ((y - centerY) / centerY) * -maxTilt;
+                        const rotateY = ((x - centerX) / centerX) * maxTilt;
+                        
+                        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+                    });
+                    
+                    card.addEventListener('mouseleave', () => {
+                        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+                    });
+                });
+            }
+
             // ====== EVENT BINDING ======
             function bindEvents() {
                 safeOn('langToggle', 'click', toggleLang);
                 safeOn('mobileLangBtn', 'click', toggleLang);
-                safeOn('themeToggle', 'click', toggleTheme);
-                safeOn('mobileThemeBtn', 'click', toggleTheme);
+                safeOn('themeToggle', 'click', cycleTheme);
+                safeOn('mobileThemeBtn', 'click', cycleTheme);
                 safeOn('hamburgerBtn', 'click', openMenu);
                 safeOn('mobileCloseBtn', 'click', closeMenu);
                 safeOn('mobileShareBtn', 'click', () => { shareSite(); closeMenu(); });
@@ -969,6 +1329,16 @@
                 safeOn('telegramBtn', 'click', () => safeOpen(CONFIG.TELEGRAM_URL));
                 if (D.contactForm) D.contactForm.addEventListener('submit', handleFormSubmit);
                 safeOn('topBtn', 'click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+                safeOn('updateBtn', 'click', () => {
+                    if (state.newWorker) {
+                        state.newWorker.postMessage({ type: 'SKIP_WAITING' });
+                    } else {
+                        window.location.reload();
+                    }
+                });
+                safeOn('updateDismissBtn', 'click', () => {
+                    if (D.updateBanner) D.updateBanner.classList.remove('visible');
+                });
             }
 
             // ====== SCROLL ======
@@ -1006,7 +1376,7 @@
                 D.reveals.forEach(el => observer.observe(el));
             }
 
-            // ====== PARTICLES (adaptive) ======
+            // ====== PARTICLES ======
             function determineParticleCount() {
                 let count = 45;
                 const isMobile = window.innerWidth < 768;
@@ -1097,8 +1467,11 @@
                 state.loading = false;
             }
 
-            // ====== PWA: MANIFEST GENERATION ======
+            // ====== PWA: MANIFEST ======
             function generateManifest() {
+                const effectiveTheme = getEffectiveTheme();
+                const bgColor = effectiveTheme === 'light' ? '#faf7ff' : '#07070c';
+                
                 const manifest = {
                     name: "Alireza Apex - Android Developer",
                     short_name: "Alireza Apex",
@@ -1107,7 +1480,7 @@
                     scope: "./",
                     display: "standalone",
                     orientation: "portrait",
-                    background_color: "#07070c",
+                    background_color: bgColor,
                     theme_color: "#9d4dff",
                     lang: "fa",
                     dir: "rtl",
@@ -1138,7 +1511,7 @@
                 if (manifestLink) manifestLink.href = URL.createObjectURL(blob);
             }
 
-            // ====== PWA: SERVICE WORKER REGISTRATION ======
+            // ====== PWA: SERVICE WORKER + UPDATE NOTIFICATION ======
             function registerServiceWorker() {
                 if (!('serviceWorker' in navigator)) {
                     console.warn('[PWA] Service Worker not supported');
@@ -1148,10 +1521,32 @@
                 navigator.serviceWorker.register('./sw.js')
                     .then(reg => {
                         console.log('[PWA] Service Worker registered:', reg.scope);
+                        
+                        // بررسی آپدیت
+                        reg.addEventListener('updatefound', () => {
+                            const newWorker = reg.installing;
+                            state.newWorker = newWorker;
+                            
+                            newWorker.addEventListener('statechange', () => {
+                                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                    // آپدیت جدید آماده است
+                                    if (D.updateBanner) {
+                                        D.updateBanner.classList.add('visible');
+                                    }
+                                }
+                            });
+                        });
                     })
                     .catch(err => {
                         console.warn('[PWA] SW registration failed:', err);
                     });
+
+                // گوش دادن به پیام‌های SW
+                navigator.serviceWorker.addEventListener('message', (event) => {
+                    if (event.data && event.data.type === 'RELOAD_PAGE') {
+                        window.location.reload();
+                    }
+                });
             }
 
             // ====== PWA: INSTALL PROMPT ======
@@ -1212,6 +1607,7 @@
             // ====== INIT ======
             function init() {
                 cacheDom();
+                initThemeIndex();
                 applyTheme();
                 render();
                 bindEvents();
@@ -1219,11 +1615,13 @@
                 setupReveal();
                 setupParticles();
                 setupClock();
+                setupRippleEffect();
+                setupTiltEffect();
+                setupSystemThemeListener();
 
                 if (D.logoBox) D.logoBox.classList.add('animate');
 
                 setTimeout(hideLoading, 1000);
-
                 setTimeout(() => showToast(t('toast_welcome')), 300);
 
                 // PWA Setup
