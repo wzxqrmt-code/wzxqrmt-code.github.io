@@ -10,7 +10,18 @@
     <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#9d4dff">
     <meta name="google-site-verification" content="kWlHz5gTr3yadT-_q1BT6mZ3CtfTDT6kHwOzG9GmOuI">
+    
+    <!-- PWA Meta Tags -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Alireza Apex">
+    <meta name="application-name" content="Alireza Apex">
+    
     <link rel="canonical" href="https://wzxqrmt-code.github.io/">
+    <link rel="apple-touch-icon" href="https://wzxqrmt-code.github.io/1780913134571.webp">
+    <link rel="manifest" id="manifestLink">
+    
     <meta property="og:title" content="Alireza Apex | Android Developer">
     <meta property="og:description" content="Alireza Apex is an Android Developer from Iran with 23 published applications on Myket.">
     <meta property="og:image" content="https://wzxqrmt-code.github.io/1780913134571.webp">
@@ -382,6 +393,65 @@
             .loader { animation: none; }
             .logo-icon::before { animation: none; opacity: 0; }
         }
+        
+        /* PWA Install Banner */
+        .install-banner {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%) translateY(150%);
+            background: linear-gradient(135deg, var(--primary), var(--primary2));
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 10px 40px rgba(157, 77, 255, 0.4);
+            backdrop-filter: blur(20px);
+            z-index: 9998;
+            max-width: min(500px, 92%);
+            width: 100%;
+            transition: transform .5s cubic-bezier(.34,1.56,.64,1);
+        }
+        .install-banner.visible { transform: translateX(-50%) translateY(0); }
+        .install-content { display: flex; align-items: center; gap: 12px; flex: 1; }
+        .install-icon { font-size: 2rem; }
+        .install-text { display: flex; flex-direction: column; gap: 2px; }
+        .install-text strong { color: white; font-size: 1rem; }
+        .install-text span { color: rgba(255,255,255,.8); font-size: .85rem; }
+        .install-actions { display: flex; gap: 8px; align-items: center; }
+        .install-dismiss {
+            background: rgba(255,255,255,.2);
+            border: none;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background .3s;
+        }
+        .install-dismiss:hover { background: rgba(255,255,255,.35); }
+        .install-btn {
+            background: white;
+            color: var(--primary);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 999px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: .95rem;
+            transition: transform .3s, box-shadow .3s;
+        }
+        .install-btn:hover { transform: scale(1.05); box-shadow: 0 5px 20px rgba(255,255,255,.4); }
+        @media(max-width:480px) {
+            .install-text span { display: none; }
+            .install-banner { padding: 12px 15px; }
+        }
     </style>
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700;800&display=swap" rel="stylesheet"></noscript>
@@ -505,6 +575,21 @@
         <button id="mobileCloseBtn" data-i18n="close_menu" aria-label="بستن منو">Close</button>
     </div>
 
+    <!-- PWA Install Banner -->
+    <div class="install-banner" id="installBanner" role="dialog" aria-live="polite">
+        <div class="install-content">
+            <div class="install-icon">📱</div>
+            <div class="install-text">
+                <strong data-i18n="install_title">Install Alireza Apex</strong>
+                <span data-i18n="install_desc">Use it like a real app — offline & fast</span>
+            </div>
+        </div>
+        <div class="install-actions">
+            <button class="install-dismiss" id="installDismissBtn" aria-label="Dismiss">✕</button>
+            <button class="install-btn" id="installBtn" data-i18n="install_button">Install</button>
+        </div>
+    </div>
+
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
     <button class="top-btn" id="topBtn" aria-label="بازگشت به بالا">
@@ -549,11 +634,11 @@
             }
 
             function getEnglishDate() {
-                return 'June 13, 2026';
+                return 'June 27, 2026';
             }
 
             function getPersianDate() {
-                return '۲۳ خرداد ۱۴۰۵';
+                return '۶ تیر ۱۴۰۵';
             }
 
             function buildTranslatedStrings() {
@@ -605,7 +690,12 @@
                         telegram_btn: "ورود به کانال",
                         theme_toggle_dark: "🌙 تغییر تم",
                         theme_toggle_light: "☀️ تغییر تم",
-                        seo_text: `Alireza Apex | Android Developer Iran | Myket developer apps | Android app creator | mobile developer portfolio | ${APP_COUNT} اپلیکیشن منتشر شده`
+                        seo_text: `Alireza Apex | Android Developer Iran | Myket developer apps | Android app creator | mobile developer portfolio | ${APP_COUNT} اپلیکیشن منتشر شده`,
+                        install_title: "نصب Alireza Apex",
+                        install_desc: "مانند یک اپلیکیشن واقعی — آفلاین و سریع",
+                        install_button: "📥 نصب",
+                        toast_installed: "اپلیکیشن با موفقیت نصب شد! 🎉",
+                        toast_install_error: "خطا در نصب اپلیکیشن"
                     },
                     en: {
                         brand_name: "Alireza Apex",
@@ -653,7 +743,12 @@
                         telegram_btn: "Open Channel",
                         theme_toggle_dark: "🌙 Change Theme",
                         theme_toggle_light: "☀️ Change Theme",
-                        seo_text: `Alireza Apex | Android Developer Iran | Myket developer apps | Android app creator | mobile developer portfolio | ${APP_COUNT} apps published`
+                        seo_text: `Alireza Apex | Android Developer Iran | Myket developer apps | Android app creator | mobile developer portfolio | ${APP_COUNT} apps published`,
+                        install_title: "Install Alireza Apex",
+                        install_desc: "Use it like a real app — offline & fast",
+                        install_button: "📥 Install",
+                        toast_installed: "App installed successfully! 🎉",
+                        toast_install_error: "Error installing app"
                     }
                 };
             }
@@ -677,7 +772,7 @@
                     'logoBox', 'mobileMenu', 'mobileThemeBtn', 'mobileLangBtn', 'mobileShareBtn',
                     'mobileCloseBtn', 'shareBtn', 'copyIdBtn', 'copyEmailBtn', 'bleBtn', 'telegramBtn',
                     'contactForm', 'nameInput', 'emailInput', 'messageInput', 'toast', 'topBtn',
-                    'progressCircle', 'liveClock'
+                    'progressCircle', 'liveClock', 'installBanner', 'installBtn', 'installDismissBtn'
                 ];
                 ids.forEach(id => {
                     D[id] = document.getElementById(id);
@@ -995,11 +1090,123 @@
 
             // ====== LOADING SCREEN ======
             function hideLoading() {
-                if (!D.loadingScreen) return;
+                if (!D.loadingScreen || state.loading === false) return;
                 D.loadingScreen.style.opacity = '0';
                 D.loadingScreen.style.visibility = 'hidden';
                 setTimeout(() => { if (D.loadingScreen && D.loadingScreen.parentNode) D.loadingScreen.remove(); }, 600);
                 state.loading = false;
+            }
+
+            // ====== PWA: MANIFEST GENERATION ======
+            function generateManifest() {
+                const manifest = {
+                    name: "Alireza Apex - Android Developer",
+                    short_name: "Alireza Apex",
+                    description: "Android Developer with 23 published apps on Myket",
+                    start_url: "./",
+                    scope: "./",
+                    display: "standalone",
+                    orientation: "portrait",
+                    background_color: "#07070c",
+                    theme_color: "#9d4dff",
+                    lang: "fa",
+                    dir: "rtl",
+                    categories: ["developer", "productivity"],
+                    icons: [
+                        {
+                            src: "https://wzxqrmt-code.github.io/1780913134571.webp",
+                            sizes: "512x512",
+                            type: "image/webp",
+                            purpose: "any"
+                        },
+                        {
+                            src: "https://wzxqrmt-code.github.io/1780913134571.webp",
+                            sizes: "512x512",
+                            type: "image/webp",
+                            purpose: "maskable"
+                        },
+                        {
+                            src: "https://wzxqrmt-code.github.io/1780913134571.webp",
+                            sizes: "192x192",
+                            type: "image/webp",
+                            purpose: "any"
+                        }
+                    ]
+                };
+                const blob = new Blob([JSON.stringify(manifest)], { type: 'application/manifest+json' });
+                const manifestLink = document.getElementById('manifestLink');
+                if (manifestLink) manifestLink.href = URL.createObjectURL(blob);
+            }
+
+            // ====== PWA: SERVICE WORKER REGISTRATION ======
+            function registerServiceWorker() {
+                if (!('serviceWorker' in navigator)) {
+                    console.warn('[PWA] Service Worker not supported');
+                    return;
+                }
+
+                navigator.serviceWorker.register('./sw.js')
+                    .then(reg => {
+                        console.log('[PWA] Service Worker registered:', reg.scope);
+                    })
+                    .catch(err => {
+                        console.warn('[PWA] SW registration failed:', err);
+                    });
+            }
+
+            // ====== PWA: INSTALL PROMPT ======
+            function setupInstallPrompt() {
+                let deferredPrompt = null;
+                const installBanner = document.getElementById('installBanner');
+                const installBtn = document.getElementById('installBtn');
+                const installDismissBtn = document.getElementById('installDismissBtn');
+
+                if (!installBanner || !installBtn || !installDismissBtn) return;
+
+                const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+                const wasDismissed = localStorage.getItem('pwa_dismissed');
+
+                if (isStandalone) return;
+
+                window.addEventListener('beforeinstallprompt', (e) => {
+                    e.preventDefault();
+                    deferredPrompt = e;
+                    if (!wasDismissed) {
+                        setTimeout(() => installBanner.classList.add('visible'), 3000);
+                    }
+                });
+
+                installBtn.addEventListener('click', async () => {
+                    if (!deferredPrompt) {
+                        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+                        if (isIOS) {
+                            showToast('در سافاری: دکمه Share را بزن و "Add to Home Screen" را انتخاب کن 📱');
+                        } else {
+                            showToast('از منوی مرورگر گزینه "Install App" را انتخاب کن 🔧');
+                        }
+                        return;
+                    }
+                    deferredPrompt.prompt();
+                    const { outcome } = await deferredPrompt.userChoice;
+                    if (outcome === 'accepted') {
+                        showToast(t('toast_installed'));
+                    } else {
+                        showToast(t('toast_install_error'));
+                    }
+                    deferredPrompt = null;
+                    installBanner.classList.remove('visible');
+                });
+
+                installDismissBtn.addEventListener('click', () => {
+                    installBanner.classList.remove('visible');
+                    localStorage.setItem('pwa_dismissed', 'true');
+                });
+
+                window.addEventListener('appinstalled', () => {
+                    showToast(t('toast_installed'));
+                    installBanner.classList.remove('visible');
+                    deferredPrompt = null;
+                });
             }
 
             // ====== INIT ======
@@ -1016,9 +1223,13 @@
                 if (D.logoBox) D.logoBox.classList.add('animate');
 
                 setTimeout(hideLoading, 1000);
-                setTimeout(hideLoading, 4000);
 
                 setTimeout(() => showToast(t('toast_welcome')), 300);
+
+                // PWA Setup
+                generateManifest();
+                registerServiceWorker();
+                setupInstallPrompt();
             }
 
             if (document.readyState !== 'loading') init();
