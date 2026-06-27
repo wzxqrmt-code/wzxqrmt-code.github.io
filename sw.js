@@ -1,10 +1,11 @@
 // ===================================================================
 // Service Worker - Alireza Apex PWA
-// Version: 1.0.0
+// Version: 2.0.0
 // Strategy: Network First with Cache Fallback
+// Update: Added auto-reload notification for clients
 // ===================================================================
 
-const CACHE_VERSION = 'v1';
+const CACHE_VERSION = 'v2';
 const CACHE_NAME = `alireza-apex-${CACHE_VERSION}`;
 
 // فایل‌هایی که باید در اولین نصب کش شوند (App Shell)
@@ -33,19 +34,19 @@ const IGNORED_DOMAINS = [
 // INSTALL EVENT - کش کردن فایل‌های اولیه
 // ===================================================================
 self.addEventListener('install', (event) => {
-    console.log('[SW] Installing...');
+    console.log(`[SW ${CACHE_VERSION}] Installing...`);
     
     event.waitUntil(
         caches.open(CACHE_NAME)
             .then((cache) => {
-                console.log('[SW] Caching app shell assets');
+                console.log(`[SW ${CACHE_VERSION}] Caching app shell assets`);
                 return cache.addAll(ASSETS_TO_CACHE);
             })
             .then(() => {
-                console.log('[SW] Installation complete');
+                console.log(`[SW ${CACHE_VERSION}] Installation complete`);
             })
             .catch((err) => {
-                console.warn('[SW] Some assets failed to cache:', err);
+                console.warn(`[SW ${CACHE_VERSION}] Some assets failed to cache:`, err);
                 // حتی اگر بعضی فایل‌ها کش نشدند، نصب ادامه پیدا کند
                 return caches.open(CACHE_NAME).then(cache => cache.add('./'));
             })
@@ -56,25 +57,36 @@ self.addEventListener('install', (event) => {
 });
 
 // ===================================================================
-// ACTIVATE EVENT - پاکسازی کش‌های قدیمی
+// ACTIVATE EVENT - پاکسازی کش‌های قدیمی و اطلاع‌رسانی به کلاینت‌ها
 // ===================================================================
 self.addEventListener('activate', (event) => {
-    console.log('[SW] Activating...');
+    console.log(`[SW ${CACHE_VERSION}] Activating...`);
     
     event.waitUntil(
+        // پاکسازی کش‌های قدیمی
         caches.keys()
             .then((cacheNames) => {
                 return Promise.all(
                     cacheNames
                         .filter((name) => name.startsWith('alireza-apex-') && name !== CACHE_NAME)
                         .map((name) => {
-                            console.log('[SW] Deleting old cache:', name);
+                            console.log(`[SW ${CACHE_VERSION}] Deleting old cache:`, name);
                             return caches.delete(name);
                         })
                 );
             })
             .then(() => {
-                console.log('[SW] Activation complete');
+                console.log(`[SW ${CACHE_VERSION}] Activation complete`);
+                // اطلاع‌رسانی به همه کلاینت‌ها که نسخه جدید فعال شد
+                return self.clients.matchAll({ type: 'window', includeUncontrolled: true });
+            })
+            .then((clients) => {
+                clients.forEach((client) => {
+                    client.postMessage({
+                        type: 'SW_ACTIVATED',
+                        version: CACHE_VERSION
+                    });
+                });
             })
     );
     
@@ -140,7 +152,7 @@ self.addEventListener('fetch', (event) => {
 });
 
 // ===================================================================
-// MESSAGE EVENT - ارتباط با صفحه اصلی (اختیاری ولی حرفه‌ای)
+// MESSAGE EVENT - ارتباط با صفحه اصلی
 // ===================================================================
 self.addEventListener('message', (event) => {
     if (!event.data) return;
@@ -160,9 +172,19 @@ self.addEventListener('message', (event) => {
         );
     }
     
-    // دستور به‌روزرسانی فوری
+    // دستور به‌روزرسانی فوری - وقتی کاربر روی دکمه "به‌روزرسانی" کلیک می‌کند
     if (event.data.type === 'SKIP_WAITING') {
-        self.skipWaiting();
+        self.skipWaiting().then(() => {
+            // بعد از skipWaiting، به کلاینت‌ها پیام بفرست که صفحه را reload کنند
+            return self.clients.matchAll({ type: 'window', includeUncontrolled: true });
+        }).then((clients) => {
+            clients.forEach((client) => {
+                client.postMessage({
+                    type: 'RELOAD_PAGE',
+                    version: CACHE_VERSION
+                });
+            });
+        });
     }
     
     // درخواست وضعیت کش
@@ -177,6 +199,14 @@ self.addEventListener('message', (event) => {
             });
         });
     }
+    
+    // درخواست نسخه فعلی
+    if (event.data.type === 'GET_VERSION') {
+        event.source.postMessage({
+            type: 'VERSION',
+            version: CACHE_VERSION
+        });
+    }
 });
 
 // ===================================================================
@@ -184,7 +214,7 @@ self.addEventListener('message', (event) => {
 // ===================================================================
 self.addEventListener('sync', (event) => {
     if (event.tag === 'sync-contact-form') {
-        console.log('[SW] Background sync for contact form');
+        console.log(`[SW ${CACHE_VERSION}] Background sync for contact form`);
         // اینجا می‌توانی پیام‌های ذخیره شده را ارسال کنی
     }
 });
@@ -231,4 +261,4 @@ self.addEventListener('notificationclick', (event) => {
     );
 });
 
-console.log('[SW] Service Worker loaded successfully');
+console.log(`[SW ${CACHE_VERSION}] Service Worker loaded successfully`);
