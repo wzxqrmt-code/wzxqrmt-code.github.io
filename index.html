@@ -4,12 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alireza Apex | Android Developer</title>
-    <meta name="description" content="Alireza Apex is an Android Developer from Iran with 23 published applications on Myket. Explore his portfolio, contact him, and discover his work.">
-    <meta name="keywords" content="Alireza Apex, Android Developer Iran, Myket developer apps, Android app creator, mobile developer portfolio">
+    <meta name="description" content="Alireza Apex is an Android Developer from Iran with 23 published applications on Myket.">
+    <meta name="keywords" content="Alireza Apex, Android Developer Iran, Myket developer apps">
     <meta name="author" content="Alireza Apex">
     <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#9d4dff">
-    <meta name="google-site-verification" content="kWlHz5gTr3yadT-_q1BT6mZ3CtfTDT6kHwOzG9GmOuI">
     
     <!-- PWA Meta Tags -->
     <meta name="mobile-web-app-capable" content="yes">
@@ -23,14 +22,10 @@
     <link rel="manifest" id="manifestLink">
     
     <meta property="og:title" content="Alireza Apex | Android Developer">
-    <meta property="og:description" content="Alireza Apex is an Android Developer from Iran with 23 published applications on Myket.">
+    <meta property="og:description" content="Android Developer with 23 published apps on Myket">
     <meta property="og:image" content="https://wzxqrmt-code.github.io/1780913134571.webp">
     <meta property="og:url" content="https://wzxqrmt-code.github.io/">
     <meta property="og:type" content="website">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Alireza Apex | Android Developer">
-    <meta name="twitter:description" content="Alireza Apex is an Android Developer from Iran with 23 published applications on Myket.">
-    <meta name="twitter:image" content="https://wzxqrmt-code.github.io/1780913134571.webp">
     <link rel="icon" href="https://wzxqrmt-code.github.io/1780913134571.webp" type="image/webp">
     <style>
         :root {
@@ -107,7 +102,6 @@
             transition: background .4s;
         }
         
-        /* Animated Background Blobs */
         .bg-blobs {
             position: fixed;
             inset: 0;
@@ -190,7 +184,7 @@
         }
         @keyframes spin { to { transform: rotate(360deg); } }
         .top-bar { display: flex; justify-content: flex-end; gap: 10px; padding: 10px 0; flex-wrap: wrap; }
-        .hamburger-btn, .theme-btn, .lang-btn {
+        .hamburger-btn, .theme-btn, .lang-btn, .nav-btn {
             background: rgba(157, 77, 255, .15);
             border: 1px solid rgba(157, 77, 255, .4);
             color: #d8beff;
@@ -205,14 +199,15 @@
             align-items: center;
             gap: 5px;
             box-shadow: 0 0 8px #9d4dff44;
+            text-decoration: none;
         }
-        body.light-theme .hamburger-btn, body.light-theme .theme-btn, body.light-theme .lang-btn {
+        body.light-theme .hamburger-btn, body.light-theme .theme-btn, body.light-theme .lang-btn, body.light-theme .nav-btn {
             color: #4a00b3;
             background: rgba(122, 44, 255, .1);
             border-color: rgba(122, 44, 255, .3);
         }
-        .hamburger-btn:hover, .theme-btn:hover, .lang-btn:hover { background: rgba(157, 77, 255, .3); box-shadow: 0 0 20px #9d4dff; }
-        body.light-theme .hamburger-btn:hover, body.light-theme .theme-btn:hover, body.light-theme .lang-btn:hover {
+        .hamburger-btn:hover, .theme-btn:hover, .lang-btn:hover, .nav-btn:hover { background: rgba(157, 77, 255, .3); box-shadow: 0 0 20px #9d4dff; }
+        body.light-theme .hamburger-btn:hover, body.light-theme .theme-btn:hover, body.light-theme .lang-btn:hover, body.light-theme .nav-btn:hover {
             background: rgba(122, 44, 255, .2);
             box-shadow: 0 0 20px rgba(122, 44, 255, .4);
         }
@@ -259,7 +254,7 @@
             border-color: rgba(122, 44, 255, .3);
         }
         header { padding: 35px 0; }
-        .nav { display: flex; justify-content: center; }
+        .nav { display: flex; justify-content: center; gap: 15px; align-items: center; flex-wrap: wrap; }
         .logo-box {
             display: flex;
             align-items: center;
@@ -322,7 +317,6 @@
             position: relative;
             overflow: hidden;
         }
-        /* Shine effect on hover */
         .hero-card::before, .card::before {
             content: "";
             position: absolute;
@@ -362,7 +356,7 @@
         .hero p { max-width: 700px; margin: auto; color: var(--muted); line-height: 2; font-size: 1.1rem; }
         .hero-banner { display: block; max-width: 100%; height: auto; margin: 20px auto; border-radius: 16px; box-shadow: 0 0 20px rgba(157, 77, 255, .3); }
         body.light-theme .hero-banner { box-shadow: 0 8px 30px rgba(122, 44, 255, .25); }
-        .myket-btn {
+        .myket-btn, .apps-main-btn {
             display: inline-block;
             margin-top: 30px;
             padding: 14px 30px;
@@ -375,8 +369,10 @@
             transition: transform .3s, box-shadow .3s;
             position: relative;
             overflow: hidden;
+            cursor: pointer;
+            border: none;
         }
-        .myket-btn:hover { transform: translateY(-4px); box-shadow: 0 0 40px #9d4dff; }
+        .myket-btn:hover, .apps-main-btn:hover { transform: translateY(-4px); box-shadow: 0 0 40px #9d4dff; }
         .section { margin-top: 40px; }
         .card { border-radius: 30px; padding: 30px; }
         .info-card { border-color: rgba(157, 77, 255, .4); box-shadow: 0 0 30px rgba(157, 77, 255, .25); }
@@ -425,7 +421,6 @@
         }
         .copy-btn:hover, .submit-btn:hover { box-shadow: 0 0 30px #9d4dff; transform: translateY(-2px); }
         
-        /* Ripple effect */
         .ripple {
             position: absolute;
             border-radius: 50%;
@@ -553,7 +548,6 @@
             .hero h2 { animation: none; }
         }
         
-        /* PWA Install Banner */
         .install-banner {
             position: fixed;
             bottom: 20px;
@@ -612,7 +606,6 @@
             .install-banner { padding: 12px 15px; }
         }
         
-        /* Update Banner */
         .update-banner {
             position: fixed;
             top: 20px;
@@ -664,29 +657,110 @@
             justify-content: center;
         }
         
-        /* 3D Tilt Effect for cards */
         @media (hover: hover) {
             .tilt-card {
                 transform-style: preserve-3d;
                 transition: transform .2s ease-out;
             }
         }
+        
+        /* Apps Section */
+        .apps-section {
+            display: none;
+            padding: 20px 0;
+        }
+        .apps-section.active {
+            display: block;
+        }
+        .apps-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .apps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 16px;
+            margin-bottom: 30px;
+        }
+        .app-item {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 16px;
+            transition: all 0.3s;
+        }
+        .app-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px var(--hover-glow);
+            border-color: var(--primary);
+        }
+        .app-item-name {
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+        .app-item-desc {
+            color: var(--muted);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+        .app-item-stats {
+            display: flex;
+            gap: 12px;
+            font-size: 0.85rem;
+            color: var(--muted);
+            margin-bottom: 12px;
+        }
+        .app-item-stats span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .app-item-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: linear-gradient(135deg, var(--primary), var(--primary2));
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 999px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+        .app-item-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(157, 77, 255, 0.4);
+        }
+        .back-to-home {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 10px 20px;
+            border-radius: 999px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+        }
+        .back-to-home:hover {
+            background: var(--hover-glow);
+            transform: translateY(-2px);
+        }
+        @media (max-width: 768px) {
+            .apps-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700;800&display=swap" rel="stylesheet"></noscript>
-    <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "Person",
-            "name": "Alireza Apex",
-            "alternateName": "Alireza Apex Developer",
-            "description": "Android Developer from Iran with 23 published apps on Myket",
-            "url": "https://wzxqrmt-code.github.io/",
-            "sameAs": ["https://myket.ir/developer/dev-99625/apps?lang=fa"],
-            "knowsAbout": ["Android Development", "Mobile Applications"],
-            "hasOccupation": { "@type": "Occupation", "name": "Android Developer" }
-        }
-    </script>
 </head>
 <body>
     <div class="bg-blobs" aria-hidden="true">
@@ -699,7 +773,7 @@
 
     <div class="container">
         <div class="top-bar">
-            <button class="hamburger-btn" id="hamburgerBtn" aria-label="باز کردن منو" aria-expanded="false" aria-controls="mobileMenu">☰</button>
+            <button class="hamburger-btn" id="hamburgerBtn" aria-label="باز کردن منو" aria-expanded="false">☰</button>
             <button class="theme-btn" id="themeToggle" aria-label="تغییر تم">🌓</button>
             <button class="lang-btn" id="langToggle" aria-label="تغییر زبان">EN</button>
         </div>
@@ -710,114 +784,133 @@
                     <div class="logo-icon" aria-hidden="true">A</div>
                     <h1 data-i18n="brand_name">Alireza Apex</h1>
                 </div>
+                <button class="nav-btn" id="appsNavBtn" data-i18n="nav_apps">📱 اپلیکیشن‌ها</button>
             </div>
         </header>
 
-        <section class="hero reveal">
-            <div class="hero-card tilt-card">
-                <h2 data-i18n="hero_title">Alireza Apex</h2>
-                <img src="https://wzxqrmt-code.github.io/1780913134571.webp" alt="Alireza Apex App Developer" width="752" height="1280" loading="lazy" class="hero-banner" style="max-width:100%;height:auto">
-                <p data-i18n="hero_desc">23 real apps, live and in users' hands.</p>
-                <a class="myket-btn" data-i18n="myket_btn" href="https://myket.ir/developer/dev-99625/apps?lang=fa" target="_blank" rel="noopener">View on Myket</a>
-            </div>
-        </section>
+        <!-- Main Content -->
+        <div id="mainContent">
+            <section class="hero reveal">
+                <div class="hero-card tilt-card">
+                    <h2 data-i18n="hero_title">Alireza Apex</h2>
+                    <img src="https://wzxqrmt-code.github.io/1780913134571.webp" alt="Alireza Apex" width="752" height="1280" loading="lazy" class="hero-banner">
+                    <p data-i18n="hero_desc">۲۳ اپلیکیشن منتشر شده در مایکت، حاصل تلاش مستمر در توسعه‌ی اندروید.</p>
+                    <button class="apps-main-btn" id="appsMainBtn" data-i18n="view_apps_btn">📱 مشاهده ۳ اپلیکیشن من</button>
+                    <a class="myket-btn" data-i18n="myket_btn" href="https://myket.ir/developer/dev-99625/apps?lang=fa" target="_blank" rel="noopener">مشاهده در مایکت</a>
+                </div>
+            </section>
 
-        <section class="section reveal">
-            <div class="card tilt-card">
-                <div class="title" data-i18n="about_title">About Alireza Apex</div>
-                <p data-i18n="about_text" style="color:var(--muted);line-height:2.2;font-size:1.05rem">Android Developer with 23 published apps.</p>
-            </div>
-        </section>
+            <section class="section reveal">
+                <div class="card tilt-card">
+                    <div class="title" data-i18n="about_title">👤 درباره Alireza Apex</div>
+                    <p data-i18n="about_text" style="color:var(--muted);line-height:2.2;font-size:1.05rem">توسعه‌دهنده‌ی اندروید با ۲۳ اپلیکیشن منتشر شده در پلتفرم مایکت. تمرکز اصلی بر ارائه‌ی راهکارهای کاربردی و باکیفیت برای کاربران فارسی‌زبان است.</p>
+                </div>
+            </section>
 
-        <section class="section reveal">
-            <div class="card tilt-card">
-                <div class="title" data-i18n="contact_title">Contact Alireza Apex</div>
-                <div class="contact-grid">
-                    <div class="info-box">
-                        <div class="label" data-i18n="id_label">Messenger IDs</div>
-                        <div class="value">@WZXQRMT</div>
-                        <button class="copy-btn" id="copyIdBtn" data-i18n="copy_btn">Copy ID</button>
+            <section class="section reveal">
+                <div class="card tilt-card">
+                    <div class="title" data-i18n="contact_title">📬 ارتباط با Alireza Apex</div>
+                    <div class="contact-grid">
+                        <div class="info-box">
+                            <div class="label" data-i18n="id_label">آیدی تمامی پیام‌رسان‌ها</div>
+                            <div class="value">@WZXQRMT</div>
+                            <button class="copy-btn" id="copyIdBtn" data-i18n="copy_btn">📋 کپی آیدی</button>
+                        </div>
+                        <div class="info-box">
+                            <div class="label" data-i18n="email_label">ایمیل</div>
+                            <div class="value">developeralireza.sh@gmail.com</div>
+                            <button class="copy-btn" id="copyEmailBtn" data-i18n="copy_email_btn">📋 کپی ایمیل</button>
+                        </div>
+                        <div class="info-box">
+                            <div class="label" data-i18n="ble_channel">کانال رسمی در پیام‌رسان بله</div>
+                            <button class="copy-btn" id="bleBtn" data-i18n="ble_btn">ورود به کانال</button>
+                        </div>
+                        <div class="info-box">
+                            <div class="label" data-i18n="telegram_channel">کانال رسمی در تلگرام</div>
+                            <button class="copy-btn" id="telegramBtn" data-i18n="telegram_btn">ورود به کانال</button>
+                        </div>
                     </div>
-                    <div class="info-box">
-                        <div class="label" data-i18n="email_label">Email</div>
-                        <div class="value">developeralireza.sh@gmail.com</div>
-                        <button class="copy-btn" id="copyEmailBtn" data-i18n="copy_email_btn">Copy Email</button>
-                    </div>
-                    <div class="info-box">
-                        <div class="label" data-i18n="ble_channel">Bale Channel</div>
-                        <button class="copy-btn" id="bleBtn" data-i18n="ble_btn">Open Channel</button>
-                    </div>
-                    <div class="info-box">
-                        <div class="label" data-i18n="telegram_channel">Telegram Channel</div>
-                        <button class="copy-btn" id="telegramBtn" data-i18n="telegram_btn">Open Channel</button>
+                    <form id="contactForm" novalidate>
+                        <label for="nameInput" class="sr-only" data-i18n="label_name">نام</label>
+                        <input type="text" id="nameInput" data-i18n-placeholder="name_placeholder" placeholder="نام شما" required autocomplete="name">
+                        <label for="emailInput" class="sr-only" data-i18n="label_email">ایمیل</label>
+                        <input type="email" id="emailInput" data-i18n-placeholder="email_placeholder" placeholder="ایمیل شما" required autocomplete="email">
+                        <label for="messageInput" class="sr-only" data-i18n="label_message">پیام</label>
+                        <textarea id="messageInput" data-i18n-placeholder="message_placeholder" placeholder="پیام شما..." required></textarea>
+                        <button class="submit-btn" type="submit" data-i18n="submit_btn">ارسال پیام</button>
+                    </form>
+                </div>
+            </section>
+
+            <section class="section reveal">
+                <div class="card info-card tilt-card">
+                    <div class="title" data-i18n="site_info_title">اطلاعات Alireza Apex</div>
+                    <div class="info-grid">
+                        <div class="info-row latest-changes-row">
+                            <span class="info-label" data-i18n="latest_changes_label">آخرین تغییرات</span>
+                            <span class="info-value" data-i18n-html="latest_changes_value" id="latestChangesValue">۶ تیر ۱۴۰۵</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label" data-i18n="status_label">وضعیت</span>
+                            <span class="info-value"><span class="status-indicator" aria-hidden="true"></span> <span data-i18n="status_online">آنلاین</span></span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label" data-i18n="current_time_label">ساعت فعلی</span>
+                            <span class="info-value" id="liveClock">00:00:00</span>
+                        </div>
                     </div>
                 </div>
-                <form id="contactForm" novalidate>
-                    <label for="nameInput" class="sr-only" data-i18n="label_name">Name</label>
-                    <input type="text" id="nameInput" data-i18n-placeholder="name_placeholder" placeholder="Your Name" required autocomplete="name">
-                    <label for="emailInput" class="sr-only" data-i18n="label_email">Email</label>
-                    <input type="email" id="emailInput" data-i18n-placeholder="email_placeholder" placeholder="Your Email" required autocomplete="email">
-                    <label for="messageInput" class="sr-only" data-i18n="label_message">Message</label>
-                    <textarea id="messageInput" data-i18n-placeholder="message_placeholder" placeholder="Your Message..." required></textarea>
-                    <button class="submit-btn" type="submit" data-i18n="submit_btn">Send Message</button>
-                </form>
+            </section>
+
+            <section class="seo-content" data-i18n="seo_text">Alireza Apex | Android Developer Iran | Myket developer apps</section>
+
+            <footer data-i18n="footer">© 2026 Alireza Apex — تمامی حقوق محفوظ است</footer>
+        </div>
+
+        <!-- Apps Section -->
+        <div id="appsSection" class="apps-section">
+            <button class="back-to-home" id="backToHome">
+                <span>←</span>
+                <span data-i18n="back_to_home">بازگشت به صفحه اصلی</span>
+            </button>
+            <div class="apps-header">
+                <h2 class="title" data-i18n="apps_title">📱 اپلیکیشن‌های من در مایکت</h2>
+                <p style="color:var(--muted);margin-top:10px" data-i18n="apps_subtitle">۲۳ اپلیکیشن منتشر شده</p>
             </div>
-        </section>
-
-        <section class="section reveal">
-            <div class="card info-card tilt-card">
-                <div class="title" data-i18n="site_info_title">Site Information</div>
-                <div class="info-grid">
-                    <div class="info-row latest-changes-row">
-                        <span class="info-label" data-i18n="latest_changes_label">Latest Changes</span>
-                        <span class="info-value" data-i18n-html="latest_changes_value" id="latestChangesValue">June 2026</span>
-                    </div>
-                    <div class="info-row">
-                        <span class="info-label" data-i18n="status_label">Status</span>
-                        <span class="info-value"><span class="status-indicator" aria-hidden="true"></span> <span data-i18n="status_online">Online</span></span>
-                    </div>
-                    <div class="info-row">
-                        <span class="info-label" data-i18n="current_time_label">Current Time</span>
-                        <span class="info-value" id="liveClock">00:00:00</span>
-                    </div>
-                </div>
+            <div class="apps-grid" id="appsGrid">
+                <!-- Apps will be inserted here by JavaScript -->
             </div>
-        </section>
-
-        <section class="seo-content" data-i18n="seo_text">Alireza Apex | Android Developer Iran | Myket developer apps | Android app creator | mobile developer portfolio | 23 apps published</section>
-
-        <footer data-i18n="footer">© 2026 Alireza Apex — All Rights Reserved</footer>
+        </div>
     </div>
 
-    <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="منوی موبایل">
+    <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true">
+        <button id="mobileAppsBtn" data-i18n="nav_apps">📱 اپلیکیشن‌ها</button>
         <button id="mobileThemeBtn">Change Theme</button>
         <button id="mobileLangBtn">FA / EN</button>
         <a href="https://myket.ir/developer/dev-99625/apps?lang=fa" target="_blank" rel="noopener" style="width:80%;text-decoration:none">
-            <button style="width:100%" data-i18n="myket_menu">View on Myket</button>
+            <button style="width:100%" data-i18n="myket_menu">🚀 ۲۳ اپلیکیشن — مشاهده در مایکت</button>
         </a>
-        <button id="mobileShareBtn" data-i18n="share_menu">Share</button>
-        <button id="mobileCloseBtn" data-i18n="close_menu" aria-label="بستن منو">Close</button>
+        <button id="mobileShareBtn" data-i18n="share_menu">📤 اشتراک‌گذاری</button>
+        <button id="mobileCloseBtn" data-i18n="close_menu" aria-label="بستن منو">❌ بستن</button>
     </div>
 
-    <!-- PWA Install Banner -->
     <div class="install-banner" id="installBanner" role="dialog" aria-live="polite">
         <div class="install-content">
             <div class="install-icon">📱</div>
             <div class="install-text">
-                <strong data-i18n="install_title">Install Alireza Apex</strong>
-                <span data-i18n="install_desc">Use it like a real app — offline & fast</span>
+                <strong data-i18n="install_title">نصب Alireza Apex</strong>
+                <span data-i18n="install_desc">مانند یک اپلیکیشن واقعی — آفلاین و سریع</span>
             </div>
         </div>
         <div class="install-actions">
             <button class="install-dismiss" id="installDismissBtn" aria-label="Dismiss">✕</button>
-            <button class="install-btn" id="installBtn" data-i18n="install_button">Install</button>
+            <button class="install-btn" id="installBtn" data-i18n="install_button">📥 نصب</button>
         </div>
     </div>
 
-    <!-- Update Banner -->
     <div class="update-banner" id="updateBanner" role="alert" aria-live="polite">
         <div class="update-banner-icon">✨</div>
-        <div class="update-banner-text" data-i18n="update_text">نسخه جدید آماده است!</div>
+        <div class="update-banner-text" data-i18n="update_text">نسخه جدید سایت آماده است!</div>
         <button class="update-banner-btn" id="updateBtn" data-i18n="update_btn">به‌روزرسانی</button>
         <button class="update-banner-dismiss" id="updateDismissBtn" aria-label="Dismiss">✕</button>
     </div>
@@ -834,7 +927,6 @@
         (function() {
             'use strict';
 
-            // ====== CENTRALIZED CONSTANTS ======
             const APP_COUNT = 23;
             const CONFIG = {
                 SHARE_URL: 'https://wzxqrmt-code.github.io/',
@@ -847,7 +939,32 @@
                 TOAST_DURATION: 3000
             };
 
-            // ====== STATE ======
+            const appsData = [
+                { name: 'گام‌به‌گام ریاضی پایه نهم', pkg: 'com.nine.class', downloads: 664, rating: 4.9, reviews: 10, desc: 'راهنمای کامل حل تمرین‌های ریاضی پایه نهم' },
+                { name: 'شبیه‌ساز آسانسور', pkg: 'com.sh.theuxs.elevatorsimulator', downloads: 603, rating: 4.23, reviews: 35, desc: 'تجربه واقعی کار با آسانسور' },
+                { name: 'ترنسلیت پرو', pkg: 'com.sh.TranslatorPro', downloads: 365, rating: 3.62, reviews: 8, desc: 'مترجم حرفه‌ای متون به زبان‌های مختلف' },
+                { name: 'تولید کننده رمز عبور امن و قوی', pkg: 'com.sh.password.generator', downloads: 205, rating: 4.66, reviews: 32, desc: 'ساخت رمزهای عبور قوی و امن' },
+                { name: 'رفیق', pkg: 'com.sh.rafigh', downloads: 160, rating: 4.6, reviews: 10, desc: 'همراه معنوی ساده و بی‌حاشیه برای آرامش روزانه' },
+                { name: 'گاوصندوق امن | Apex Vault', pkg: 'com.sh.apex.secure.vault', downloads: 120, rating: 4.4, reviews: 15, desc: 'محافظت از اطلاعات مهم شما' },
+                { name: 'تیک تاک تو پیشرفته', pkg: 'com.s.h.valer.tictactoe', downloads: 117, rating: 5, reviews: 6, desc: 'بازی کلاسیک دوز با امکانات پیشرفته' },
+                { name: 'پیام و تماس سریع | تقویم و ساعت', pkg: 'com.my.messagees.w', downloads: 105, rating: 4.69, reviews: 16, desc: 'دسترسی سریع به پیام و تماس' },
+                { name: 'بلوک‌های اسکچور', pkg: 'com.sh.sk.blocks', downloads: 93, rating: 4.43, reviews: 7, desc: 'بازی چالش‌برانگیز بلوکی' },
+                { name: 'نقاشی پیکسلی با لایه‌بندی حرفه‌ای | PixAD', pkg: 'com.inflps.pixartd', downloads: 81, rating: 5, reviews: 5, desc: 'خلق آثار هنری پیکسلی' },
+                { name: '۷ اطلاعات دستگاه', pkg: 'com.sh.sevendeviceinfo', downloads: 75, rating: 4.43, reviews: 7, desc: 'نمایش کامل اطلاعات دستگاه' },
+                { name: 'حقایق ناشناخته', pkg: 'com.alireza.facts', downloads: 73, rating: 5, reviews: 3, desc: 'دانستنی‌های جالب و عجیب' },
+                { name: 'کیف پول شخصی | Apex Wallet', pkg: 'com.sh.apex.wallet', downloads: 63, rating: 4.45, reviews: 11, desc: 'مدیریت مالی شخصی' },
+                { name: 'وب رز', pkg: 'com.sh.browser.webrose', downloads: 62, rating: 5, reviews: 4, desc: 'مرورگر سریع و سبک' },
+                { name: 'R.P.S | سنگ.کاغذ.قیچی پیشرفته', pkg: 'com.sh.rock.paper.scissor', downloads: 54, rating: 5, reviews: 3, desc: 'بازی کلاسیک سنگ کاغذ قیچی' },
+                { name: 'ایجاد کد QR هوشمند', pkg: 'com.sh.gerarsalvarQRCODE', downloads: 48, rating: 4, reviews: 7, desc: 'ساخت و اسکن کد QR' },
+                { name: 'گام‌به‌گام‌ اجتماعی پایه هشتم', pkg: 'com.sh.eight.class.one', downloads: 43, rating: 5, reviews: 1, desc: 'راهنمای درس اجتماعی هشتم' },
+                { name: 'پلیر موسیقی آفلاین | Apex Music', pkg: 'com.sh.apex.music', downloads: 33, rating: 5, reviews: 3, desc: 'پخش موسیقی با کیفیت بالا' },
+                { name: 'موش زمستانی', pkg: 'com.wintermouse.by.sh', downloads: 24, rating: 4.71, reviews: 7, desc: 'بازی ماجراجویی موش' },
+                { name: 'عدد ساز پلاس', pkg: 'com.sh.my.phone.maker', downloads: 24, rating: 5, reviews: 5, desc: 'تولید اعداد تصادفی' },
+                { name: 'ماشین‌حساب حسابینو', pkg: 'com.sh.valer.calculator', downloads: 21, rating: 5, reviews: 5, desc: 'ماشین‌حساب پیشرفته' },
+                { name: 'بات دونده: چالش بینهایت🤖', pkg: 'com.sh.BOTRun', downloads: 16, rating: 5, reviews: 1, desc: 'بازی چالش‌برانگیز دونده' },
+                { name: 'دیکشنری جامع | Apex Dictionary', pkg: 'com.sh.apex.dictionary', downloads: 8, rating: 5, reviews: 2, desc: 'لغت‌نامه کامل و کاربردی' }
+            ];
+
             const state = {
                 lang: localStorage.getItem('lang') || 'fa',
                 theme: localStorage.getItem('theme') || 'auto',
@@ -861,28 +978,17 @@
                 currentThemeIndex: 0
             };
 
-            function getOrdinal(n) {
-                if (typeof n !== 'number' || n <= 0) return n + 'th';
-                const s = ['th', 'st', 'nd', 'rd'];
-                const v = n % 100;
-                return n + (s[(v - 20) % 10] || s[v] || s[0]);
-            }
-
-            function getEnglishDate() {
-                return 'June 27, 2026';
-            }
-
-            function getPersianDate() {
-                return '۶ تیر ۱۴۰۵';
-            }
+            function getEnglishDate() { return 'June 27, 2026'; }
+            function getPersianDate() { return '۶ تیر ۱۴۰۵'; }
 
             function buildTranslatedStrings() {
                 return {
                     fa: {
                         brand_name: "Alireza Apex",
                         hero_title: "Alireza Apex",
-                        hero_desc: `${APP_COUNT} اپلیکیشن منتشر شده در مایکت، حاصل تلاش مستمر در توسعه‌ی اندروید. برای مشاهده‌ی پروژه‌ها و دانلود برنامه‌ها، از طریق لینک زیر اقدام کنید.`,
-                        myket_btn: `🚀 ${APP_COUNT} اپلیکیشن منتشر شده — مشاهده در مایکت`,
+                        hero_desc: `${APP_COUNT} اپلیکیشن منتشر شده در مایکت، حاصل تلاش مستمر در توسعه‌ی اندروید.`,
+                        myket_btn: "🌐 مشاهده در مایکت",
+                        view_apps_btn: `📱 مشاهده ${APP_COUNT} اپلیکیشن من`,
                         about_title: "👤 درباره Alireza Apex",
                         about_text: `توسعه‌دهنده‌ی اندروید با ${APP_COUNT} اپلیکیشن منتشر شده در پلتفرم مایکت. تمرکز اصلی بر ارائه‌ی راهکارهای کاربردی و باکیفیت برای کاربران فارسی‌زبان است.`,
                         contact_title: "📬 ارتباط با Alireza Apex",
@@ -899,7 +1005,7 @@
                         submit_btn: "ارسال پیام",
                         site_info_title: "اطلاعات Alireza Apex",
                         latest_changes_label: "آخرین تغییرات",
-                        latest_changes_value: `📅 ${getPersianDate()}<br>• افزودن حالت خودکار تشخیص تم سیستم<br>• اطلاع‌رسانی آپدیت‌های جدید سایت<br>• افکت‌های بصری حرفه‌ای (3D Tilt، Ripple، Shine)<br>• بهبود کامل رنگ‌ها و خوانایی در تم روشن`,
+                        latest_changes_value: `📅 ${getPersianDate()}<br>• افزودن بخش جداگانه اپلیکیشن‌ها<br>• نمایش کامل ۲۳ اپلیکیشن منتشر شده<br>• بهبود حالت خودکار تشخیص تم سیستم<br>• بهینه‌سازی کامل رابط کاربری`,
                         status_label: "وضعیت",
                         status_online: "آنلاین",
                         current_time_label: "ساعت فعلی",
@@ -925,7 +1031,7 @@
                         theme_toggle_auto: "🌓 خودکار",
                         theme_toggle_light: "☀️ روشن",
                         theme_toggle_dark: "🌙 تاریک",
-                        seo_text: `Alireza Apex | Android Developer Iran | Myket developer apps | Android app creator | mobile developer portfolio | ${APP_COUNT} اپلیکیشن منتشر شده`,
+                        seo_text: `Alireza Apex | Android Developer Iran | Myket developer apps | ${APP_COUNT} اپلیکیشن منتشر شده`,
                         install_title: "نصب Alireza Apex",
                         install_desc: "مانند یک اپلیکیشن واقعی — آفلاین و سریع",
                         install_button: "📥 نصب",
@@ -935,15 +1041,23 @@
                         update_btn: "به‌روزرسانی",
                         toast_theme_auto: "تم خودکار فعال شد",
                         toast_theme_light: "تم روشن فعال شد",
-                        toast_theme_dark: "تم تاریک فعال شد"
+                        toast_theme_dark: "تم تاریک فعال شد",
+                        nav_apps: "📱 اپلیکیشن‌ها",
+                        apps_title: "📱 اپلیکیشن‌های من در مایکت",
+                        apps_subtitle: `${APP_COUNT} اپلیکیشن منتشر شده`,
+                        back_to_home: "بازگشت به صفحه اصلی",
+                        app_downloads: "📥 دانلود",
+                        app_rating: "⭐ امتیاز",
+                        app_reviews: "💬 نظر"
                     },
                     en: {
                         brand_name: "Alireza Apex",
                         hero_title: "Alireza Apex",
-                        hero_desc: `${APP_COUNT} applications published on Myket, built through continuous Android development. Explore the projects and download apps using the link below.`,
-                        myket_btn: `🚀 ${APP_COUNT} Published Apps — Explore on Myket`,
+                        hero_desc: `${APP_COUNT} applications published on Myket, built through continuous Android development.`,
+                        myket_btn: "🌐 View on Myket",
+                        view_apps_btn: `📱 View My ${APP_COUNT} Apps`,
                         about_title: "👤 About Alireza Apex",
-                        about_text: `An Android developer with ${APP_COUNT} applications published on the Myket platform. Focused on delivering practical and high-quality solutions for Persian-speaking users.`,
+                        about_text: `An Android developer with ${APP_COUNT} applications published on the Myket platform. Focused on delivering practical and high-quality solutions.`,
                         contact_title: "📬 Contact Alireza Apex",
                         id_label: "All Messenger IDs",
                         copy_btn: "📋 Copy ID",
@@ -958,7 +1072,7 @@
                         submit_btn: "Send Message",
                         site_info_title: "Alireza Apex Info",
                         latest_changes_label: "Latest Changes",
-                        latest_changes_value: `📅 ${getEnglishDate()}<br>• Added auto system theme detection<br>• New update notifications for site<br>• Professional visual effects (3D Tilt, Ripple, Shine)<br>• Complete light theme color improvements`,
+                        latest_changes_value: `📅 ${getEnglishDate()}<br>• Added separate apps section<br>• Display all 23 published apps<br>• Auto system theme detection<br>• Complete UI optimization`,
                         status_label: "Status",
                         status_online: "Online",
                         current_time_label: "Current Time",
@@ -974,7 +1088,7 @@
                         toast_copy_fail: "Manual copy: ",
                         lang_btn_en: "EN",
                         lang_btn_fa: "FA",
-                        myket_menu: `🚀 ${APP_COUNT} Apps — Explore on Myket`,
+                        myket_menu: `🚀 ${APP_COUNT} Apps — View on Myket`,
                         share_menu: "📤 Share",
                         close_menu: "❌ Close",
                         ble_channel: "Official Bale Channel",
@@ -984,7 +1098,7 @@
                         theme_toggle_auto: "🌓 Auto",
                         theme_toggle_light: "☀️ Light",
                         theme_toggle_dark: "🌙 Dark",
-                        seo_text: `Alireza Apex | Android Developer Iran | Myket developer apps | Android app creator | mobile developer portfolio | ${APP_COUNT} apps published`,
+                        seo_text: `Alireza Apex | Android Developer Iran | Myket developer apps | ${APP_COUNT} apps published`,
                         install_title: "Install Alireza Apex",
                         install_desc: "Use it like a real app — offline & fast",
                         install_button: "📥 Install",
@@ -994,7 +1108,14 @@
                         update_btn: "Update",
                         toast_theme_auto: "Auto theme enabled",
                         toast_theme_light: "Light theme enabled",
-                        toast_theme_dark: "Dark theme enabled"
+                        toast_theme_dark: "Dark theme enabled",
+                        nav_apps: "📱 Apps",
+                        apps_title: "📱 My Apps on Myket",
+                        apps_subtitle: `${APP_COUNT} published apps`,
+                        back_to_home: "Back to Home",
+                        app_downloads: "📥 Downloads",
+                        app_rating: "⭐ Rating",
+                        app_reviews: "💬 Reviews"
                     }
                 };
             }
@@ -1003,23 +1124,19 @@
 
             function t(key) {
                 const val = TRANSLATIONS[state.lang] && TRANSLATIONS[state.lang][key];
-                if (val === undefined) {
-                    console.warn('[i18n] Missing translation key:', key, 'lang:', state.lang);
-                    return key;
-                }
-                return val;
+                return val !== undefined ? val : key;
             }
 
-            // ====== DOM CACHE ======
             const D = {};
             function cacheDom() {
                 const ids = [
                     'loadingScreen', 'particles', 'hamburgerBtn', 'themeToggle', 'langToggle',
                     'logoBox', 'mobileMenu', 'mobileThemeBtn', 'mobileLangBtn', 'mobileShareBtn',
-                    'mobileCloseBtn', 'shareBtn', 'copyIdBtn', 'copyEmailBtn', 'bleBtn', 'telegramBtn',
+                    'mobileCloseBtn', 'mobileAppsBtn', 'shareBtn', 'copyIdBtn', 'copyEmailBtn', 'bleBtn', 'telegramBtn',
                     'contactForm', 'nameInput', 'emailInput', 'messageInput', 'toast', 'topBtn',
                     'progressCircle', 'liveClock', 'installBanner', 'installBtn', 'installDismissBtn',
-                    'updateBanner', 'updateBtn', 'updateDismissBtn'
+                    'updateBanner', 'updateBtn', 'updateDismissBtn', 'appsNavBtn', 'appsMainBtn',
+                    'appsSection', 'appsGrid', 'backToHome', 'mainContent'
                 ];
                 ids.forEach(id => {
                     D[id] = document.getElementById(id);
@@ -1032,17 +1149,11 @@
                 D.tiltCards = document.querySelectorAll('.tilt-card');
             }
 
-            // ====== SAFE EVENT ======
             function safeOn(id, event, handler) {
                 const el = D[id];
-                if (el) {
-                    el.addEventListener(event, handler);
-                } else {
-                    console.warn('[Event] Cannot bind to missing element:', id);
-                }
+                if (el) el.addEventListener(event, handler);
             }
 
-            // ====== RENDER ======
             function render() {
                 D.i18nEls.forEach(el => {
                     const key = el.getAttribute('data-i18n');
@@ -1059,41 +1170,23 @@
                     const val = t(key);
                     if (val !== key) el.placeholder = val;
                 });
-
                 if (D.langToggle) D.langToggle.textContent = state.lang === 'fa' ? t('lang_btn_en') : t('lang_btn_fa');
                 if (D.mobileLangBtn) D.mobileLangBtn.textContent = state.lang === 'fa' ? 'FA / EN' : 'EN / FA';
-
                 updateThemeUI();
                 document.documentElement.lang = state.lang;
             }
 
-            // ====== THEME SYSTEM (Auto/Light/Dark) ======
             function getSystemTheme() {
                 return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
             }
 
             function getEffectiveTheme() {
-                if (state.theme === 'auto') {
-                    return getSystemTheme();
-                }
-                return state.theme;
+                return state.theme === 'auto' ? getSystemTheme() : state.theme;
             }
 
             function updateThemeUI() {
-                const effectiveTheme = getEffectiveTheme();
-                let icon, key;
-                
-                if (state.theme === 'auto') {
-                    icon = '🌓';
-                    key = 'theme_toggle_auto';
-                } else if (state.theme === 'light') {
-                    icon = '☀️';
-                    key = 'theme_toggle_light';
-                } else {
-                    icon = '🌙';
-                    key = 'theme_toggle_dark';
-                }
-                
+                const icon = state.theme === 'auto' ? '🌓' : state.theme === 'light' ? '☀️' : '🌙';
+                const key = state.theme === 'auto' ? 'theme_toggle_auto' : state.theme === 'light' ? 'theme_toggle_light' : 'theme_toggle_dark';
                 if (D.themeToggle) {
                     D.themeToggle.textContent = icon;
                     D.themeToggle.setAttribute('aria-label', t(key));
@@ -1112,18 +1205,12 @@
             function cycleTheme() {
                 state.currentThemeIndex = (state.currentThemeIndex + 1) % state.themeModes.length;
                 state.theme = state.themeModes[state.currentThemeIndex];
-                
-                // انیمیشن چرخش دکمه
                 if (D.themeToggle) {
                     D.themeToggle.classList.add('rotating');
                     setTimeout(() => D.themeToggle.classList.remove('rotating'), 400);
                 }
-                
                 applyTheme();
-                
-                // نمایش toast
-                const toastKey = state.theme === 'auto' ? 'toast_theme_auto' : 
-                                 state.theme === 'light' ? 'toast_theme_light' : 'toast_theme_dark';
+                const toastKey = state.theme === 'auto' ? 'toast_theme_auto' : state.theme === 'light' ? 'toast_theme_light' : 'toast_theme_dark';
                 showToast(t(toastKey));
             }
 
@@ -1134,23 +1221,50 @@
 
             function setupSystemThemeListener() {
                 const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-                const handleChange = () => {
-                    if (state.theme === 'auto') {
-                        applyTheme();
-                    }
-                };
-                
-                if (mediaQuery.addEventListener) {
-                    mediaQuery.addEventListener('change', handleChange);
-                } else if (mediaQuery.addListener) {
-                    mediaQuery.addListener(handleChange);
-                }
+                const handleChange = () => { if (state.theme === 'auto') applyTheme(); };
+                if (mediaQuery.addEventListener) mediaQuery.addEventListener('change', handleChange);
+                else if (mediaQuery.addListener) mediaQuery.addListener(handleChange);
             }
 
             function toggleLang() {
                 state.lang = state.lang === 'fa' ? 'en' : 'fa';
                 localStorage.setItem('lang', state.lang);
                 render();
+            }
+
+            function showAppsSection() {
+                if (D.mainContent) D.mainContent.style.display = 'none';
+                if (D.appsSection) D.appsSection.classList.add('active');
+                renderApps();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            function showMainContent() {
+                if (D.appsSection) D.appsSection.classList.remove('active');
+                if (D.mainContent) D.mainContent.style.display = 'block';
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            function renderApps() {
+                if (!D.appsGrid) return;
+                D.appsGrid.innerHTML = appsData.map(app => {
+                    const myketLink = `https://myket.ir/app/${app.pkg}`;
+                    return `
+                        <div class="app-item tilt-card">
+                            <div class="app-item-name">${app.name}</div>
+                            ${app.desc ? `<div class="app-item-desc">${app.desc}</div>` : ''}
+                            <div class="app-item-stats">
+                                <span>📥 ${app.downloads}</span>
+                                <span>⭐ ${app.rating}</span>
+                                <span>💬 ${app.reviews}</span>
+                            </div>
+                            <a href="${myketLink}" target="_blank" rel="noopener" class="app-item-link">
+                                <span>${t('myket_btn')}</span>
+                                <span>→</span>
+                            </a>
+                        </div>
+                    `;
+                }).join('');
             }
 
             function openMenu() {
@@ -1169,7 +1283,6 @@
                 state.menuOpen = false;
             }
 
-            // ====== TOAST SYSTEM ======
             let toastTimer = null;
             function showToast(msg) {
                 if (!D.toast) return;
@@ -1179,15 +1292,10 @@
                 toastTimer = setTimeout(() => D.toast.classList.remove('show'), CONFIG.TOAST_DURATION);
             }
 
-            // ====== CLIPBOARD ======
             function copyToClipboard(text, successKey) {
                 if (navigator.clipboard && navigator.clipboard.writeText) {
-                    navigator.clipboard.writeText(text).then(() => {
-                        showToast(t(successKey));
-                    }).catch(() => fallbackCopy(text));
-                } else {
-                    fallbackCopy(text);
-                }
+                    navigator.clipboard.writeText(text).then(() => showToast(t(successKey))).catch(() => fallbackCopy(text));
+                } else fallbackCopy(text);
             }
 
             function fallbackCopy(text) {
@@ -1209,27 +1317,23 @@
             function shareSite() {
                 if (navigator.share) {
                     navigator.share({ title: 'Alireza Apex | Android Developer', url: CONFIG.SHARE_URL }).catch(() => {});
-                } else {
-                    copyToClipboard(CONFIG.SHARE_URL, 'toast_link_copied');
-                }
+                } else copyToClipboard(CONFIG.SHARE_URL, 'toast_link_copied');
             }
 
             function safeOpen(url) {
                 const newWindow = window.open(url, '_blank', 'noopener,noreferrer');
-                if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
+                if (!newWindow || newWindow.closed) {
                     showToast(t('toast_link_copied'));
                     navigator.clipboard.writeText(url).catch(() => {});
                 }
             }
 
-            // ====== FORM HANDLING ======
             function buildFormPayload() {
-                const nameEl = D.nameInput, emailEl = D.emailInput, msgEl = D.messageInput;
-                if (!nameEl || !emailEl || !msgEl) return null;
+                if (!D.nameInput || !D.emailInput || !D.messageInput) return null;
                 return {
-                    name: nameEl.value.trim(),
-                    email: emailEl.value.trim(),
-                    message: msgEl.value.trim(),
+                    name: D.nameInput.value.trim(),
+                    email: D.emailInput.value.trim(),
+                    message: D.messageInput.value.trim(),
                     timestamp: Date.now()
                 };
             }
@@ -1245,54 +1349,42 @@
                 e.preventDefault();
                 const payload = buildFormPayload();
                 if (!payload) return;
-
                 const validation = validateForm(payload);
                 if (!validation.valid) {
                     showToast(t(validation.key));
                     if (validation.el) validation.el.focus();
                     return;
                 }
-
                 showToast(t('toast_success'));
                 const subject = encodeURIComponent(t('hero_title') + " - New Message");
                 const body = encodeURIComponent(`Name: ${payload.name}\nEmail: ${payload.email}\nMessage: ${payload.message}`);
-                setTimeout(() => {
-                    window.location.href = `mailto:${CONFIG.EMAIL_ADDR}?subject=${subject}&body=${body}`;
-                }, 600);
+                setTimeout(() => window.location.href = `mailto:${CONFIG.EMAIL_ADDR}?subject=${subject}&body=${body}`, 600);
             }
 
-            // ====== RIPPLE EFFECT ======
             function createRipple(e) {
                 const button = e.currentTarget;
                 const rect = button.getBoundingClientRect();
                 const size = Math.max(rect.width, rect.height);
                 const x = e.clientX - rect.left - size / 2;
                 const y = e.clientY - rect.top - size / 2;
-                
                 const ripple = document.createElement('span');
                 ripple.className = 'ripple';
                 ripple.style.width = ripple.style.height = size + 'px';
                 ripple.style.left = x + 'px';
                 ripple.style.top = y + 'px';
-                
                 button.appendChild(ripple);
                 setTimeout(() => ripple.remove(), 600);
             }
 
             function setupRippleEffect() {
-                const buttons = document.querySelectorAll('.copy-btn, .submit-btn, .myket-btn, .install-btn, .update-banner-btn');
-                buttons.forEach(btn => {
-                    btn.addEventListener('click', createRipple);
-                });
+                const buttons = document.querySelectorAll('.copy-btn, .submit-btn, .myket-btn, .install-btn, .update-banner-btn, .apps-main-btn');
+                buttons.forEach(btn => btn.addEventListener('click', createRipple));
             }
 
-            // ====== 3D TILT EFFECT ======
             function setupTiltEffect() {
                 if (!D.tiltCards || D.tiltCards.length === 0) return;
                 if (!window.matchMedia('(hover: hover)').matches) return;
-                
                 const maxTilt = 5;
-                
                 D.tiltCards.forEach(card => {
                     card.addEventListener('mousemove', (e) => {
                         const rect = card.getBoundingClientRect();
@@ -1300,20 +1392,16 @@
                         const y = e.clientY - rect.top;
                         const centerX = rect.width / 2;
                         const centerY = rect.height / 2;
-                        
                         const rotateX = ((y - centerY) / centerY) * -maxTilt;
                         const rotateY = ((x - centerX) / centerX) * maxTilt;
-                        
                         card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
                     });
-                    
                     card.addEventListener('mouseleave', () => {
                         card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
                     });
                 });
             }
 
-            // ====== EVENT BINDING ======
             function bindEvents() {
                 safeOn('langToggle', 'click', toggleLang);
                 safeOn('mobileLangBtn', 'click', toggleLang);
@@ -1322,26 +1410,24 @@
                 safeOn('hamburgerBtn', 'click', openMenu);
                 safeOn('mobileCloseBtn', 'click', closeMenu);
                 safeOn('mobileShareBtn', 'click', () => { shareSite(); closeMenu(); });
+                safeOn('mobileAppsBtn', 'click', () => { showAppsSection(); closeMenu(); });
                 safeOn('shareBtn', 'click', shareSite);
                 safeOn('copyIdBtn', 'click', () => copyToClipboard(CONFIG.MESSENGER_ID, 'toast_copy'));
                 safeOn('copyEmailBtn', 'click', () => copyToClipboard(CONFIG.EMAIL_ADDR, 'toast_email_copied'));
                 safeOn('bleBtn', 'click', () => safeOpen(CONFIG.BLE_URL));
                 safeOn('telegramBtn', 'click', () => safeOpen(CONFIG.TELEGRAM_URL));
+                safeOn('appsNavBtn', 'click', showAppsSection);
+                safeOn('appsMainBtn', 'click', showAppsSection);
+                safeOn('backToHome', 'click', showMainContent);
                 if (D.contactForm) D.contactForm.addEventListener('submit', handleFormSubmit);
                 safeOn('topBtn', 'click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
                 safeOn('updateBtn', 'click', () => {
-                    if (state.newWorker) {
-                        state.newWorker.postMessage({ type: 'SKIP_WAITING' });
-                    } else {
-                        window.location.reload();
-                    }
+                    if (state.newWorker) state.newWorker.postMessage({ type: 'SKIP_WAITING' });
+                    else window.location.reload();
                 });
-                safeOn('updateDismissBtn', 'click', () => {
-                    if (D.updateBanner) D.updateBanner.classList.remove('visible');
-                });
+                safeOn('updateDismissBtn', 'click', () => { if (D.updateBanner) D.updateBanner.classList.remove('visible'); });
             }
 
-            // ====== SCROLL ======
             function setupScroll() {
                 const circ = 2 * Math.PI * 30;
                 window.addEventListener('scroll', () => {
@@ -1362,7 +1448,6 @@
                 }, { passive: true });
             }
 
-            // ====== REVEAL ======
             function setupReveal() {
                 if (!D.reveals || D.reveals.length === 0) return;
                 const observer = new IntersectionObserver((entries) => {
@@ -1376,13 +1461,11 @@
                 D.reveals.forEach(el => observer.observe(el));
             }
 
-            // ====== PARTICLES ======
             function determineParticleCount() {
                 let count = 45;
                 const isMobile = window.innerWidth < 768;
                 const isLowMemory = navigator.deviceMemory && navigator.deviceMemory < 4;
                 const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
                 if (prefersReduced) count = 0;
                 else if (isMobile || isLowMemory) count = 20;
                 else if (window.innerWidth < 1024) count = 30;
@@ -1394,26 +1477,14 @@
             }
 
             function setupParticles() {
-                if (!D.particles) {
-                    console.warn('[Particles] Canvas not found');
-                    return;
-                }
+                if (!D.particles) return;
                 const count = determineParticleCount();
-                if (count === 0) {
-                    D.particles.style.display = 'none';
-                    return;
-                }
-
+                if (count === 0) { D.particles.style.display = 'none'; return; }
                 const ctx = D.particles.getContext('2d');
                 let w, h;
-
-                function resize() {
-                    w = D.particles.width = window.innerWidth;
-                    h = D.particles.height = window.innerHeight;
-                }
+                function resize() { w = D.particles.width = window.innerWidth; h = D.particles.height = window.innerHeight; }
                 resize();
                 window.addEventListener('resize', resize);
-
                 const particles = [];
                 for (let i = 0; i < count; i++) {
                     particles.push({
@@ -1424,9 +1495,7 @@
                         vy: (Math.random() - 0.5) * 0.3
                     });
                 }
-
                 updateParticleColor();
-
                 function anim() {
                     ctx.clearRect(0, 0, w, h);
                     const color = state.particleColor;
@@ -1446,19 +1515,16 @@
                 anim();
             }
 
-            // ====== CLOCK ======
             function setupClock() {
                 if (!D.liveClock) return;
                 function update() {
                     const now = new Date();
-                    D.liveClock.textContent = [now.getHours(), now.getMinutes(), now.getSeconds()]
-                        .map(x => String(x).padStart(2, '0')).join(':');
+                    D.liveClock.textContent = [now.getHours(), now.getMinutes(), now.getSeconds()].map(x => String(x).padStart(2, '0')).join(':');
                 }
                 update();
                 state.clockInterval = setInterval(update, 1000);
             }
 
-            // ====== LOADING SCREEN ======
             function hideLoading() {
                 if (!D.loadingScreen || state.loading === false) return;
                 D.loadingScreen.style.opacity = '0';
@@ -1467,11 +1533,9 @@
                 state.loading = false;
             }
 
-            // ====== PWA: MANIFEST ======
             function generateManifest() {
                 const effectiveTheme = getEffectiveTheme();
                 const bgColor = effectiveTheme === 'light' ? '#faf7ff' : '#07070c';
-                
                 const manifest = {
                     name: "Alireza Apex - Android Developer",
                     short_name: "Alireza Apex",
@@ -1486,24 +1550,9 @@
                     dir: "rtl",
                     categories: ["developer", "productivity"],
                     icons: [
-                        {
-                            src: "https://wzxqrmt-code.github.io/1780913134571.webp",
-                            sizes: "512x512",
-                            type: "image/webp",
-                            purpose: "any"
-                        },
-                        {
-                            src: "https://wzxqrmt-code.github.io/1780913134571.webp",
-                            sizes: "512x512",
-                            type: "image/webp",
-                            purpose: "maskable"
-                        },
-                        {
-                            src: "https://wzxqrmt-code.github.io/1780913134571.webp",
-                            sizes: "192x192",
-                            type: "image/webp",
-                            purpose: "any"
-                        }
+                        { src: "https://wzxqrmt-code.github.io/1780913134571.webp", sizes: "512x512", type: "image/webp", purpose: "any" },
+                        { src: "https://wzxqrmt-code.github.io/1780913134571.webp", sizes: "512x512", type: "image/webp", purpose: "maskable" },
+                        { src: "https://wzxqrmt-code.github.io/1780913134571.webp", sizes: "192x192", type: "image/webp", purpose: "any" }
                     ]
                 };
                 const blob = new Blob([JSON.stringify(manifest)], { type: 'application/manifest+json' });
@@ -1511,92 +1560,59 @@
                 if (manifestLink) manifestLink.href = URL.createObjectURL(blob);
             }
 
-            // ====== PWA: SERVICE WORKER + UPDATE NOTIFICATION ======
             function registerServiceWorker() {
-                if (!('serviceWorker' in navigator)) {
-                    console.warn('[PWA] Service Worker not supported');
-                    return;
-                }
-
+                if (!('serviceWorker' in navigator)) { console.warn('[PWA] Service Worker not supported'); return; }
                 navigator.serviceWorker.register('./sw.js')
                     .then(reg => {
                         console.log('[PWA] Service Worker registered:', reg.scope);
-                        
-                        // بررسی آپدیت
                         reg.addEventListener('updatefound', () => {
                             const newWorker = reg.installing;
                             state.newWorker = newWorker;
-                            
                             newWorker.addEventListener('statechange', () => {
                                 if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-                                    // آپدیت جدید آماده است
-                                    if (D.updateBanner) {
-                                        D.updateBanner.classList.add('visible');
-                                    }
+                                    if (D.updateBanner) D.updateBanner.classList.add('visible');
                                 }
                             });
                         });
                     })
-                    .catch(err => {
-                        console.warn('[PWA] SW registration failed:', err);
-                    });
-
-                // گوش دادن به پیام‌های SW
+                    .catch(err => console.warn('[PWA] SW registration failed:', err));
                 navigator.serviceWorker.addEventListener('message', (event) => {
-                    if (event.data && event.data.type === 'RELOAD_PAGE') {
-                        window.location.reload();
-                    }
+                    if (event.data && event.data.type === 'RELOAD_PAGE') window.location.reload();
                 });
             }
 
-            // ====== PWA: INSTALL PROMPT ======
             function setupInstallPrompt() {
                 let deferredPrompt = null;
                 const installBanner = document.getElementById('installBanner');
                 const installBtn = document.getElementById('installBtn');
                 const installDismissBtn = document.getElementById('installDismissBtn');
-
                 if (!installBanner || !installBtn || !installDismissBtn) return;
-
                 const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
                 const wasDismissed = localStorage.getItem('pwa_dismissed');
-
                 if (isStandalone) return;
-
                 window.addEventListener('beforeinstallprompt', (e) => {
                     e.preventDefault();
                     deferredPrompt = e;
-                    if (!wasDismissed) {
-                        setTimeout(() => installBanner.classList.add('visible'), 3000);
-                    }
+                    if (!wasDismissed) setTimeout(() => installBanner.classList.add('visible'), 3000);
                 });
-
                 installBtn.addEventListener('click', async () => {
                     if (!deferredPrompt) {
                         const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-                        if (isIOS) {
-                            showToast('در سافاری: دکمه Share را بزن و "Add to Home Screen" را انتخاب کن 📱');
-                        } else {
-                            showToast('از منوی مرورگر گزینه "Install App" را انتخاب کن 🔧');
-                        }
+                        if (isIOS) showToast('در سافاری: دکمه Share را بزن و "Add to Home Screen" را انتخاب کن 📱');
+                        else showToast('از منوی مرورگر گزینه "Install App" را انتخاب کن 🔧');
                         return;
                     }
                     deferredPrompt.prompt();
                     const { outcome } = await deferredPrompt.userChoice;
-                    if (outcome === 'accepted') {
-                        showToast(t('toast_installed'));
-                    } else {
-                        showToast(t('toast_install_error'));
-                    }
+                    if (outcome === 'accepted') showToast(t('toast_installed'));
+                    else showToast(t('toast_install_error'));
                     deferredPrompt = null;
                     installBanner.classList.remove('visible');
                 });
-
                 installDismissBtn.addEventListener('click', () => {
                     installBanner.classList.remove('visible');
                     localStorage.setItem('pwa_dismissed', 'true');
                 });
-
                 window.addEventListener('appinstalled', () => {
                     showToast(t('toast_installed'));
                     installBanner.classList.remove('visible');
@@ -1604,7 +1620,6 @@
                 });
             }
 
-            // ====== INIT ======
             function init() {
                 cacheDom();
                 initThemeIndex();
@@ -1618,13 +1633,9 @@
                 setupRippleEffect();
                 setupTiltEffect();
                 setupSystemThemeListener();
-
                 if (D.logoBox) D.logoBox.classList.add('animate');
-
                 setTimeout(hideLoading, 1000);
                 setTimeout(() => showToast(t('toast_welcome')), 300);
-
-                // PWA Setup
                 generateManifest();
                 registerServiceWorker();
                 setupInstallPrompt();
@@ -1632,10 +1643,7 @@
 
             if (document.readyState !== 'loading') init();
             else document.addEventListener('DOMContentLoaded', init);
-
-            window.addEventListener('beforeunload', () => {
-                if (state.clockInterval) clearInterval(state.clockInterval);
-            });
+            window.addEventListener('beforeunload', () => { if (state.clockInterval) clearInterval(state.clockInterval); });
         })();
     </script>
 </body>
