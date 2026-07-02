@@ -1,28 +1,26 @@
 // ===================================================================
 // Service Worker - Alireza Apex PWA
-// Version: 2.0.0
+// Version: 3.0.0
 // Strategy: Network First with Cache Fallback
 // ===================================================================
 
-const CACHE_VERSION = 'v2';
+const CACHE_VERSION = 'v3';
 const CACHE_NAME = `alireza-apex-${CACHE_VERSION}`;
 
+// Only local assets - NO external fonts to prevent install failure
 const APP_SHELL_ASSETS = [
     './',
     './index.html',
+    './manifest.json',
     './1780913134571.webp'
 ];
-
-const EXTERNAL_ASSETS = [
-    'https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700;800&display=swap'
-];
-
-const ASSETS_TO_CACHE = [...APP_SHELL_ASSETS, ...EXTERNAL_ASSETS];
 
 const IGNORED_DOMAINS = [
     'google-analytics.com',
     'googletagmanager.com',
-    'doubleclick.net'
+    'doubleclick.net',
+    'fonts.googleapis.com',
+    'fonts.gstatic.com'
 ];
 
 self.addEventListener('install', (event) => {
@@ -31,15 +29,18 @@ self.addEventListener('install', (event) => {
         caches.open(CACHE_NAME)
             .then((cache) => {
                 console.log(`[SW ${CACHE_VERSION}] Caching app shell assets`);
-                return cache.addAll(ASSETS_TO_CACHE);
+                return cache.addAll(APP_SHELL_ASSETS);
             })
-            .then(() => console.log(`[SW ${CACHE_VERSION}] Installation complete`))
+            .then(() => {
+                console.log(`[SW ${CACHE_VERSION}] Installation complete`);
+                return self.skipWaiting();
+            })
             .catch((err) => {
                 console.warn(`[SW ${CACHE_VERSION}] Some assets failed to cache:`, err);
-                return caches.open(CACHE_NAME).then(cache => cache.add('./'));
+                // Don't fail installation if caching fails
+                return self.skipWaiting();
             })
     );
-    self.skipWaiting();
 });
 
 self.addEventListener('activate', (event) => {
@@ -58,25 +59,21 @@ self.addEventListener('activate', (event) => {
             })
             .then(() => {
                 console.log(`[SW ${CACHE_VERSION}] Activation complete`);
-                return self.clients.matchAll({ type: 'window', includeUncontrolled: true });
-            })
-            .then((clients) => {
-                clients.forEach((client) => {
-                    client.postMessage({ type: 'SW_ACTIVATED', version: CACHE_VERSION });
-                });
+                return self.clients.claim();
             })
     );
-    self.clients.claim();
 });
 
 self.addEventListener('fetch', (event) => {
     const request = event.request;
     const url = new URL(request.url);
+    
     if (request.method !== 'GET') return;
     if (IGNORED_DOMAINS.some(domain => url.hostname.includes(domain))) return;
+    
     const isSameOrigin = url.origin === self.location.origin;
-    const isTrustedExternal = EXTERNAL_ASSETS.some(ext => request.url.startsWith(ext));
-    if (!isSameOrigin && !isTrustedExternal) return;
+    if (!isSameOrigin) return;
+
     event.respondWith(
         fetch(request)
             .then((networkResponse) => {
@@ -101,6 +98,7 @@ self.addEventListener('fetch', (event) => {
 
 self.addEventListener('message', (event) => {
     if (!event.data) return;
+    
     if (event.data.type === 'CLEAR_CACHE') {
         event.waitUntil(
             caches.keys().then((cacheNames) => {
@@ -110,6 +108,7 @@ self.addEventListener('message', (event) => {
             }).then(() => event.source.postMessage({ type: 'CACHE_CLEARED' }))
         );
     }
+    
     if (event.data.type === 'SKIP_WAITING') {
         self.skipWaiting().then(() => {
             return self.clients.matchAll({ type: 'window', includeUncontrolled: true });
@@ -119,50 +118,10 @@ self.addEventListener('message', (event) => {
             });
         });
     }
-    if (event.data.type === 'GET_CACHE_STATUS') {
-        caches.open(CACHE_NAME).then(cache => {
-            cache.keys().then(keys => {
-                event.source.postMessage({ type: 'CACHE_STATUS', count: keys.length, version: CACHE_VERSION });
-            });
-        });
-    }
+    
     if (event.data.type === 'GET_VERSION') {
         event.source.postMessage({ type: 'VERSION', version: CACHE_VERSION });
     }
-});
-
-self.addEventListener('sync', (event) => {
-    if (event.tag === 'sync-contact-form') {
-        console.log(`[SW ${CACHE_VERSION}] Background sync for contact form`);
-    }
-});
-
-self.addEventListener('push', (event) => {
-    if (event.data) {
-        const data = event.data.json();
-        const options = {
-            body: data.body || 'پیام جدید از Alireza Apex',
-            icon: './1780913134571.webp',
-            badge: './1780913134571.webp',
-            vibrate: [200, 100, 200],
-            data: { url: data.url || './' }
-        };
-        event.waitUntil(self.registration.showNotification(data.title || 'Alireza Apex', options));
-    }
-});
-
-self.addEventListener('notificationclick', (event) => {
-    event.notification.close();
-    const urlToOpen = event.notification.data?.url || './';
-    event.waitUntil(
-        clients.matchAll({ type: 'window', includeUncontrolled: true })
-            .then((windowClients) => {
-                for (let client of windowClients) {
-                    if (client.url.includes(urlToOpen) && 'focus' in client) return client.focus();
-                }
-                if (clients.openWindow) return clients.openWindow(urlToOpen);
-            })
-    );
 });
 
 console.log(`[SW ${CACHE_VERSION}] Service Worker loaded successfully`);
