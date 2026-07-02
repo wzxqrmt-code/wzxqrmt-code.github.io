@@ -1,0 +1,28 @@
+{
+    "name": "Alireza Apex - Android Developer",
+    "short_name": "Alireza Apex",
+    "description": "Android Developer with 23 published apps on Myket",
+    "start_url": "./",
+    "scope": "./",
+    "display": "standalone",
+    "orientation": "portrait",
+    "background_color": "#07070c",
+    "theme_color": "#9d4dff",
+    "lang": "fa",
+    "dir": "rtl",
+    "categories": ["developer", "productivity"],
+    "icons": [
+        {
+            "src": "https://wzxqrmt-code.github.io/1780913134571.webp",
+            "sizes": "512x512",
+            "type": "image/webp",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "https://wzxqrmt-code.github.io/1780913134571.webp",
+            "sizes": "192x192",
+            "type": "image/webp",
+            "purpose": "any maskable"
+        }
+    ]
+}
