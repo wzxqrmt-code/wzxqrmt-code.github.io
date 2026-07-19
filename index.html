@@ -138,10 +138,10 @@
         .theme-btn { transition: transform .4s, background .3s, box-shadow .3s; }
         .theme-btn.rotating { transform: rotate(360deg); }
         @media(max-width:768px) { .hamburger-btn { display: flex; } .top-bar .lang-btn, .top-bar .theme-btn { display: none; } .top-bar { justify-content: space-between; } }
-        .mobile-menu { position: fixed; top: 0; inset-inline-start: 0; width: 100%; height: 100%; background: var(--menu-bg); backdrop-filter: blur(20px); z-index: 8888; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px; transform: translateX(100%); transition: transform .3s; }
+        .mobile-menu { position: fixed; top: 0; inset-inline-start: 0; width: 100%; height: 100%; background: var(--menu-bg); backdrop-filter: blur(20px); z-index: 8888; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; transform: translateX(100%); transition: transform .3s; }
         [dir="ltr"] .mobile-menu { transform: translateX(-100%); }
         .mobile-menu.active { transform: translateX(0); }
-        .mobile-menu button { background: rgba(157, 77, 255, .2); border: 1px solid rgba(157, 77, 255, .4); color: white; padding: 15px 30px; border-radius: 20px; font-size: 1.2rem; cursor: pointer; width: 80%; }
+        .mobile-menu button { background: rgba(157, 77, 255, .2); border: 1px solid rgba(157, 77, 255, .4); color: white; padding: 16px 30px; border-radius: 20px; font-size: 1.2rem; cursor: pointer; width: 80%; }
         body.light-theme .mobile-menu button { color: #1a0b2e; background: rgba(122, 44, 255, .15); border-color: rgba(122, 44, 255, .3); }
         header { padding: 35px 0; }
         .nav { display: flex; justify-content: center; gap: 15px; align-items: center; flex-wrap: wrap; }
@@ -363,14 +363,12 @@
     </div>
 
     <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true">
-        <a href="./apps" style="width:80%;text-decoration:none"><button data-i18n="nav_apps">📱 همه اپلیکیشن‌ها</button></a>
-        <button id="mobileThemeBtn">🌓 تغییر تم</button>
-        <button id="mobileLangBtn">FA / EN</button>
-        <a href="https://myket.ir/developer/dev-99625/apps?lang=fa" target="_blank" rel="noopener" style="width:80%;text-decoration:none">
-            <button style="width:100%" data-i18n="myket_menu">🚀 مشاهده در مایکت</button>
-        </a>
-        <button id="mobileShareBtn" data-i18n="share_menu">📤 اشتراک‌گذاری</button>
-        <button id="mobileCloseBtn" data-i18n="close_menu" aria-label="بستن منو">❌ بستن</button>
+        <a href="./apps" style="display:contents;text-decoration:none"><button data-i18n="nav_apps" style="width:80%">📱 همه اپلیکیشن‌ها</button></a>
+        <button id="mobileThemeBtn" style="width:80%">🌓 تغییر تم</button>
+        <button id="mobileLangBtn" style="width:80%">FA / EN</button>
+        <a href="https://myket.ir/developer/dev-99625/apps?lang=fa" target="_blank" rel="noopener" style="display:contents;text-decoration:none"><button style="width:80%" data-i18n="myket_menu">🚀 مشاهده در مایکت</button></a>
+        <button id="mobileShareBtn" style="width:80%" data-i18n="share_menu">📤 اشتراک‌گذاری</button>
+        <button id="mobileCloseBtn" style="width:80%" data-i18n="close_menu" aria-label="بستن منو">❌ بستن</button>
     </div>
 
     <div class="install-banner" id="installBanner" role="dialog" aria-live="polite">
