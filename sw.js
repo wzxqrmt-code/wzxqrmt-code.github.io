@@ -1,10 +1,10 @@
 // ===================================================================
 // Service Worker - Alireza Apex PWA
-// Version: 3.0.0
+// Version: 4.0.0
 // Strategy: Network First with Cache Fallback
 // ===================================================================
 
-const CACHE_VERSION = 'v3';
+const CACHE_VERSION = 'v4';
 const CACHE_NAME = `alireza-apex-${CACHE_VERSION}`;
 
 // Only local assets - NO external fonts to prevent install failure
