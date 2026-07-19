@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All 23 Android Apps - Alireza Apex | Download Android Applications</title>
+    <meta name="description" content="Complete list of 23 Android applications developed by Alireza Apex. Download educational apps, utilities, password managers, music players, dictionaries, games and more from Myket.">
+    <meta name="keywords" content="Alireza Apex apps, Android applications, download Android apps, Myket apps, educational Android apps, Android utilities, password manager Android, music player Android, dictionary Android, calculator Android, mobile games Android, Iranian Android developer apps">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#9d4dff">
+    <link rel="canonical" href="https://wzxqrmt-code.github.io/apps.html">
+    <link rel="icon" href="https://wzxqrmt-code.github.io/1780913134571.webp" type="image/webp">
+    <style>
+        :root {
+            --bg: #07070c;
+            --card: rgba(17, 17, 30, .75);
+            --border: rgba(255, 255, 255, .08);
+            --text: #ffffff;
+            --muted: #d1d1e0;
+            --accent-text: #e0d0ff;
+            --primary: #9d4dff;
+            --primary2: #7a2cff;
+            --surface: rgba(255, 255, 255, .03);
+            --hover-glow: rgba(157, 77, 255, .4);
+            --card-shadow: 0 0 40px rgba(157, 77, 255, .15);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Vazirmatn', sans-serif; }
+        body { background: var(--bg); color: var(--text); min-height: 100vh; }
+        body::before { content: ""; position: fixed; inset: 0; background: radial-gradient(circle at top right, #9d4dff22, transparent 35%), radial-gradient(circle at bottom left, #7a2cff22, transparent 35%), var(--bg); z-index: -1; }
+        .container { width: min(1100px, 92%); margin: auto; padding: 20px 0; }
+        .back-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--surface); border: 1px solid var(--border); color: var(--text); padding: 10px 20px; border-radius: 999px; text-decoration: none; font-weight: 600; margin-bottom: 30px; transition: all 0.3s; }
+        .back-btn:hover { background: var(--hover-glow); transform: translateY(-2px); }
+        .page-title { font-size: 2rem; font-weight: 800; margin-bottom: 10px; color: var(--accent-text); text-align: center; }
+        .page-subtitle { text-align: center; color: var(--muted); margin-bottom: 40px; font-size: 1.1rem; }
+        .apps-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+        .app-card { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 24px; backdrop-filter: blur(25px); box-shadow: var(--card-shadow); transition: transform .3s, box-shadow .3s; text-decoration: none; color: var(--text); display: flex; flex-direction: column; gap: 8px; }
+        .app-card:hover { transform: translateY(-4px); box-shadow: 0 0 40px var(--hover-glow); border-color: var(--primary); }
+        .app-number { font-size: .8rem; color: var(--primary); font-weight: 800; }
+        .app-name { font-size: 1.1rem; font-weight: 800; color: var(--text); }
+        .app-category { font-size: .85rem; color: var(--muted); }
+        .app-download { display: inline-block; margin-top: 8px; padding: 8px 16px; background: linear-gradient(135deg, var(--primary), var(--primary2)); color: white; border-radius: 999px; font-weight: 700; font-size: .9rem; text-align: center; transition: box-shadow .3s; }
+        .app-download:hover { box-shadow: 0 0 20px #9d4dff88; }
+        footer { text-align: center; padding: 40px 0 20px; color: var(--muted); font-size: .9rem; }
+        @media(max-width:480px) { .page-title { font-size: 1.5rem; } .apps-grid { grid-template-columns: 1fr; } }
+    </style>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700;800&display=swap" rel="stylesheet"></noscript>
+</head>
+<body>
+    <div class="container">
+        <a href="./" class="back-btn">← Back to Homepage</a>
+        <h1 class="page-title">📱 All 23 Android Applications</h1>
+        <p class="page-subtitle">Complete list of Android apps developed by Alireza Apex — Available on Myket</p>
+        <div class="apps-grid" id="appsGrid"></div>
+        <footer>© 2026 Alireza Apex — All Rights Reserved</footer>
+    </div>
+
+    <script>
+        const allApps = [
+            { name: '9th Grade Math Step-by-Step', pkg: 'com.nine.class', cat: 'Educational' },
+            { name: 'Elevator Simulator', pkg: 'com.sh.theuxs.elevatorsimulator', cat: 'Simulation Game' },
+            { name: 'Translate Pro', pkg: 'com.sh.TranslatorPro', cat: 'Utility' },
+            { name: 'Secure Password Generator', pkg: 'com.sh.password.generator', cat: 'Security Utility' },
+            { name: 'Rafigh - Companion App', pkg: 'com.sh.rafigh', cat: 'Social Utility' },
+            { name: 'Apex Vault - Secure Safe', pkg: 'com.sh.apex.secure.vault', cat: 'Security' },
+            { name: 'Advanced Tic Tac Toe', pkg: 'com.s.h.valer.tictactoe', cat: 'Game' },
+            { name: 'Quick Message & Call | Calendar & Clock', pkg: 'com.my.messagees.w', cat: 'Utility' },
+            { name: 'Sketchware Blocks', pkg: 'com.sh.sk.blocks', cat: 'Educational' },
+            { name: 'Pixel Art with Professional Layers | PixAD', pkg: 'com.inflps.pixartd', cat: 'Creative' },
+            { name: '7 Device Info', pkg: 'com.sh.sevendeviceinfo', cat: 'Utility' },
+            { name: 'Unknown Facts', pkg: 'com.alireza.facts', cat: 'Educational' },
+            { name: 'Apex Wallet - Personal Wallet', pkg: 'com.sh.apex.wallet', cat: 'Finance' },
+            { name: 'Web Rose Browser', pkg: 'com.sh.browser.webrose', cat: 'Utility' },
+            { name: 'R.P.S | Advanced Rock Paper Scissors', pkg: 'com.sh.rock.paper.scissor', cat: 'Game' },
+            { name: 'Smart QR Code Generator', pkg: 'com.sh.gerarsalvarQRCODE', cat: 'Utility' },
+            { name: '8th Grade Social Studies Step-by-Step', pkg: 'com.sh.eight.class.one', cat: 'Educational' },
+            { name: 'Apex Music - Offline Music Player', pkg: 'com.sh.apex.music', cat: 'Music & Audio' },
+            { name: 'Winter Mouse', pkg: 'com.wintermouse.by.sh', cat: 'Game' },
+            { name: 'Number Maker Plus', pkg: 'com.sh.my.phone.maker', cat: 'Utility' },
+            { name: 'Hesabino Calculator', pkg: 'com.sh.valer.calculator', cat: 'Utility' },
+            { name: 'Bot Runner: Infinite Challenge 🤖', pkg: 'com.sh.BOTRun', cat: 'Game' },
+            { name: 'Apex Dictionary - Comprehensive Dictionary', pkg: 'com.sh.apex.dictionary', cat: 'Educational' }
+        ];
+
+        const grid = document.getElementById('appsGrid');
+        grid.innerHTML = allApps.map((app, i) => `
+            <a href="https://myket.ir/app/${app.pkg}" target="_blank" rel="noopener" class="app-card">
+                <span class="app-number">#${i + 1}</span>
+                <span class="app-name">${app.name}</span>
+                <span class="app-category">📂 ${app.cat}</span>
+                <span class="app-download">Download on Myket</span>
+            </a>
+        `).join('');
+    </script>
+</body>
+</html>
