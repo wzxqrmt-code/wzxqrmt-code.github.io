@@ -137,9 +137,8 @@
         .mobile-menu { position: fixed; top: 0; inset-inline-start: 0; width: 100%; height: 100%; background: var(--menu-bg); backdrop-filter: blur(20px); z-index: 8888; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; transform: translateX(100%); transition: transform .3s; }
         [dir="ltr"] .mobile-menu { transform: translateX(-100%); }
         .mobile-menu.active { transform: translateX(0); }
-        .mobile-menu button, .mobile-menu a button { background: rgba(157, 77, 255, .2); border: 1px solid rgba(157, 77, 255, .4); color: white; padding: 16px 30px; border-radius: 20px; font-size: 1.2rem; cursor: pointer; width: 80%; box-sizing: border-box; }
-        body.light-theme .mobile-menu button, body.light-theme .mobile-menu a button { color: #1a0b2e; background: rgba(122, 44, 255, .15); border-color: rgba(122, 44, 255, .3); }
-        .mobile-menu a { width: 80%; text-decoration: none; display: block; }
+        .mobile-menu button { background: rgba(157, 77, 255, .2); border: 1px solid rgba(157, 77, 255, .4); color: white; padding: 16px 30px; border-radius: 20px; font-size: 1.2rem; cursor: pointer; width: 80%; }
+        body.light-theme .mobile-menu button { color: #1a0b2e; background: rgba(122, 44, 255, .15); border-color: rgba(122, 44, 255, .3); }
         .header { text-align: center; padding: 40px 0 30px; }
         .header h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; background: linear-gradient(90deg, #fff, #c9a6ff, #fff); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: gradientShift 4s ease-in-out infinite; margin-bottom: 10px; }
         @keyframes gradientShift { 0%, 100% { background-position: 0% center; } 50% { background-position: 100% center; } }
@@ -211,12 +210,12 @@
     </div>
 
     <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true">
-        <a href="./"><button data-i18n="menu_home">🏠 صفحه اصلی</button></a>
-        <button id="mobileThemeBtn">🌓 تغییر تم</button>
-        <button id="mobileLangBtn">FA / EN</button>
-        <a href="https://myket.ir/developer/dev-99625/apps?lang=fa" target="_blank" rel="noopener"><button data-i18n="menu_myket">🚀 مشاهده در مایکت</button></a>
-        <button id="mobileShareBtn" data-i18n="menu_share">📤 اشتراک‌گذاری</button>
-        <button id="mobileCloseBtn" data-i18n="menu_close" aria-label="بستن منو">❌ بستن</button>
+        <a href="./" style="display:contents;text-decoration:none"><button data-i18n="menu_home" style="width:80%">🏠 صفحه اصلی</button></a>
+        <button id="mobileThemeBtn" style="width:80%">🌓 تغییر تم</button>
+        <button id="mobileLangBtn" style="width:80%">FA / EN</button>
+        <a href="https://myket.ir/developer/dev-99625/apps?lang=fa" target="_blank" rel="noopener" style="display:contents;text-decoration:none"><button data-i18n="menu_myket" style="width:80%">🚀 مشاهده در مایکت</button></a>
+        <button id="mobileShareBtn" style="width:80%" data-i18n="menu_share">📤 اشتراک‌گذاری</button>
+        <button id="mobileCloseBtn" style="width:80%" data-i18n="menu_close" aria-label="بستن منو">❌ بستن</button>
     </div>
 
     <script>
@@ -396,17 +395,15 @@
 
             let toastTimer = null;
             function showToast(msg) {
-                const toast = document.getElementById('toast');
+                let toast = document.getElementById('toast');
                 if (!toast) {
-                    const t = document.createElement('div');
-                    t.id = 'toast';
-                    t.style.cssText = 'position:fixed;bottom:25px;left:50%;transform:translateX(-50%) translateY(100px);background:#9d4dff;padding:12px 25px;border-radius:999px;color:white;font-weight:700;opacity:0;pointer-events:none;transition:opacity .35s,transform .35s;z-index:9999;box-shadow:0 8px 30px rgba(157,77,255,.4);';
-                    document.body.appendChild(t);
-                    toast = t;
+                    toast = document.createElement('div');
+                    toast.id = 'toast';
+                    toast.style.cssText = 'position:fixed;bottom:25px;left:50%;transform:translateX(-50%) translateY(100px);background:#9d4dff;padding:12px 25px;border-radius:999px;color:white;font-weight:700;opacity:0;pointer-events:none;transition:opacity .35s,transform .35s;z-index:9999;box-shadow:0 8px 30px rgba(157,77,255,.4);';
+                    document.body.appendChild(toast);
                 }
                 if (toastTimer) clearTimeout(toastTimer);
                 toast.textContent = msg;
-                toast.classList.add('show');
                 toast.style.opacity = '1';
                 toast.style.transform = 'translateX(-50%) translateY(0)';
                 toastTimer = setTimeout(() => {
