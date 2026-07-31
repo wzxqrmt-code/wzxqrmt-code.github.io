@@ -12,6 +12,8 @@ const APP_SHELL_ASSETS = [
     './',
     './index.html',
     './apps.html',
+    './apps.json',
+    './faq.json',
     './manifest.json',
     './1780913134571.webp'
 ];
