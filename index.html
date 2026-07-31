@@ -73,6 +73,8 @@
             --blob-1: rgba(157, 77, 255, 0.15);
             --blob-2: rgba(122, 44, 255, 0.15);
             --card-shadow: 0 0 40px rgba(157, 77, 255, .15);
+            --chat-bot-bg: rgba(157, 77, 255, 0.15);
+            --chat-user-bg: rgba(255, 255, 255, 0.05);
         }
         body.light-theme {
             --bg: #faf7ff;
@@ -98,6 +100,8 @@
             --blob-1: rgba(157, 77, 255, 0.12);
             --blob-2: rgba(122, 44, 255, 0.1);
             --card-shadow: 0 8px 32px rgba(122, 44, 255, .12), 0 0 0 1px rgba(122, 44, 255, .08);
+            --chat-bot-bg: rgba(122, 44, 255, 0.1);
+            --chat-user-bg: rgba(0, 0, 0, 0.04);
         }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Vazirmatn', sans-serif; }
         html { scroll-behavior: smooth; }
@@ -112,7 +116,7 @@
         @keyframes blobFloat { 0%, 100% { transform: translate(0, 0) scale(1); } 33% { transform: translate(50px, -50px) scale(1.1); } 66% { transform: translate(-30px, 40px) scale(0.9); } }
         
         @media (prefers-reduced-motion: reduce) { 
-            .blob, .logo-icon::before, .hero h2 { animation: none !important; } 
+            .blob, .logo-icon::before, .hero h2, .typing-dot { animation: none !important; } 
             .blob { filter: none !important; opacity: 0.3 !important; }
         }
         body.low-perf .blob { animation: none !important; filter: none !important; opacity: 0.2 !important; }
@@ -130,10 +134,10 @@
         .loader { width: 60px; height: 60px; border-radius: 50%; border: 4px solid rgba(157, 77, 255, .3); border-top-color: #9d4dff; animation: spin 1s linear infinite; box-shadow: 0 0 20px #9d4dff88; }
         @keyframes spin { to { transform: rotate(360deg); } }
         .top-bar { display: flex; justify-content: flex-end; gap: 10px; padding: 10px 0; flex-wrap: wrap; }
-        .hamburger-btn, .theme-btn, .lang-btn, .nav-btn { background: rgba(157, 77, 255, .15); border: 1px solid rgba(157, 77, 255, .4); color: #d8beff; padding: 8px 16px; border-radius: 20px; cursor: pointer; font-weight: 700; font-size: .9rem; backdrop-filter: blur(10px); transition: .3s; display: flex; align-items: center; gap: 5px; box-shadow: 0 0 8px #9d4dff44; text-decoration: none; }
-        body.light-theme .hamburger-btn, body.light-theme .theme-btn, body.light-theme .lang-btn, body.light-theme .nav-btn { color: #4a00b3; background: rgba(122, 44, 255, .1); border-color: rgba(122, 44, 255, .3); }
-        .hamburger-btn:hover, .theme-btn:hover, .lang-btn:hover, .nav-btn:hover { background: rgba(157, 77, 255, .3); box-shadow: 0 0 20px #9d4dff; }
-        body.light-theme .hamburger-btn:hover, body.light-theme .theme-btn:hover, body.light-theme .lang-btn:hover, body.light-theme .nav-btn:hover { background: rgba(122, 44, 255, .2); box-shadow: 0 0 20px rgba(122, 44, 255, .4); }
+        .hamburger-btn, .theme-btn, .lang-btn { background: rgba(157, 77, 255, .15); border: 1px solid rgba(157, 77, 255, .4); color: #d8beff; padding: 8px 16px; border-radius: 20px; cursor: pointer; font-weight: 700; font-size: .9rem; backdrop-filter: blur(10px); transition: .3s; display: flex; align-items: center; gap: 5px; box-shadow: 0 0 8px #9d4dff44; }
+        body.light-theme .hamburger-btn, body.light-theme .theme-btn, body.light-theme .lang-btn { color: #4a00b3; background: rgba(122, 44, 255, .1); border-color: rgba(122, 44, 255, .3); }
+        .hamburger-btn:hover, .theme-btn:hover, .lang-btn:hover { background: rgba(157, 77, 255, .3); box-shadow: 0 0 20px #9d4dff; }
+        body.light-theme .hamburger-btn:hover, body.light-theme .theme-btn:hover, body.light-theme .lang-btn:hover { background: rgba(122, 44, 255, .2); box-shadow: 0 0 20px rgba(122, 44, 255, .4); }
         .hamburger-btn { display: none; font-size: 1.3rem; padding: 6px 14px; }
         .theme-btn { transition: transform .4s, background .3s, box-shadow .3s; }
         .theme-btn.rotating { transform: rotate(360deg); }
@@ -218,8 +222,33 @@
         .featured-app-item { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 20px; transition: all 0.3s; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; min-height: 100px; text-decoration: none; }
         .featured-app-item:hover { transform: translateY(-3px); box-shadow: 0 8px 25px var(--hover-glow); border-color: var(--primary); }
         .featured-app-name { font-weight: 800; font-size: 1.05rem; color: var(--text); line-height: 1.5; }
+        .badge-new { display: inline-block; background: #00c853; color: white; padding: 3px 10px; border-radius: 12px; font-size: .7rem; font-weight: 700; margin-right: 6px; animation: pulse 2s infinite; }
         
         @media (max-width: 768px) { .featured-apps-grid { grid-template-columns: 1fr; } }
+        
+        /* FAQ / AI Chat Styles */
+        .faq-intro { background: var(--chat-bot-bg); border-radius: 18px; padding: 20px 24px; margin-bottom: 25px; display: flex; gap: 12px; align-items: flex-start; }
+        .faq-avatar { width: 44px; height: 44px; border-radius: 50%; background: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; }
+        .faq-intro p { color: var(--text); line-height: 1.9; font-size: .95rem; }
+        .faq-category { margin-bottom: 20px; }
+        .faq-cat-header { display: flex; align-items: center; gap: 10px; padding: 14px 18px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; cursor: pointer; font-weight: 700; color: var(--accent-text); transition: all .3s; margin-bottom: 8px; }
+        .faq-cat-header:hover { border-color: var(--primary); background: rgba(157, 77, 255, 0.08); }
+        .faq-cat-header .arrow { margin-inline-start: auto; transition: transform .3s; }
+        .faq-cat-header.open .arrow { transform: rotate(180deg); }
+        .faq-cat-icon { font-size: 1.3rem; }
+        .faq-questions { display: none; padding: 5px 0; }
+        .faq-questions.open { display: block; }
+        .faq-question-item { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; margin-bottom: 6px; overflow: hidden; transition: all .3s; }
+        .faq-question-item:hover { border-color: rgba(157, 77, 255, 0.4); }
+        .faq-q { padding: 14px 18px; cursor: pointer; font-weight: 600; color: var(--text); display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+        .faq-q::after { content: "▸"; color: var(--primary); transition: transform .3s; font-size: .9rem; }
+        .faq-question-item.open .faq-q::after { transform: rotate(90deg); }
+        .faq-a { max-height: 0; overflow: hidden; transition: max-height .4s ease, padding .4s ease; }
+        .faq-question-item.open .faq-a { max-height: 300px; }
+        .faq-a-inner { padding: 0 18px 16px; color: var(--muted); line-height: 2; font-size: .93rem; display: flex; gap: 10px; align-items: flex-start; }
+        .faq-a-avatar { width: 28px; height: 28px; border-radius: 50%; background: var(--primary); display: flex; align-items: center; justify-content: center; font-size: .8rem; flex-shrink: 0; }
+        .faq-search { width: 100%; background: var(--input-bg); border: 1px solid var(--border); padding: 14px 18px; border-radius: 16px; color: var(--text); margin-bottom: 20px; outline: none; font-family: inherit; transition: border-color .3s, box-shadow .3s; }
+        .faq-search:focus { border-color: #9d4dff; box-shadow: 0 0 0 3px rgba(157, 77, 255, 0.2); }
         
         .install-banner { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%) translateY(150%); background: linear-gradient(135deg, var(--primary), var(--primary2)); border: 1px solid var(--border); border-radius: 20px; padding: 15px 20px; display: flex; align-items: center; gap: 15px; box-shadow: 0 10px 40px rgba(157, 77, 255, 0.4); backdrop-filter: blur(20px); z-index: 9998; max-width: min(500px, 92%); width: 100%; transition: transform .5s cubic-bezier(.34,1.56,.64,1); }
         .install-banner.visible { transform: translateX(-50%) translateY(0); }
@@ -289,8 +318,20 @@
                     <div class="title" data-i18n="featured_apps_title">⭐ اپلیکیشن‌های برتر</div>
                     <div class="featured-apps-grid" id="featuredAppsGrid"></div>
                     <div style="text-align:center; margin-top:15px;">
-                        <a href="./apps" class="apps-main-btn" data-i18n="view_all_apps_btn">📱 مشاهده همه ۲۴ اپلیکیشن</a>
+                        <a href="./apps" class="apps-main-btn" data-i18n="view_all_apps_btn">📱 مشاهده همه اپلیکیشن‌ها</a>
                     </div>
+                </div>
+            </section>
+
+            <section class="section reveal">
+                <div class="card tilt-card">
+                    <div class="title">🤖 دستیار هوشمند Alireza Apex</div>
+                    <div class="faq-intro" id="faqIntro">
+                        <div class="faq-avatar">🤖</div>
+                        <p data-i18n="faq_intro">سلام! 👋 من دستیار مجازی Alireza Apex هستم. اینجا می‌تونی هر سوالی درباره اپلیکیشن‌ها، توسعه‌دهنده، مایکت و مسائل فنی داشته باشی از من بپرسی.</p>
+                    </div>
+                    <input type="text" class="faq-search" id="faqSearch" data-i18n-placeholder="faq_search_placeholder" placeholder="🔍 جستجو بین سوالات...">
+                    <div id="faqContainer"></div>
                 </div>
             </section>
 
@@ -342,7 +383,7 @@
                     <div class="info-grid">
                         <div class="info-row latest-changes-row">
                             <span class="info-label" data-i18n="latest_changes_label">آخرین تغییرات</span>
-                            <span class="info-value" data-i18n-html="latest_changes_value" id="latestChangesValue"></span>
+                            <span class="info-value" id="latestChangesValue"></span>
                         </div>
                         <div class="info-row">
                             <span class="info-label" data-i18n="status_label">وضعیت</span>
@@ -404,7 +445,6 @@
         (function() {
             'use strict';
 
-            const APP_COUNT = 24;
             const CONFIG = {
                 SHARE_URL: 'https://wzxqrmt-code.github.io/',
                 EMAIL_ADDR: 'alirezaapexsh@gmail.com',
@@ -416,14 +456,9 @@
                 TOAST_DURATION: 3000
             };
 
-            const featuredApps = [
-                { name: 'گام‌به‌گام ریاضی پایه نهم', pkg: 'com.nine.class' },
-                { name: 'شبیه‌ساز آسانسور', pkg: 'com.sh.theuxs.elevatorsimulator' },
-                { name: 'ترنسلیت پرو', pkg: 'com.sh.TranslatorPro' },
-                { name: 'تولید کننده رمز عبور امن و قوی', pkg: 'com.sh.password.generator' },
-                { name: 'رفیق', pkg: 'com.sh.rafigh' },
-                { name: 'متن‌یاب آهنگ | ApexLyricFind', pkg: 'com.sh.Apex.LyricFind' }
-            ];
+            let APP_COUNT = 24;
+            let featuredApps = [];
+            let allAppsData = [];
 
             const state = {
                 lang: localStorage.getItem('lang') || 'fa',
@@ -439,16 +474,22 @@
                 lowPerf: false
             };
 
+            let faqData = null;
+
+            function t(key) {
+                return TRANSLATIONS[state.lang]?.[key] || key;
+            }
+
             const TRANSLATIONS = {
                 fa: {
                     brand_name: "Alireza Apex",
                     hero_title: "Alireza Apex",
-                    hero_desc: `${APP_COUNT} اپلیکیشن منتشر شده در مایکت، حاصل تلاش مستمر در توسعه‌ی اندروید.`,
+                    hero_desc: "۲۴ اپلیکیشن منتشر شده در مایکت، حاصل تلاش مستمر در توسعه‌ی اندروید.",
                     myket_btn: "🌐 مشاهده همه در مایکت",
                     featured_apps_title: "⭐ اپلیکیشن‌های برتر",
-                    view_all_apps_btn: `📱 مشاهده همه ${APP_COUNT} اپلیکیشن`,
+                    view_all_apps_btn: "📱 مشاهده همه اپلیکیشن‌ها",
                     about_title: "👤 درباره Alireza Apex",
-                    about_text: `توسعه‌دهنده‌ی اندروید با ${APP_COUNT} اپلیکیشن منتشر شده در پلتفرم مایکت. تمرکز اصلی بر ارائه‌ی راهکارهای کاربردی و باکیفیت برای کاربران فارسی‌زبان است.`,
+                    about_text: "توسعه‌دهنده‌ی اندروید با ۲۴ اپلیکیشن منتشر شده در پلتفرم مایکت. تمرکز اصلی بر ارائه‌ی راهکارهای کاربردی و باکیفیت برای کاربران فارسی‌زبان است.",
                     contact_title: "📬 ارتباط با Alireza Apex",
                     id_label: "آیدی تمامی پیام‌رسان‌ها",
                     copy_btn: "📋 کپی آیدی",
@@ -463,7 +504,6 @@
                     submit_btn: "ارسال پیام",
                     site_info_title: "اطلاعات Alireza Apex",
                     latest_changes_label: "آخرین تغییرات",
-                    latest_changes_value: `📅 ۲۸ تیر ۱۴۰۵<br>• انتشار اپلیکیشن جدید: متن‌یاب آهنگ | ApexLyricFind<br>• نمایش ۶ اپلیکیشن برتر در صفحه اصلی<br>• افزودن آنالیتیکس GoatCounter<br>• بهینه‌سازی خودکار برای دستگاه‌های ضعیف<br>• لینک مستقیم کارت‌ها به مایکت`,
                     status_label: "وضعیت",
                     status_online: "آنلاین",
                     current_time_label: "ساعت فعلی",
@@ -499,17 +539,18 @@
                     toast_theme_auto: "تم خودکار فعال شد",
                     toast_theme_light: "تم روشن فعال شد",
                     toast_theme_dark: "تم تاریک فعال شد",
-                    nav_apps: "📱 همه اپلیکیشن‌ها"
+                    nav_apps: "📱 همه اپلیکیشن‌ها",
+                    faq_search_placeholder: "🔍 جستجو بین سوالات..."
                 },
                 en: {
                     brand_name: "Alireza Apex",
                     hero_title: "Alireza Apex",
-                    hero_desc: `${APP_COUNT} applications published on Myket, built through continuous Android development.`,
+                    hero_desc: "24 applications published on Myket, built through continuous Android development.",
                     myket_btn: "🌐 View All on Myket",
                     featured_apps_title: "⭐ Featured Apps",
-                    view_all_apps_btn: `📱 View All ${APP_COUNT} Apps`,
+                    view_all_apps_btn: "📱 View All Apps",
                     about_title: "👤 About Alireza Apex",
-                    about_text: `An Android developer with ${APP_COUNT} applications published on the Myket platform. Focused on delivering practical and high-quality solutions.`,
+                    about_text: "An Android developer with 24 applications published on the Myket platform. Focused on delivering practical and high-quality solutions.",
                     contact_title: "📬 Contact Alireza Apex",
                     id_label: "All Messenger IDs",
                     copy_btn: "📋 Copy ID",
@@ -524,7 +565,6 @@
                     submit_btn: "Send Message",
                     site_info_title: "Alireza Apex Info",
                     latest_changes_label: "Latest Changes",
-                    latest_changes_value: `📅 July 19, 2026<br>• New app published: ApexLyricFind<br>• 6 featured apps on homepage<br>• Added GoatCounter analytics<br>• Auto performance optimization for low-end devices<br>• Direct card links to Myket`,
                     status_label: "Status",
                     status_online: "Online",
                     current_time_label: "Current Time",
@@ -560,13 +600,10 @@
                     toast_theme_auto: "Auto theme enabled",
                     toast_theme_light: "Light theme enabled",
                     toast_theme_dark: "Dark theme enabled",
-                    nav_apps: "📱 All Apps"
+                    nav_apps: "📱 All Apps",
+                    faq_search_placeholder: "🔍 Search questions..."
                 }
             };
-
-            function t(key) {
-                return TRANSLATIONS[state.lang]?.[key] || key;
-            }
 
             const D = {};
             function cacheDom() {
@@ -576,12 +613,12 @@
                     'mobileCloseBtn', 'shareBtn', 'copyIdBtn', 'copyEmailBtn', 'bleBtn', 'telegramBtn',
                     'contactForm', 'nameInput', 'emailInput', 'messageInput', 'toast', 'topBtn',
                     'progressCircle', 'liveClock', 'installBanner', 'installBtn', 'installDismissBtn',
-                    'updateBanner', 'updateBtn', 'updateDismissBtn', 'featuredAppsGrid', 'mainContent'
+                    'updateBanner', 'updateBtn', 'updateDismissBtn', 'featuredAppsGrid', 'mainContent',
+                    'faqContainer', 'faqSearch', 'faqIntro', 'latestChangesValue'
                 ];
                 ids.forEach(id => { D[id] = document.getElementById(id); });
                 D.reveals = document.querySelectorAll('.reveal');
                 D.i18nEls = document.querySelectorAll('[data-i18n]');
-                D.i18nHtmlEls = document.querySelectorAll('[data-i18n-html]');
                 D.i18nPlaceEls = document.querySelectorAll('[data-i18n-placeholder]');
                 D.tiltCards = document.querySelectorAll('.tilt-card');
             }
@@ -596,11 +633,6 @@
                     const val = t(key);
                     if (val !== key) el.textContent = val;
                 });
-                D.i18nHtmlEls.forEach(el => {
-                    const key = el.getAttribute('data-i18n-html');
-                    const val = t(key);
-                    if (val !== key) el.innerHTML = val;
-                });
                 D.i18nPlaceEls.forEach(el => {
                     const key = el.getAttribute('data-i18n-placeholder');
                     const val = t(key);
@@ -611,25 +643,19 @@
                 updateThemeUI();
                 document.documentElement.lang = state.lang;
                 document.documentElement.dir = state.lang === 'fa' ? 'rtl' : 'ltr';
-            }
-
-            function getSystemTheme() {
-                return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-            }
-
-            function getEffectiveTheme() {
-                return state.theme === 'auto' ? getSystemTheme() : state.theme;
+                renderFAQ();
+                renderLatestChanges();
             }
 
             function updateThemeUI() {
                 const icons = { auto: '🌓', light: '☀️', dark: '🌙' };
                 const keys = { auto: 'theme_auto', light: 'theme_light', dark: 'theme_dark' };
-                if (D.themeToggle) {
-                    D.themeToggle.textContent = icons[state.theme] || '🌓';
-                    D.themeToggle.setAttribute('aria-label', t(keys[state.theme]));
-                }
+                if (D.themeToggle) { D.themeToggle.textContent = icons[state.theme] || '🌓'; D.themeToggle.setAttribute('aria-label', t(keys[state.theme])); }
                 if (D.mobileThemeBtn) D.mobileThemeBtn.textContent = t(keys[state.theme]);
             }
+
+            function getSystemTheme() { return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'; }
+            function getEffectiveTheme() { return state.theme === 'auto' ? getSystemTheme() : state.theme; }
 
             function applyTheme() {
                 document.body.classList.toggle('light-theme', getEffectiveTheme() === 'light');
@@ -641,73 +667,140 @@
             function cycleTheme() {
                 state.currentThemeIndex = (state.currentThemeIndex + 1) % 3;
                 state.theme = state.themeModes[state.currentThemeIndex];
-                if (D.themeToggle) {
-                    D.themeToggle.classList.add('rotating');
-                    setTimeout(() => D.themeToggle.classList.remove('rotating'), 400);
-                }
+                if (D.themeToggle) { D.themeToggle.classList.add('rotating'); setTimeout(() => D.themeToggle.classList.remove('rotating'), 400); }
                 applyTheme();
                 const msgs = { auto: t('toast_theme_auto'), light: t('toast_theme_light'), dark: t('toast_theme_dark') };
                 showToast(msgs[state.theme]);
             }
 
-            function toggleLang() {
-                state.lang = state.lang === 'fa' ? 'en' : 'fa';
-                localStorage.setItem('lang', state.lang);
-                render();
+            function toggleLang() { state.lang = state.lang === 'fa' ? 'en' : 'fa'; localStorage.setItem('lang', state.lang); render(); }
+
+            async function loadData() {
+                try {
+                    const [appsRes, faqRes] = await Promise.all([
+                        fetch('./apps.json'),
+                        fetch('./faq.json')
+                    ]);
+                    const appsJson = await appsRes.json();
+                    const faqJson = await faqRes.json();
+                    allAppsData = appsJson.apps;
+                    APP_COUNT = allAppsData.length;
+                    featuredApps = allAppsData.filter(a => a.featured);
+                    faqData = faqJson;
+                    renderFeaturedApps();
+                    renderFAQ();
+                    renderLatestChanges();
+                    updateHeroText();
+                } catch (e) {
+                    console.warn('Could not load JSON, using defaults:', e);
+                    if (faqData) renderFAQ();
+                }
+            }
+
+            function updateHeroText() {
+                const heroDesc = document.querySelector('[data-i18n="hero_desc"]');
+                if (heroDesc) heroDesc.textContent = state.lang === 'fa' ? `${APP_COUNT} اپلیکیشن منتشر شده در مایکت، حاصل تلاش مستمر در توسعه‌ی اندروید.` : `${APP_COUNT} applications published on Myket, built through continuous Android development.`;
+                const aboutText = document.querySelector('[data-i18n="about_text"]');
+                if (aboutText) aboutText.textContent = state.lang === 'fa' ? `توسعه‌دهنده‌ی اندروید با ${APP_COUNT} اپلیکیشن منتشر شده در پلتفرم مایکت. تمرکز اصلی بر ارائه‌ی راهکارهای کاربردی و باکیفیت برای کاربران فارسی‌زبان است.` : `An Android developer with ${APP_COUNT} applications published on the Myket platform. Focused on delivering practical and high-quality solutions.`;
+                const viewAllBtn = document.querySelector('[data-i18n="view_all_apps_btn"]');
+                if (viewAllBtn) viewAllBtn.textContent = state.lang === 'fa' ? `📱 مشاهده همه ${APP_COUNT} اپلیکیشن` : `📱 View All ${APP_COUNT} Apps`;
             }
 
             function renderFeaturedApps() {
-                if (!D.featuredAppsGrid) return;
-                D.featuredAppsGrid.innerHTML = featuredApps.map(app => `
-                    <a href="https://myket.ir/app/${app.pkg}" target="_blank" rel="noopener" class="featured-app-item tilt-card">
-                        <div class="featured-app-name">${app.name}</div>
-                    </a>
-                `).join('');
+                if (!D.featuredAppsGrid || !featuredApps.length) return;
+                D.featuredAppsGrid.innerHTML = featuredApps.map(app => {
+                    const isNew = app.date && (new Date(app.date) > new Date(Date.now() - 30 * 24 * 60 * 60 * 1000));
+                    return `<a href="https://myket.ir/app/${app.pkg}" target="_blank" rel="noopener" class="featured-app-item tilt-card">
+                        <div class="featured-app-name">${isNew ? '<span class="badge-new">جدید</span>' : ''}${app.name}</div>
+                    </a>`;
+                }).join('');
             }
 
-            function openMenu() {
-                if (D.mobileMenu) { D.mobileMenu.classList.add('active'); D.hamburgerBtn.setAttribute('aria-expanded', 'true'); }
+            function renderLatestChanges() {
+                if (!D.latestChangesValue || !allAppsData.length) return;
+                const sorted = [...allAppsData].sort((a, b) => new Date(b.date) - new Date(a.date));
+                const latest = sorted[0];
+                const changesFa = `📅 ۹ مرداد ۱۴۰۵<br>• انتشار اپلیکیشن جدید: ${latest.name}<br>• ${APP_COUNT} اپلیکیشن فعال در مایکت<br>• بخش دستیار هوشمند (FAQ) اضافه شد<br>• بهینه‌سازی خودکار از فایل JSON`;
+                const changesEn = `📅 July 31, 2026<br>• New app published: ${latest.nameEn || latest.name}<br>• ${APP_COUNT} active apps on Myket<br>• Smart assistant (FAQ) section added<br>• Auto-update from JSON`;
+                D.latestChangesValue.innerHTML = state.lang === 'fa' ? changesFa : changesEn;
             }
 
-            function closeMenu() {
-                if (D.mobileMenu) { D.mobileMenu.classList.remove('active'); D.hamburgerBtn.setAttribute('aria-expanded', 'false'); }
+            function renderFAQ() {
+                if (!D.faqContainer || !faqData) return;
+                const searchTerm = D.faqSearch?.value?.toLowerCase() || '';
+                const introData = faqData.intro;
+                const introText = state.lang === 'fa' ? introData.fa : introData.en;
+                if (D.faqIntro) {
+                    D.faqIntro.innerHTML = `<div class="faq-avatar">🤖</div><p>${introText}</p>`;
+                }
+                let html = '';
+                faqData.categories.forEach((cat, catIdx) => {
+                    let hasMatch = !searchTerm;
+                    let questionsHtml = '';
+                    cat.questions.forEach((q, qIdx) => {
+                        const qMatch = !searchTerm || q.q.includes(searchTerm) || q.a.includes(searchTerm);
+                        if (qMatch) hasMatch = true;
+                        if (!searchTerm || qMatch) {
+                            questionsHtml += `
+                                <div class="faq-question-item" data-cat="${catIdx}" data-q="${qIdx}">
+                                    <div class="faq-q">${q.q}</div>
+                                    <div class="faq-a">
+                                        <div class="faq-a-inner">
+                                            <div class="faq-a-avatar">🤖</div>
+                                            <div>${q.a}</div>
+                                        </div>
+                                    </div>
+                                </div>`;
+                        }
+                    });
+                    if (hasMatch) {
+                        html += `<div class="faq-category">
+                            <div class="faq-cat-header" data-cat="${catIdx}">
+                                <span class="faq-cat-icon">${cat.icon}</span> ${cat.name}
+                                <span class="arrow">▼</span>
+                            </div>
+                            <div class="faq-questions">${questionsHtml}</div>
+                        </div>`;
+                    }
+                });
+                D.faqContainer.innerHTML = html || '<p style="text-align:center;color:var(--muted);padding:20px;">سوالی با این کلمه پیدا نشد. 🤷</p>';
+                bindFAQEvents();
+                if (searchTerm) {
+                    D.faqContainer.querySelectorAll('.faq-questions').forEach(el => el.classList.add('open'));
+                    D.faqContainer.querySelectorAll('.faq-cat-header').forEach(el => el.classList.add('open'));
+                }
             }
+
+            function bindFAQEvents() {
+                D.faqContainer.querySelectorAll('.faq-cat-header').forEach(header => {
+                    header.addEventListener('click', function() {
+                        const questions = this.nextElementSibling;
+                        const isOpen = questions.classList.contains('open');
+                        if (isOpen) { questions.classList.remove('open'); this.classList.remove('open'); }
+                        else { questions.classList.add('open'); this.classList.add('open'); }
+                    });
+                });
+                D.faqContainer.querySelectorAll('.faq-q').forEach(qEl => {
+                    qEl.addEventListener('click', function() {
+                        const item = this.parentElement;
+                        item.classList.toggle('open');
+                    });
+                });
+            }
+
+            if (D.faqSearch) {
+                D.faqSearch.addEventListener('input', function() { renderFAQ(); });
+            }
+
+            function openMenu() { if (D.mobileMenu) { D.mobileMenu.classList.add('active'); D.hamburgerBtn.setAttribute('aria-expanded', 'true'); } }
+            function closeMenu() { if (D.mobileMenu) { D.mobileMenu.classList.remove('active'); D.hamburgerBtn.setAttribute('aria-expanded', 'false'); } }
 
             let toastTimer = null;
-            function showToast(msg) {
-                if (!D.toast) return;
-                if (toastTimer) clearTimeout(toastTimer);
-                D.toast.textContent = msg;
-                D.toast.classList.add('show');
-                toastTimer = setTimeout(() => D.toast.classList.remove('show'), CONFIG.TOAST_DURATION);
-            }
-
-            function copyToClipboard(text, successKey) {
-                if (navigator.clipboard?.writeText) {
-                    navigator.clipboard.writeText(text).then(() => showToast(t(successKey))).catch(() => fallbackCopy(text));
-                } else fallbackCopy(text);
-            }
-
-            function fallbackCopy(text) {
-                const ta = document.createElement('textarea');
-                ta.value = text;
-                ta.style.cssText = 'position:fixed;opacity:0;';
-                document.body.appendChild(ta);
-                ta.select();
-                try { document.execCommand('copy'); showToast(t('toast_copy')); } catch (e) { showToast(t('toast_copy_fail') + text); }
-                document.body.removeChild(ta);
-            }
-
-            function shareSite() {
-                if (navigator.share) {
-                    navigator.share({ title: 'Alireza Apex | Android Developer', url: CONFIG.SHARE_URL }).catch(() => {});
-                } else copyToClipboard(CONFIG.SHARE_URL, 'toast_link_copied');
-            }
-
-            function safeOpen(url) {
-                const w = window.open(url, '_blank', 'noopener,noreferrer');
-                if (!w || w.closed) { showToast(t('toast_link_copied')); navigator.clipboard.writeText(url).catch(() => {}); }
-            }
+            function showToast(msg) { if (!D.toast) return; if (toastTimer) clearTimeout(toastTimer); D.toast.textContent = msg; D.toast.classList.add('show'); toastTimer = setTimeout(() => D.toast.classList.remove('show'), CONFIG.TOAST_DURATION); }
+            function copyToClipboard(text, successKey) { if (navigator.clipboard?.writeText) { navigator.clipboard.writeText(text).then(() => showToast(t(successKey))).catch(() => fallbackCopy(text)); } else fallbackCopy(text); }
+            function fallbackCopy(text) { const ta = document.createElement('textarea'); ta.value = text; ta.style.cssText = 'position:fixed;opacity:0;'; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); showToast(t('toast_copy')); } catch (e) { showToast(t('toast_copy_fail') + text); } document.body.removeChild(ta); }
+            function shareSite() { if (navigator.share) { navigator.share({ title: 'Alireza Apex | Android Developer', url: CONFIG.SHARE_URL }).catch(() => {}); } else copyToClipboard(CONFIG.SHARE_URL, 'toast_link_copied'); }
+            function safeOpen(url) { const w = window.open(url, '_blank', 'noopener,noreferrer'); if (!w || w.closed) { showToast(t('toast_link_copied')); navigator.clipboard.writeText(url).catch(() => {}); } }
 
             function handleFormSubmit(e) {
                 e.preventDefault();
@@ -723,53 +816,15 @@
                 setTimeout(() => window.location.href = `mailto:${CONFIG.EMAIL_ADDR}?subject=${subj}&body=${body}`, 600);
             }
 
-            function createRipple(e) {
-                const btn = e.currentTarget;
-                const rect = btn.getBoundingClientRect();
-                const size = Math.max(rect.width, rect.height);
-                const ripple = document.createElement('span');
-                ripple.className = 'ripple';
-                ripple.style.cssText = `width:${size}px;height:${size}px;left:${e.clientX-rect.left-size/2}px;top:${e.clientY-rect.top-size/2}px;`;
-                btn.appendChild(ripple);
-                setTimeout(() => ripple.remove(), 600);
-            }
-
-            function setupRippleEffect() {
-                document.querySelectorAll('.copy-btn, .submit-btn, .myket-btn, .install-btn, .update-banner-btn, .apps-main-btn').forEach(btn => btn.addEventListener('click', createRipple));
-            }
-
-            function setupTiltEffect() {
-                if (!D.tiltCards?.length || state.lowPerf || !window.matchMedia('(hover: hover)').matches) return;
-                D.tiltCards.forEach(card => {
-                    card.addEventListener('mousemove', (e) => {
-                        const r = card.getBoundingClientRect();
-                        const x = e.clientX - r.left, y = e.clientY - r.top;
-                        const rx = ((y - r.height/2) / (r.height/2)) * -5;
-                        const ry = ((x - r.width/2) / (r.width/2)) * 5;
-                        card.style.transform = `perspective(1000px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-4px)`;
-                    });
-                    card.addEventListener('mouseleave', () => card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)');
-                });
-            }
-
-            function detectLowPerformance() {
-                const isMobile = window.innerWidth < 768;
-                const isLowMemory = navigator.deviceMemory && navigator.deviceMemory < 4;
-                const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-                const slowConn = navigator.connection && (navigator.connection.saveData || ['slow-2g','2g','3g'].includes(navigator.connection.effectiveType));
-                if (prefersReduced || (isMobile && isLowMemory) || slowConn) {
-                    state.lowPerf = true;
-                    document.body.classList.add('low-perf');
-                }
-            }
+            function createRipple(e) { const btn = e.currentTarget; const rect = btn.getBoundingClientRect(); const size = Math.max(rect.width, rect.height); const ripple = document.createElement('span'); ripple.className = 'ripple'; ripple.style.cssText = `width:${size}px;height:${size}px;left:${e.clientX-rect.left-size/2}px;top:${e.clientY-rect.top-size/2}px;`; btn.appendChild(ripple); setTimeout(() => ripple.remove(), 600); }
+            function setupRippleEffect() { document.querySelectorAll('.copy-btn, .submit-btn, .myket-btn, .install-btn, .update-banner-btn, .apps-main-btn').forEach(btn => btn.addEventListener('click', createRipple)); }
+            function setupTiltEffect() { if (!D.tiltCards?.length || state.lowPerf || !window.matchMedia('(hover: hover)').matches) return; D.tiltCards.forEach(card => { card.addEventListener('mousemove', (e) => { const r = card.getBoundingClientRect(); const x = e.clientX - r.left, y = e.clientY - r.top; const rx = ((y - r.height/2) / (r.height/2)) * -5; const ry = ((x - r.width/2) / (r.width/2)) * 5; card.style.transform = `perspective(1000px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-4px)`; }); card.addEventListener('mouseleave', () => card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)'); }); }
+            function detectLowPerformance() { const isMobile = window.innerWidth < 768; const isLowMemory = navigator.deviceMemory && navigator.deviceMemory < 4; const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches; const slowConn = navigator.connection && (navigator.connection.saveData || ['slow-2g','2g','3g'].includes(navigator.connection.effectiveType)); if (prefersReduced || (isMobile && isLowMemory) || slowConn) { state.lowPerf = true; document.body.classList.add('low-perf'); } }
 
             function bindEvents() {
-                safeOn('langToggle', 'click', toggleLang);
-                safeOn('mobileLangBtn', 'click', toggleLang);
-                safeOn('themeToggle', 'click', cycleTheme);
-                safeOn('mobileThemeBtn', 'click', cycleTheme);
-                safeOn('hamburgerBtn', 'click', openMenu);
-                safeOn('mobileCloseBtn', 'click', closeMenu);
+                safeOn('langToggle', 'click', toggleLang); safeOn('mobileLangBtn', 'click', toggleLang);
+                safeOn('themeToggle', 'click', cycleTheme); safeOn('mobileThemeBtn', 'click', cycleTheme);
+                safeOn('hamburgerBtn', 'click', openMenu); safeOn('mobileCloseBtn', 'click', closeMenu);
                 safeOn('mobileShareBtn', 'click', () => { shareSite(); closeMenu(); });
                 safeOn('shareBtn', 'click', shareSite);
                 safeOn('copyIdBtn', 'click', () => copyToClipboard(CONFIG.MESSENGER_ID, 'toast_copy'));
@@ -778,152 +833,30 @@
                 safeOn('telegramBtn', 'click', () => safeOpen(CONFIG.TELEGRAM_URL));
                 if (D.contactForm) D.contactForm.addEventListener('submit', handleFormSubmit);
                 safeOn('topBtn', 'click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-                safeOn('updateBtn', 'click', () => {
-                    if (state.newWorker) state.newWorker.postMessage({ type: 'SKIP_WAITING' });
-                    else window.location.reload();
-                });
+                safeOn('updateBtn', 'click', () => { if (state.newWorker) state.newWorker.postMessage({ type: 'SKIP_WAITING' }); else window.location.reload(); });
                 safeOn('updateDismissBtn', 'click', () => { if (D.updateBanner) D.updateBanner.classList.remove('visible'); });
             }
 
-            function setupScroll() {
-                const circ = 2 * Math.PI * 30;
-                window.addEventListener('scroll', () => {
-                    if (!state.scrollTicking) {
-                        requestAnimationFrame(() => {
-                            const y = window.scrollY;
-                            const h = document.body.scrollHeight - window.innerHeight;
-                            const p = Math.min(y / Math.max(h, 1), 1);
-                            if (D.topBtn) D.topBtn.style.display = y > CONFIG.SCROLL_THRESHOLD ? 'flex' : 'none';
-                            if (D.progressCircle) {
-                                D.progressCircle.style.strokeDasharray = circ;
-                                D.progressCircle.style.strokeDashoffset = circ - (p * circ);
-                            }
-                            state.scrollTicking = false;
-                        });
-                        state.scrollTicking = true;
-                    }
-                }, { passive: true });
-            }
+            function setupScroll() { const circ = 2 * Math.PI * 30; window.addEventListener('scroll', () => { if (!state.scrollTicking) { requestAnimationFrame(() => { const y = window.scrollY; const h = document.body.scrollHeight - window.innerHeight; const p = Math.min(y / Math.max(h, 1), 1); if (D.topBtn) D.topBtn.style.display = y > CONFIG.SCROLL_THRESHOLD ? 'flex' : 'none'; if (D.progressCircle) { D.progressCircle.style.strokeDasharray = circ; D.progressCircle.style.strokeDashoffset = circ - (p * circ); } state.scrollTicking = false; }); state.scrollTicking = true; } }, { passive: true }); }
+            function setupReveal() { if (!D.reveals?.length) return; const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } }); }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }); D.reveals.forEach(el => observer.observe(el)); }
+            function updateParticleColor() { state.particleColor = getComputedStyle(document.body).getPropertyValue('--particle-color').trim() || 'rgba(157,77,255,0.45)'; }
+            function setupParticles() { if (!D.particles || state.lowPerf) { if (D.particles) D.particles.style.display = 'none'; return; } const ctx = D.particles.getContext('2d'); let w, h; function resize() { w = D.particles.width = window.innerWidth; h = D.particles.height = window.innerHeight; } resize(); window.addEventListener('resize', resize); const particles = []; for (let i = 0; i < 40; i++) { particles.push({ x: Math.random()*w, y: Math.random()*h, r: Math.random()*2+1, vx: (Math.random()-0.5)*0.3, vy: (Math.random()-0.5)*0.3 }); } updateParticleColor(); function anim() { ctx.clearRect(0, 0, w, h); const color = state.particleColor; for (let p of particles) { ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI*2); ctx.fillStyle = color; ctx.fill(); p.x += p.vx; p.y += p.vy; if (p.x < 0 || p.x > w) p.vx *= -1; if (p.y < 0 || p.y > h) p.vy *= -1; } requestAnimationFrame(anim); } anim(); }
+            function setupClock() { if (!D.liveClock) return; function update() { const now = new Date(); D.liveClock.textContent = [now.getHours(), now.getMinutes(), now.getSeconds()].map(x => String(x).padStart(2,'0')).join(':'); } update(); state.clockInterval = setInterval(update, 1000); }
+            function hideLoading() { if (!D.loadingScreen || !state.loading) return; D.loadingScreen.style.opacity = '0'; D.loadingScreen.style.visibility = 'hidden'; setTimeout(() => { if (D.loadingScreen?.parentNode) D.loadingScreen.remove(); }, 600); state.loading = false; }
+            function registerServiceWorker() { if (!('serviceWorker' in navigator)) return; navigator.serviceWorker.register('./sw.js').then(reg => { reg.addEventListener('updatefound', () => { const newWorker = reg.installing; state.newWorker = newWorker; newWorker.addEventListener('statechange', () => { if (newWorker.state === 'installed' && navigator.serviceWorker.controller) { if (D.updateBanner) D.updateBanner.classList.add('visible'); } }); }); }).catch(err => console.warn('[PWA] SW registration failed:', err)); navigator.serviceWorker.addEventListener('message', (event) => { if (event.data?.type === 'RELOAD_PAGE') window.location.reload(); }); }
+            function setupInstallPrompt() { let deferredPrompt = null; const installBanner = D.installBanner; const installBtn = D.installBtn; const installDismissBtn = D.installDismissBtn; if (!installBanner || !installBtn || !installDismissBtn) return; if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone) return; const wasDismissed = localStorage.getItem('pwa_dismissed'); window.addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); deferredPrompt = e; if (!wasDismissed) setTimeout(() => installBanner.classList.add('visible'), 3000); }); installBtn.addEventListener('click', async () => { if (!deferredPrompt) { showToast(/iPad|iPhone|iPod/.test(navigator.userAgent) ? 'در سافاری: Share → Add to Home Screen 📱' : 'از منوی مرورگر → Install App 🔧'); return; } deferredPrompt.prompt(); const { outcome } = await deferredPrompt.userChoice; showToast(outcome === 'accepted' ? t('toast_installed') : t('toast_install_error')); deferredPrompt = null; installBanner.classList.remove('visible'); }); installDismissBtn.addEventListener('click', () => { installBanner.classList.remove('visible'); localStorage.setItem('pwa_dismissed', 'true'); }); window.addEventListener('appinstalled', () => { showToast(t('toast_installed')); installBanner.classList.remove('visible'); deferredPrompt = null; }); }
 
-            function setupReveal() {
-                if (!D.reveals?.length) return;
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } });
-                }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-                D.reveals.forEach(el => observer.observe(el));
-            }
-
-            function updateParticleColor() {
-                state.particleColor = getComputedStyle(document.body).getPropertyValue('--particle-color').trim() || 'rgba(157,77,255,0.45)';
-            }
-
-            function setupParticles() {
-                if (!D.particles || state.lowPerf) { if (D.particles) D.particles.style.display = 'none'; return; }
-                const ctx = D.particles.getContext('2d');
-                let w, h;
-                function resize() { w = D.particles.width = window.innerWidth; h = D.particles.height = window.innerHeight; }
-                resize();
-                window.addEventListener('resize', resize);
-                const particles = [];
-                for (let i = 0; i < 40; i++) {
-                    particles.push({ x: Math.random()*w, y: Math.random()*h, r: Math.random()*2+1, vx: (Math.random()-0.5)*0.3, vy: (Math.random()-0.5)*0.3 });
-                }
-                updateParticleColor();
-                function anim() {
-                    ctx.clearRect(0, 0, w, h);
-                    const color = state.particleColor;
-                    for (let p of particles) {
-                        ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI*2); ctx.fillStyle = color; ctx.fill();
-                        p.x += p.vx; p.y += p.vy;
-                        if (p.x < 0 || p.x > w) p.vx *= -1;
-                        if (p.y < 0 || p.y > h) p.vy *= -1;
-                    }
-                    requestAnimationFrame(anim);
-                }
-                anim();
-            }
-
-            function setupClock() {
-                if (!D.liveClock) return;
-                function update() {
-                    const now = new Date();
-                    D.liveClock.textContent = [now.getHours(), now.getMinutes(), now.getSeconds()].map(x => String(x).padStart(2,'0')).join(':');
-                }
-                update();
-                state.clockInterval = setInterval(update, 1000);
-            }
-
-            function hideLoading() {
-                if (!D.loadingScreen || !state.loading) return;
-                D.loadingScreen.style.opacity = '0';
-                D.loadingScreen.style.visibility = 'hidden';
-                setTimeout(() => { if (D.loadingScreen?.parentNode) D.loadingScreen.remove(); }, 600);
-                state.loading = false;
-            }
-
-            function registerServiceWorker() {
-                if (!('serviceWorker' in navigator)) return;
-                navigator.serviceWorker.register('./sw.js')
-                    .then(reg => {
-                        reg.addEventListener('updatefound', () => {
-                            const newWorker = reg.installing;
-                            state.newWorker = newWorker;
-                            newWorker.addEventListener('statechange', () => {
-                                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-                                    if (D.updateBanner) D.updateBanner.classList.add('visible');
-                                }
-                            });
-                        });
-                    })
-                    .catch(err => console.warn('[PWA] SW registration failed:', err));
-                navigator.serviceWorker.addEventListener('message', (event) => {
-                    if (event.data?.type === 'RELOAD_PAGE') window.location.reload();
-                });
-            }
-
-            function setupInstallPrompt() {
-                let deferredPrompt = null;
-                const installBanner = D.installBanner;
-                const installBtn = D.installBtn;
-                const installDismissBtn = D.installDismissBtn;
-                if (!installBanner || !installBtn || !installDismissBtn) return;
-                if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone) return;
-                const wasDismissed = localStorage.getItem('pwa_dismissed');
-                window.addEventListener('beforeinstallprompt', (e) => {
-                    e.preventDefault();
-                    deferredPrompt = e;
-                    if (!wasDismissed) setTimeout(() => installBanner.classList.add('visible'), 3000);
-                });
-                installBtn.addEventListener('click', async () => {
-                    if (!deferredPrompt) {
-                        showToast(/iPad|iPhone|iPod/.test(navigator.userAgent) ? 'در سافاری: Share → Add to Home Screen 📱' : 'از منوی مرورگر → Install App 🔧');
-                        return;
-                    }
-                    deferredPrompt.prompt();
-                    const { outcome } = await deferredPrompt.userChoice;
-                    showToast(outcome === 'accepted' ? t('toast_installed') : t('toast_install_error'));
-                    deferredPrompt = null;
-                    installBanner.classList.remove('visible');
-                });
-                installDismissBtn.addEventListener('click', () => {
-                    installBanner.classList.remove('visible');
-                    localStorage.setItem('pwa_dismissed', 'true');
-                });
-                window.addEventListener('appinstalled', () => {
-                    showToast(t('toast_installed'));
-                    installBanner.classList.remove('visible');
-                    deferredPrompt = null;
-                });
-            }
-
-            function init() {
+            async function init() {
                 state.currentThemeIndex = state.themeModes.indexOf(state.theme);
                 if (state.currentThemeIndex === -1) state.currentThemeIndex = 0;
                 detectLowPerformance();
                 cacheDom();
                 applyTheme();
-                render();
-                renderFeaturedApps();
+                if (D.langToggle) D.langToggle.textContent = state.lang === 'fa' ? t('lang_btn_en') : t('lang_btn_fa');
+                if (D.mobileLangBtn) D.mobileLangBtn.textContent = state.lang === 'fa' ? 'FA / EN' : 'EN / FA';
+                document.documentElement.lang = state.lang;
+                document.documentElement.dir = state.lang === 'fa' ? 'rtl' : 'ltr';
+                await loadData();
                 bindEvents();
                 setupScroll();
                 setupReveal();
