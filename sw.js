@@ -1,16 +1,17 @@
 // ===================================================================
 // Service Worker - Alireza Apex PWA
-// Version: 4.0.0
+// Version: 5.0.0
 // Strategy: Network First with Cache Fallback
 // ===================================================================
 
-const CACHE_VERSION = 'v4';
+const CACHE_VERSION = 'v5';
 const CACHE_NAME = `alireza-apex-${CACHE_VERSION}`;
 
 // Only local assets - NO external fonts to prevent install failure
 const APP_SHELL_ASSETS = [
     './',
     './index.html',
+    './apps.html',
     './manifest.json',
     './1780913134571.webp'
 ];
@@ -20,7 +21,8 @@ const IGNORED_DOMAINS = [
     'googletagmanager.com',
     'doubleclick.net',
     'fonts.googleapis.com',
-    'fonts.gstatic.com'
+    'fonts.gstatic.com',
+    'gc.zgo.at'
 ];
 
 self.addEventListener('install', (event) => {
