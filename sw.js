@@ -1,21 +1,18 @@
 // ===================================================================
 // Service Worker - Alireza Apex PWA
-// Version: 5.0.0
+// Version: 6.0.0
 // Strategy: Network First with Cache Fallback
 // ===================================================================
 
-const CACHE_VERSION = 'v5';
+const CACHE_VERSION = 'v6';
 const CACHE_NAME = `alireza-apex-${CACHE_VERSION}`;
 
 // Only local assets - NO external fonts to prevent install failure
 const APP_SHELL_ASSETS = [
     './',
     './index.html',
-    './apps.html',
-    './apps.json',
-    './faq.json',
     './manifest.json',
-    './1780913134571.webp'
+    './AlirezaApex.png'
 ];
 
 const IGNORED_DOMAINS = [
@@ -24,7 +21,8 @@ const IGNORED_DOMAINS = [
     'doubleclick.net',
     'fonts.googleapis.com',
     'fonts.gstatic.com',
-    'gc.zgo.at'
+    'gc.zgo.at',
+    'cdnjs.cloudflare.com'
 ];
 
 self.addEventListener('install', (event) => {
@@ -41,7 +39,6 @@ self.addEventListener('install', (event) => {
             })
             .catch((err) => {
                 console.warn(`[SW ${CACHE_VERSION}] Some assets failed to cache:`, err);
-                // Don't fail installation if caching fails
                 return self.skipWaiting();
             })
     );
