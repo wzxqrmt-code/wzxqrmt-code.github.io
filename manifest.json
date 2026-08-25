@@ -5,12 +5,19 @@
   "display": "standalone",
   "background_color": "#07070c",
   "theme_color": "#9d4dff",
-  "description": "Android Developer with 23 published apps on Myket",
+  "description": "Android Developer with 26 published apps on Myket",
   "icons": [
     {
-      "src": "https://wzxqrmt-code.github.io/1780913134571.webp",
-      "sizes": "752x1280",
-      "type": "image/webp"
+      "src": "https://wzxqrmt-code.github.io/AlirezaApex.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "https://wzxqrmt-code.github.io/AlirezaApex.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ]
 }
